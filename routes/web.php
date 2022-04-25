@@ -19,5 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::view('/blog','blog');
+
+Route::group(['middleware' => ['auth'], 'namespace' => 'admin'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::view('/blog','blog');
+
+});

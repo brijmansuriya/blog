@@ -1,0 +1,60 @@
+
+        <script src="{{ URL::asset('backend/js/jquery.js')}}"></script>
+		<script src="{{ URL::asset('vendors/js/vendor.bundle.base.js')}}"></script>
+
+        @yield('script')
+
+	
+		
+        <script>
+		// $('form').parsley();
+		// $("#myForm").parsley(); 
+
+		// $(document).ready(function() {
+		// 	$('.select2').select2();
+		// });
+
+		$(document).ready(function() { 
+			$(".alert").fadeTo(1000, 500).slideUp(500, function() {
+					$(".alert").slideUp(500);
+			});
+		});
+
+		/*delete record js*/ 
+		function deleteRecord(deleteUrl){
+			Swal.fire({
+			title: "Are you sure that you want to delete this record?",
+			text: "You will not be able to recover record!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#172774",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel please!",
+			reverseButtons: true
+			}).then(function (result) {
+				if (result.value) {
+					$.ajax({
+						url: deleteUrl,
+						type: "DELETE",
+						data: { _token: "{{ csrf_token(); }}"},
+						success: function (response) {
+							if(response)
+							{
+								location.reload();
+							}
+						}
+					});
+				}else if (
+				    result.dismiss === Swal.DismissReason.cancel
+				  ) {
+				    Swal.fire(
+				      'Cancelled',
+				      'Your Data is safe :)',
+				      'error',
+				    )
+				  }
+			});
+		}
+
+     </script>
+    @yield('script-bottom')

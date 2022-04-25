@@ -1,0 +1,117 @@
+laravel new example-app
+
+composer require laravel/ui
+
+php artisan ui bootstrap
+
+php artisan ui bootstrap --auth
+
+
+
+php artisan make:migration create_flights_table
+php artisan migrate
+php artisan migrate --path=/database/migrations/test/
+
+------------------------------------------------------------
+model
+------------------------------------------------------------
+php artisan make:model Flight --controller
+php artisan make:model Flight --migration  
+            
+-------------------------------------------------------------
+php artisan stub:publish
+conttrol bluprint
+-------------------------------------------------------------
+php artisan make:controller stube
+
+
+-------------------------------------------------------------
+controller
+-------------------------------------------------------------
+php artisan make:controller PhotoController --resource
+
+
+------------------------------------------------------------
+New Project
+------------------------------------------------------------
+composer create-project laravel/laravel example-Project-Name
+
+
+------------------------------------------------------------
+Mail
+------------------------------------------------------------
+php artisan make:mail TestMail
+
+------------------------------------------------------------
+excel
+------------------------------------------------------------
+composer require maatwebsite/excel
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
+php artisan make:export EmployExport --model=App\Models\Employee 
+---------------------------------------------------------------
+import
+---------------------------------------------------------------
+php artisan make:import EmployExport --model=App\Models\Employee 
+php artisan migrate --path=/database/migrations/2021_07_19_111113_create_tbl_group_table.php
+-------------------------------------------------------------
+Image Resize
+-------------------------------------------------------------
+composer require intervention/image
+php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
+-------------------------------------------------------------
+php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
+php artisan make:factory Emploeefactory --model=Employee 
+php artisan datatables:make Employee 
+--------------------------------------------------------------
+Infinite Scroll Pagination
+--------------------------------------------------------------
+php artisan make:model Post -m
+php artisan make:controller Postcontroller
+----------------------------------------------------------------
+ganral
+----------------------------------------------------------------
+php artisan make:migration create_flights_table
+php artisan migrate --path=/database/migrations/2021_07_19_111113_create_tbl_group_table.php
+php artisan make:model AddgroupModel
+
+---------------------------------------------------------------------------------
+seeder
+---------------------------------------------------------------------------------
+php artisan make:seeder UserSeeder
+ public function run()   
+
+  {         
+   DB::table('users')->insert([    
+         'name' => 'username',  
+         'email' => 'username@gmail.com',   
+         'password' => Hash::make('password'),   
+
+      ]);    
+  }
+
+----------------------------------------------------
+composer create-project --prefer-dist laravel/laravel:^7.0 blog
+
+
+ Schema::create('tbl_inventory', function (Blueprint $table) {
+            $table->id();
+            $table->Integer('productid')->nullable();
+            $table->Integer('masterid')->nullable();
+            $table->Integer('subid')->nullable();
+            $table->Integer('stype')->nullable();
+            $table->Integer('qty')->nullable();
+            $table->tinyInteger('is_delete')->default('0');
+            $table->Integer('created_by')->nullable();
+            $table->Integer('updated_by')->nullable();
+            $table->timestamp('created_on')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_on')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
+ $table->Integer('cat_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('date')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('amount',10,2)->nullable();
+            $table->tinyInteger('isdelete')->default('0');
+            $table->Integer('created_by')->nullable();
+            $table->timestamps();
+        });
