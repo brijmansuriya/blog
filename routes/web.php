@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +19,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/711', function () {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+});
+
 Auth::routes();
 
+Route::view('/blog', 'blog');
 
-Route::group(['middleware' => ['auth'], 'namespace' => 'admin'], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::view('/blog','blog');
+    // Route::resource('about-us', 'AboutusController');
 
+    Route::resource('category', CategoryController::class);
 });

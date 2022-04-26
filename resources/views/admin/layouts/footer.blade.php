@@ -1,13 +1,8 @@
-
 <footer class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                 {{date('Y')}} &copy; Blog
-            </div>
-            <div class="col-md-6">
-              
-            </div>
-        </div>
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © {{ date('Y') }}
+            &copy; Blog.</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <i
+                class="ti-heart text-danger ml-1"></i></span>
     </div>
 </footer>
