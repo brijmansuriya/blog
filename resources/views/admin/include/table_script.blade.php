@@ -1,9 +1,10 @@
-<link href="{{ URL::asset('assets/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ URL::asset('assets/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
-<script src="{{ URL::asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script> 
 <script src="{{ URL::asset('assets/libs/datatables/datatables.min.js')}}"></script>
+--}}
 <input type="hidden" id="datatTableFields" value="{{ json_encode($dateTableFields)}}">
-{{-- <input type="hidden" id="datatTableFields2" value="{{ json_encode($dateTableFields2)}}"> --}}
+
 <script type="text/javascript">
 $(function() {
     

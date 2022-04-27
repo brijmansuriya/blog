@@ -23,9 +23,8 @@ class CategoryController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('action', function ($row) {
-                    $btn = '<a href="' . route('about-us.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
-
-                    $delete_link = route('about-us.destroy', $row['id']);
+                    $btn = '<a href="' . route('category.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
+                    $delete_link = route('category.destroy', $row['id']);
                     $delete_link = "'" . $delete_link . "'";
                     $btn .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ');" data-popup="tooltip"><i class="fa fa-trash" style="color: #172774;"></i></a>';
                     return $btn;
@@ -36,8 +35,8 @@ class CategoryController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
-                ['data' => 'title', 'name' => 'title', 'title' => __("Title"), 'searchable' => true],
-                ['data' => 'description', 'name' => 'description', 'title' => __("Description"), 'searchable' => true],
+                ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
+                ['data' => 'description', 'name' => 'description', 'title' => __("description"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
             $this->data['dateTableFields'] = $columns;
