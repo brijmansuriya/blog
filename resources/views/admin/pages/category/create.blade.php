@@ -1,60 +1,59 @@
 @extends('admin.layouts.master')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-            <h4 class="page-title float-left">{{$dateTableTitle}}</h4>
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('about-us.index')}}">About Us</a></li>
-                        <li class="breadcrumb-item">Add</li>
-                    </ol>
+     
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">{{$dateTableTitle}}</h4>
+                  <form class="forms-sample" action="{{route('category.store')}}" method="POST"  enctype="multipart/form-data">
+                  @csrf
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Name</label>
+                      <input type="text" class="form-control" name='name' id="exampleInputUsername1"  placeholder="Name">
+                        <div class="error">{{ $errors->category_error->first('name') }}</div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control"  name='description'  id="exampleTextarea1" rows="4"></textarea>
+                        <div class="error">{{ $errors->category_error->first('description') }}</div>
+                    </div>
+                    <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="image" class="file-upload-default" id="imgInp">
+                      <div class="input-group col-xs-12">
+                        <input type="text" name="image" class="form-control file-upload-info"  placeholder="Upload Image">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label for="exampleTextarea1"></label>
+                        <img id="blah" src="{{url('default.png')}}" alt="your image" style="width: 100px;" />
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-	<div class="row">
-		<div class="col-xl-6">
-			<div class="card">
-				<div class="card-body" >
-                <form action="{{route('about-us.store')}}" method="POST"  enctype="multipart/form-data">
-                @csrf
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="name">Title<span class="text-danger">*</span></label>
-                                <input type="text" name="title" parsley-trigger="change" required placeholder="Enter Title" maxlength ="255" data-parsley-required-message="The Title field is required." class="form-control" id="title">
-                               <div class="error">{{ $errors->aboutus_error->first('title') }}</div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="description">Description<span class="text-danger">*</span></label>
-                                <textarea type="text" name="description" parsley-trigger="change"  required placeholder="Enter Description" data-parsley-required-message="The Description field is required." class="form-control" id="description"></textarea>
-                                <div class="error">{{ $errors->aboutus_error->first('description') }}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group text-right m-b-0">
-                        <button class="btn btn-primary waves-effect waves-light" type="submit">
-                            Submit
-                        </button>
-                        <a href="{{ route('about-us.index') }}" class="btn btn-secondary waves-effect m-l-5">Cancel</a>
-                    </div>
-
-                </form>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
+      
 @endsection
 @section('script')
+  <script src="{{ URL::asset('backend/js/file-upload.js')}}"></script>
 <script type="text/javascript">
-$('#aboutus-tab').addClass('active');
-$('#aboutus-tab-a').addClass('active');
+    $('#aboutus-tab').addClass('active');
+    $('#aboutus-tab-a').addClass('active');
+
+imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
 </script>
 @endsection

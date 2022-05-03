@@ -4,11 +4,11 @@
 <head>
     @include('admin.layouts.head')
 
-    <style>
-        .dataTables_filter{
-text-align: right
+    {{-- <style>
+        .dataTables_filter {
+            text-align: right
         }
-    </style>
+    </style> --}}
 </head>
 
 <body>
@@ -24,4 +24,5 @@ text-align: right
     </div>
     @include('admin.layouts.footer-script')
 </body>
+
 </html>

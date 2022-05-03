@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,7 @@ Route::view('/blog', 'blog');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    // Route::resource('about-us', 'AboutusController');
-
     Route::resource('category', CategoryController::class);
+    Route::resource('post', PostController::class);
+    Route::Post('postimageuplode', [PostController::class,'postImageUplode'])->name('post.uplode');
 });
