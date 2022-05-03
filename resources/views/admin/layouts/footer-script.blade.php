@@ -7,6 +7,7 @@
 <script src="{{ URL::asset('backend/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/datatables.net/jquery.dataTables.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ URL::asset('backend/vendors/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('backend/js/template.js') }}"></script>
 <script src="{{ URL::asset('backend/js/settings.js') }}"></script>
 
@@ -17,9 +18,9 @@
     // $('form').parsley();
     // $("#myForm").parsley(); 
 
-    // $(document).ready(function() {
-    // 	$('.select2').select2();
-    // });
+     $(document).ready(function() {
+     	$('.select2').select2();
+     });
 
     $(document).ready(function() {
         $(".alert").fadeTo(1000, 500).slideUp(500, function() {

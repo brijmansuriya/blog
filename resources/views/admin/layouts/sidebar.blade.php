@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('post.index') }}">
+            <a class="nav-link" href="{{ route('posts.index') }}">
                 <i class="icon-columns menu-icon"></i>
                 <span class="menu-title">Post</span>
             </a>
