@@ -15,6 +15,8 @@ class Post extends Model
         'title',
         'body',
         'description',
+        'keywords',
+        'metadescription',
     ];
 
      protected $hidden = [

@@ -30319,7 +30319,7 @@ body.avgrund-active {
 .dataTables_wrapper .dataTable thead .sorting_desc:before,
 .dataTables_wrapper .dataTable thead .sorting_asc_disabled:before,
 .dataTables_wrapper .dataTable thead .sorting_desc_disabled:before {
-  content: "\e64b";
+  /* content: "\e64b"; */
   right: 1.2em;
   bottom: 0;
 }
@@ -30329,7 +30329,7 @@ body.avgrund-active {
 .dataTables_wrapper .dataTable thead .sorting_desc:after,
 .dataTables_wrapper .dataTable thead .sorting_asc_disabled:after,
 .dataTables_wrapper .dataTable thead .sorting_desc_disabled:after {
-  content: "\e648";
+  /* content: "\e648"; */
   right: 1.2em;
   top: 0;
 }

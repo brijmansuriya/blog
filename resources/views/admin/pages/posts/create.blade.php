@@ -19,15 +19,25 @@
                             <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
                         </div>
                         <div class="col-md-6 form-group">
+                            <label>Keywords</label>
+                            <select name="keywords[]" class="js-example-tokenizer w-100 select2" multiple="multiple">
+                            </select>
+                            <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
+                        </div>
+                        <div class="col-md-6 form-group">
                             <label for="exampleInputUsername1">Post Name</label>
                             <input type="text" class="form-control" name='title' id="exampleInputUsername1" placeholder="Post Name">
                             <div class="error">{{ $errors->posts_error->first('title') }}</div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="exampleTextarea1">Description</label>
                         <textarea class="form-control" name='body' id="editor" rows="5"></textarea>
+                        <div class="error">{{ $errors->category_error->first('body') }}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Meta Description</label>
+                        <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
                         <div class="error">{{ $errors->category_error->first('body') }}</div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -39,11 +49,10 @@
 </div>
 @endsection
 @section('script')
-<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="{{ URL::asset('backend/vendors/ckediter/ckeditor.js') }}"></script>
 <script type="text/javascript">
     $('#aboutus-tab').addClass('active');
     $('#aboutus-tab-a').addClass('active');
-
     ClassicEditor.create(document.querySelector('#editor'),{
         ckfinder: {
             uploadUrl: '{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'

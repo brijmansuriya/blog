@@ -37,22 +37,22 @@ class PostController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
-                ['data' => 'title', 'name' => 'title', 'title' => __("Title"), 'searchable' => true],
+                ['data' => 'title', 'name' => 'title', 'title' => __("Title"), 'searchable' => true,'width' => '80%'],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
             $this->data['dateTableFields'] = $columns;
             $this->data['dateTableUrl'] = route('posts.index');
-            $this->data['dateTableTitle'] = "Category Management";
+            $this->data['dateTableTitle'] = "Posts Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('posts.create');
             return view('admin.pages.posts.index', $this->data);
         }
-        return Category::get();
+        return Post::get();
     }
 
    
     public function create()
     {
-        $this->data['dateTableTitle'] = "Add Category";
+        $this->data['dateTableTitle'] = "Add Posts";
         $this->data['backUrl'] = route('posts.index');
         $this->data['cetegory'] = Category::get(['id','name']);
         return view('admin.pages.posts.create', $this->data);
@@ -61,6 +61,7 @@ class PostController extends Controller
     
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category_id' => 'required',
@@ -71,12 +72,8 @@ class PostController extends Controller
                 ->withErrors($validator,'posts_error')
                 ->withInput();
         } else {
-           $input = $request->all();
-            
-            // if ($request->image) {
-            //     $name = $this->imageUpload($request->image, 'post');
-            //     $input['image'] = $name;
-            // }
+            $input = $request->all();
+            $input['keywords'] = implode(",",$input['keywords']);
             $about = Post::create($input);
             if ($about) {
                 return redirect()->route('posts.index')->with('success', 'Successfully Updated');
@@ -96,9 +93,9 @@ class PostController extends Controller
     
     public function edit($id)
     {
-        $this->data['pageTittle'] = "Edit Aboutus";
+        $this->data['pageTittle'] = "Edit Post";
         $this->data['posts'] = Post::find($id);
-        $this->data['dateTableTitle'] = "Edit Aboutus";
+        $this->data['dateTableTitle'] = "Edit Post";
         $this->data['backUrl'] = route('posts.index');
         $this->data['cetegory'] = Category::get(['id','name']);
         return view('admin.pages.posts.edit', $this->data);
@@ -119,9 +116,10 @@ class PostController extends Controller
                 ->withInput();
         } else {
             $input = $request->all();
-            $about = Post::find($id);
-            $about->update($input);
-            if ($about) {
+            $post = Post::find($id);
+            $input['keywords'] = implode(",",$input['keywords']);
+            $post->update($input);
+            if ($post) {
                 return redirect()->route('posts.index')->with('success', 'Successfully Updated');
             } else {
                 return redirect()->back()->with('error', 'Sorry, something went wrong. Please try again');

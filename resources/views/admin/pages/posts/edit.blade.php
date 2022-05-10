@@ -16,24 +16,43 @@
                                 @foreach($cetegory as $cet)
                                 <option value="{{$cet->id}}" @if($posts->category_id = $cet->id)
                                     selected
-                                @endif>{{$cet->name}}</option>
+                                    @endif>{{$cet->name}}</option>
                                 @endforeach
                             </select>
                             <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
                         </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Keywords</label>
+                            <select name="keywords[]" class="js-example-tokenizer w-100 select2" multiple="multiple">
+                                @php
+                                $keywords = explode(",",$posts->keywords);
+                                print_r($keywords);
+                                @endphp
+                                @foreach($keywords as $keyword)
+                                <option value="{{$keyword}}" selected>{{$keyword}}</option>
+                                @endforeach
+                            </select>
+                            <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
+                        </div>
+
                         <div class="col-md-6 form-group">
                             <label for="exampleInputUsername1">Post Name</label>
-                            <input type="text" class="form-control" name='title' id="exampleInputUsername1" placeholder="Post Name">
+                            <input type="text" class="form-control" name='title' id="exampleInputUsername1" placeholder="Post Name" value="{{$posts->title}}">
                             <div class="error">{{ $errors->posts_error->first('title') }}</div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleTextarea1">Description</label>
-                        <textarea class="form-control" name='body' id="editor" rows="5"></textarea>
+                        <textarea class="form-control" name='body' id="editor" rows="5">{{$posts->body}}</textarea>
                         <div class="error">{{ $errors->category_error->first('body') }}</div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Meta Description</label>
+                        <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
+                        <div class="error">{{ $errors->category_error->first('body') }}</div>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 </form>
@@ -44,13 +63,13 @@
 </div>
 @endsection
 @section('script')
-<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="{{ URL::asset('backend/vendors/ckediter/ckeditor.js') }}"></script>
 <script type="text/javascript">
     $('#aboutus-tab').addClass('active');
     $('#aboutus-tab-a').addClass('active');
     ClassicEditor.create(document.querySelector('#editor'), {
         ckfinder: {
-            uploadUrl: '{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
+            uploadUrl:'{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
         }
     });
 

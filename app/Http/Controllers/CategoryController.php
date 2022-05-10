@@ -38,7 +38,7 @@ class CategoryController extends Controller
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
-                ['data' => 'description', 'name' => 'description', 'title' => __("description"), 'searchable' => true],
+                ['data' => 'description', 'name' => 'description', 'title' => __("description"),'width' => '80%', 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
             $this->data['dateTableFields'] = $columns;
