@@ -1,99 +1,168 @@
-<!-- Right Sidebar -->
-<div class="right-bar">
-    <div class="rightbar-title">
-        <a href="javascript:void(0);" class="right-bar-toggle float-right">
-            <i class="dripicons-cross noti-icon"></i>
-        </a>
-        <h5 class="m-0 text-white">Settings</h5>
-    </div>
-    <div class="slimscroll-menu">
-        <!-- User box -->
-        <div class="user-box">
-            <div class="user-img">
-                <img src="{{ URL::asset('assets/images/users/user-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
-            </div>
-            
-            <h5><a href="javascript: void(0);">Geneva Kennedy</a> </h5>
-            <p class="text-muted mb-0"><small>Admin Head</small></p>
-        </div>
+  <!--sidebar-->
+  <div class="col-lg-4 oredoo-sidebar">
+      <div class="theiaStickySidebar">
+          <div class="sidebar">
+              <!--search-->
 
-        <!-- Settings -->
-        <hr class="mt-0" />
-        <h5 class="pl-3">Basic Settings</h5>
-        <hr class="mb-0" />
 
-        <div class="p-3">
-            <div class="checkbox checkbox-primary mb-2">
-                <input id="Rcheckbox1" type="checkbox" checked>
-                <label for="Rcheckbox1">
-                    Notifications
-                </label>
-            </div>
-            <div class="checkbox checkbox-primary mb-2">
-                <input id="Rcheckbox2" type="checkbox" checked>
-                <label for="Rcheckbox2">
-                    API Access
-                </label>
-            </div>
-            <div class="checkbox checkbox-primary mb-2">
-                <input id="Rcheckbox3" type="checkbox">
-                <label for="Rcheckbox3">
-                    Auto Updates
-                </label>
-            </div>
-            <div class="checkbox checkbox-primary mb-2">
-                <input id="Rcheckbox4" type="checkbox" checked>
-                <label for="Rcheckbox4">
-                    Online Status
-                </label>
-            </div>
-            <div class="checkbox checkbox-primary mb-0">
-                <input id="Rcheckbox5" type="checkbox" checked>
-                <label for="Rcheckbox5">
-                    Auto Payout
-                </label>
-            </div>
-        </div>
+              <!--categories-->
+              <div class="widget ">
+                  <div class="widget-title">
+                      <h5>Categories</h5>
+                  </div>
+                  <div class="widget-categories">
 
-        <!-- Timeline -->
-        <hr class="mt-0" />
-        <h5 class="px-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
-        <hr class="mb-0" />
-        <div class="p-3">
-            <div class="inbox-widget">
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="{{ URL::asset('assets/images/users/user-2.jpg')}}" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
-                    <p class="inbox-item-text">I've finished it! See you so...</p>
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="{{ URL::asset('assets/images/users/user-3.jpg')}}" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                    <p class="inbox-item-text">This theme is awesome!</p>
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="{{ URL::asset('assets/images/users/user-4.jpg')}}" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                    <p class="inbox-item-text">Nice to meet you</p>
-                </div>
+                  @foreach($category as $cat)
+                      <a class="category-item" href="#">
+                          <div class="image">
+                              <img style="width:100px;height: 100px;" src="{{ $cat->image }}" alt="">
+                          </div>
+                          <p>{{ $cat->name }} </p>
+                      </a>
+                    @endforeach
+                     
+                  </div>
+              </div>
 
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="{{ URL::asset('assets/images/users/user-5.jpg')}}" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
-                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="{{ URL::asset('assets/images/users/user-6.jpg')}}" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
-                    <p class="inbox-item-text">This theme is awesome!</p>
-                </div>
-            </div> <!-- end inbox-widget -->
-        </div> <!-- end .p-3-->
+              <!--newslatter-->
 
-    </div> <!-- end slimscroll-menu-->
-</div>
-<!-- /Right-bar -->
 
-<!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
+              <!--stay connected-->
+              {{-- <div class="widget ">
+                  <div class="widget-title">
+                      <h5>Stay connected</h5>
+                  </div>
+
+                  <div class="widget-stay-connected">
+                      <div class="list">
+                          <div class="item color-facebook">
+                              <a href="#"><i class="fab fa-facebook"></i></a>
+                              <p>Facebook 12k</p>
+                          </div>
+
+                          <div class="item color-instagram">
+                              <a href="#"><i class="fab fa-instagram"></i></a>
+                              <p>instagram 102k</p>
+                          </div>
+
+                          <div class="item color-twitter">
+                              <a href="#"><i class="fab fa-twitter"></i></a>
+                              <p>twitter 22k</p>
+                          </div>
+
+                          <div class="item color-youtube">
+                              <a href="#"><i class="fab fa-youtube"></i></a>
+                              <p>Youtube 120k</p>
+                          </div>
+
+                          <div class="item color-dribbble">
+                              <a href="#"><i class="fab fa-dribbble"></i></a>
+                              <p>dribbble 17k</p>
+                          </div>
+
+                          <div class="item color-pinterest">
+                              <a href="#"><i class="fab fa-pinterest"></i></a>
+                              <p>pinterest 10k</p>
+                          </div>
+                      </div>
+                  </div>
+              </div> --}}
+
+
+              <!--Tags-->
+              <div class="widget">
+                  <div class="widget-title">
+                      <h5>Tags</h5>
+                  </div>
+                  <div class="tags">
+                      <ul class="list-inline">
+                      @foreach($tagsaaray as $tags)
+                        <li >
+                            <a href="/">{{$tags}}</a>
+                        </li>
+                      @endforeach
+                      </ul>
+                  </div>
+              </div>
+
+              <!--popular-posts-->
+              {{-- <div class="widget">
+                  <div class="widget-title">
+                      <h5>popular Posts</h5>
+                  </div>
+
+                  <ul class="widget-popular-posts">
+                      <!--post1-->
+                      <li class="small-post">
+                          <div class="small-post-image">
+                              <a href="post-single.html">
+                                  <img src="{{ asset('frontend/assets/img/blog/1.jpg') }}" alt="">
+                                  <small class="nb">1</small>
+                              </a>
+                          </div>
+                          <div class="small-post-content">
+                              <p>
+                                  <a href="post-single.html">Everything is designed. Few things are designed well.</a>
+                              </p>
+                              <small> <span class="slash"></span>3 mounth ago</small>
+                          </div>
+                      </li>
+                      <!--post2-->
+                      <li class="small-post">
+                          <div class="small-post-image">
+                              <a href="post-single.html">
+                                  <img src="{{ asset('frontend/assets/img/blog/5.jpg') }}" alt="">
+                                  <small class="nb">2</small>
+                              </a>
+                          </div>
+                          <div class="small-post-content">
+                              <p>
+                                  <a href="post-single.html">Brand yourself for the career you want, not the job you </a>
+                              </p>
+                              <small> <span class="slash"></span>3 mounth ago</small>
+                          </div>
+                      </li>
+
+                      <!--post3-->
+                      <li class="small-post">
+                          <div class="small-post-image">
+                              <a href="post-single.html">
+                                  <img src="{{ asset('frontend/assets/img/blog/13.jpg') }}" alt="">
+                                  <small class="nb">3</small>
+                              </a>
+                          </div>
+                          <div class="small-post-content">
+                              <p>
+                                  <a href="post-single.html">It’s easier to ask forgiveness than it is to get permission.</a>
+                              </p>
+                              <small> <span class="slash"></span> 3 mounth ago</small>
+                          </div>
+                      </li>
+
+                      <!--post4-->
+                      <li class="small-post">
+                          <div class="small-post-image">
+                              <a href="post-single.html">
+                                  <img src="{{ asset('frontend/assets/img/blog/16.jpg') }}" alt="">
+                                  <small class="nb">4</small>
+                              </a>
+                          </div>
+                          <div class="small-post-content">
+                              <p>
+                                  <a href="post-single.html">All happiness depends on a leisurely breakfast</a>
+                              </p>
+                              <small> <span class="slash"></span>3 mounth ago</small>
+                          </div>
+                      </li>
+                  </ul>
+              </div> --}}
+
+              <!--Ads-->
+              <div class="widget">
+                  <div class="widget-ads">
+                      <img src="{{ asset('frontend/assets/img/ads/ads2.jpg') }}" alt="">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

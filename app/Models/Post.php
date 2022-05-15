@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 class Post extends Model
 {
     use HasFactory;
@@ -17,10 +17,11 @@ class Post extends Model
         'description',
         'keywords',
         'metadescription',
+        'created_at',
+        'slug',
     ];
 
      protected $hidden = [
-        'created_at',
         'updated_at',
         'deleted_at',
     ];
@@ -30,5 +31,7 @@ class Post extends Model
     {
         return $image == null ? url('/default.png') : url('/uploads/category/' . $image);
     }
+
+   
 
 }

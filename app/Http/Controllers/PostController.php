@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Traits\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -65,6 +66,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category_id' => 'required',
+            'keywords' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -74,14 +76,15 @@ class PostController extends Controller
         } else {
             $input = $request->all();
             $input['keywords'] = implode(",",$input['keywords']);
-            $about = Post::create($input);
-            if ($about) {
+            $input['slug'] = Str::slug($input['title'].'/'.date('Y-m-d-h-i-s'));
+            $post = Post::create($input);
+            if ($post) {
                 return redirect()->route('posts.index')->with('success', 'Successfully Updated');
             } else {
                 return redirect()->back()->with('error', 'Sorry, something went wrong. Please try again');
             }
         }
-        return redirect()->route('posts.index')->with('success', 'About Us created successfully.');
+        return redirect()->route('posts.index')->with('success', 'post Us created successfully.');
     }
 
     

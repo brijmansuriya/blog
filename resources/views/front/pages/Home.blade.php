@@ -1,5 +1,3 @@
-
-
 @extends('front.layouts.master')
 
 @section('content')
@@ -31,14 +29,13 @@
                                 <li class="entry-cat">
                                     <a href="/" class="category-style-1">Branding</a>
                                 </li>
-                                <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
+                                <li class="post-date"> <span class="line"></span> {{$item->created_at}}</li>
                             </ul>
                             <h4 class="entry-title">
-                                <a href="/">Products are made in a factory but brands are created</a>
+                                <a href="/">{{$item->title}}</a>
                             </h4>
                             <div class="post-btn">
-                                <a href="/" class="btn-read-more">Continue Reading <i
-                                        class="las la-long-arrow-alt-right"></i></a>
+                                <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                         <div class="post-list-exerpt">
@@ -51,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-@endforeach
+                    @endforeach
 
                    
                     <!--pagination-->

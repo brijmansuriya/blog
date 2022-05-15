@@ -23,12 +23,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('home/post/{slug}', [FrontController::class, 'getpost'])->name('home.post');
 
 Route::get('/711', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:clear');
     $exitCode = Artisan::call('config:cache');
     $exitCode = Artisan::call('view:clear');
+    dd('cache clear');
 });
 
 Auth::routes();

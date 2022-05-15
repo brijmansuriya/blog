@@ -19,6 +19,18 @@
                             <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
                         </div>
                         <div class="col-md-6 form-group">
+                      <label>File upload</label>
+                      <input type="file" name="image" class="file-upload-default" id="imgInp">
+                      <div class="input-group col-xs-12">
+                        <input type="text" name="image" class="form-control file-upload-info"  placeholder="Upload Image">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
+                      </div>
+                            <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
+                        </div>
+                        
+                        <div class="col-md-6 form-group">
                             <label>Keywords</label>
                             <select name="keywords[]" class="js-example-tokenizer w-100 select2" multiple="multiple">
                             </select>
@@ -45,7 +57,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>  
 </div>
 @endsection
 @section('script')
