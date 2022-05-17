@@ -19,6 +19,7 @@ class Post extends Model
         'metadescription',
         'created_at',
         'slug',
+        'image',
     ];
 
      protected $hidden = [
@@ -29,7 +30,7 @@ class Post extends Model
 
     public function getImageAttribute($image)
     {
-        return $image == null ? url('/default.png') : url('/uploads/category/' . $image);
+        return $image == null ? url('/default.png') : url('/uploads/post/' . $image);
     }
 
    

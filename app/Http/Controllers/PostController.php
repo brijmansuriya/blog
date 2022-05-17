@@ -75,6 +75,12 @@ class PostController extends Controller
                 ->withInput();
         } else {
             $input = $request->all();
+
+            if ($request->image) {
+                $name = $this->imageUpload($request->image, 'post');
+                $input['image'] = $name;
+            }
+
             $input['keywords'] = implode(",",$input['keywords']);
             $input['slug'] = Str::slug($input['title'].'/'.date('Y-m-d-h-i-s'));
             $post = Post::create($input);
@@ -118,7 +124,13 @@ class PostController extends Controller
                 ->withErrors($validator, 'posts_error')
                 ->withInput();
         } else {
+
             $input = $request->all();
+            if ($request->image) {
+                $name = $this->imageUpload($request->image, 'post');
+                $input['image'] = $name;
+            }
+
             $post = Post::find($id);
             $input['keywords'] = implode(",",$input['keywords']);
             $post->update($input);

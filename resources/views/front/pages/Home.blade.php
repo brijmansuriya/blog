@@ -20,19 +20,19 @@
 
                     <div class="post-list post-list-style4">
                         <div class="post-list-image">
-                            <a href="/">
-                                <img class="img-br" src="{{ asset('frontend/assets/img/blog/21.jpg') }}" alt="">
+                            <a href="{{ route('home.post',$item->slug) }}">
+                                <img class="img-br" src="{{$item->image}}" alt="">
                             </a>
                         </div>
                         <div class="post-list-content">
                             <ul class="entry-meta">
                                 <li class="entry-cat">
-                                    <a href="/" class="category-style-1">Branding</a>
+                                    <a  class="category-style-1">Branding</a>
                                 </li>
                                 <li class="post-date"> <span class="line"></span> {{$item->created_at}}</li>
                             </ul>
                             <h4 class="entry-title">
-                                <a href="/">{{$item->title}}</a>
+                                <a href="{{ route('home.post',$item->slug) }}">{{$item->title}}</a>
                             </h4>
                             <div class="post-btn">
                                 <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>

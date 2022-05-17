@@ -3,12 +3,6 @@
 
 <head>
     @include('admin.layouts.head')
-
-    {{-- <style>
-        .dataTables_filter {
-            text-align: right
-        }
-    </style> --}}
 </head>
 
 <body>

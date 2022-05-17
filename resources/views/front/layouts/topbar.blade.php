@@ -5,8 +5,8 @@
                 <!--logo-->
                 <div class="logo">
                     <a href="/">
-                        <img src="{{ asset('frontend/assets/img/logo/logo-dark.png') }}" alt="" class="logo-dark">
-                        <img src="{{ asset('frontend/assets/img/logo/logo-white.png') }}" alt=""
+                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="" class="logo-dark">
+                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt=""
                             class="logo-white">
                     </a>
                 </div>
@@ -17,11 +17,18 @@
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav ">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/"> Home </a>
+                                    <a class="nav-link" href="{{url('/')}}"> Home </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('blog') }}"> Blog </a>
+                                    <a class="nav-link" href="{{ route('about') }}"> About </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('author') }}"> Author </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('contact') }}"> Contact </a>
+                                </li>
+                                
                             </ul>
                         </div>
                         <!--/-->
@@ -30,7 +37,7 @@
                 <!--header-right-->
                 <div class="header-right">
                     <!--theme-switch-->
-                    {{-- <div class="theme-switch-wrapper">
+                    <div class="theme-switch-wrapper">
                         <label class="theme-switch" for="checkbox">
                             <input type="checkbox" id="checkbox" />
                             <span class="slider round ">
@@ -38,7 +45,7 @@
                                 <i class="lar la-moon icon-dark"></i>
                             </span>
                         </label>
-                    </div> --}}
+                    </div>
                     <!--search-icon-->
                     <div class="search-icon">
                         <i class="las la-search"></i>
@@ -46,7 +53,7 @@
 
                     <!--button-subscribe-->
                     <div class="botton-sub">
-                        <a href="/" class="btn-subscribe">subscribe</a>
+                        <a href="{{ route('contactus') }}" class="btn-subscribe">subscribe</a>
                     </div>
 
                     <!--navbar-toggler-->

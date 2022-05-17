@@ -7,7 +7,7 @@
     <!--post-single-->
     <section class="post-single post-single-layout-2">
         <div class="post-single-image">
-            <img src="{{ asset('frontend/assets/img/blog/lg-1.jpg') }}" style="height: 200px;width: 100%;" alt="">
+            <img src="" style="height: 0px;width: 100%;" alt="">
         </div>
            
         <div class="container-fluid">

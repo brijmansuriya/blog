@@ -1,6 +1,5 @@
 @extends('admin.layouts.master')
 @section('content')
-     
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
@@ -41,9 +40,8 @@
             </div>
           </div>
         </div>
-      
 @endsection
-@section('script')
+@section('script-bottom')
   <script src="{{ URL::asset('backend/js/file-upload.js')}}"></script>
 <script type="text/javascript">
     $('#aboutus-tab').addClass('active');

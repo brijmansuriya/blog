@@ -25,4 +25,25 @@ class FrontController extends Controller
         $tagsaaray= array_unique($tagsaaray);
        return view('front.pages.blog',compact('postdata','category','tagsaaray'));
     }
+    public function contactus(){
+       
+       return view('front.pages.contactus');
+    }
+    public function contactusSubmit(Request $request){
+       print_r($request->post());
+       exit;
+       return view('front.pages.contactus');
+    }
+    public function about(Request $request){
+    
+       return view('front.pages.about');
+    }
+    public function author(Request $request){
+    
+       return view('front.pages.author');
+    }
+    public function contact(Request $request){
+    
+       return view('front.pages.contact');
+    }
 }
