@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [FrontController::class, 'index']);
-Route::get('home/post/{slug}', [FrontController::class, 'getpost'])->name('home.post');
+Route::get('home/post/{slug?}', [FrontController::class, 'getpost'])->name('home.post');
 Route::get('/contactus', [FrontController::class, 'contactus'])->name('contactus');
 Route::Post('/contactus', [FrontController::class, 'contactusSubmit'])->name('contactus');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
-Route::get('/author', [FrontController::class, 'author'])->name('author');
+Route::get('/team', [FrontController::class, 'team'])->name('team');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 
 Route::get('/711', function () {

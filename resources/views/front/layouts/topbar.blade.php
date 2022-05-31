@@ -23,7 +23,7 @@
                                     <a class="nav-link" href="{{ route('about') }}"> About </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('author') }}"> Author </a>
+                                    <a class="nav-link" href="{{ route('team') }}"> Team </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact') }}"> Contact </a>
@@ -47,13 +47,13 @@
                         </label>
                     </div>
                     <!--search-icon-->
-                    <div class="search-icon">
-                        <i class="las la-search"></i>
-                    </div>
+                    <!--<div class="search-icon">-->
+                    <!--    <i class="las la-search"></i>-->
+                    <!--</div>-->
 
                     <!--button-subscribe-->
                     <div class="botton-sub">
-                        <a href="{{ route('contactus') }}" class="btn-subscribe">subscribe</a>
+                        <a href="{{ route('contactus') }}" class="btn-subscribe">Contact Us</a>
                     </div>
 
                     <!--navbar-toggler-->

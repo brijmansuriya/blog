@@ -9,10 +9,10 @@
                             <div class="menu">
                                 <h6>Menu</h6>
                                 <ul>
-                                    <li><a href="#">Homepage</a></li>
-                                    <li><a href="#">about us</a></li>
-                                    <li><a href="#">contact us</a></li>
-                                    <li><a href="#">privarcy</a></li>
+                                    <li><a href="{{url('/')}}">Home</a></li>
+                                    <li><a href="{{ route('about') }}">About us</a></li>
+                                    <li><a href="{{ route('team') }}">Team</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="copyright">
-                                <p>© 2022, AssiaGroupe, All Rights Reserved.</p>
+                                <p>© {{date('Y')}}, {{$site_setting->site_title}}  All Rights Reserved.</p>
                             </div>
                         </div>
                     </div>

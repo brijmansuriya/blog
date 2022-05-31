@@ -62,7 +62,6 @@ class PostController extends Controller
     
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category_id' => 'required',
@@ -76,14 +75,22 @@ class PostController extends Controller
         } else {
             $input = $request->all();
 
+          
             if ($request->image) {
-                $name = $this->imageUpload($request->image, 'post');
+                $name = $this->imageUpload($request->image,'post');
                 $input['image'] = $name;
             }
 
+            if (isset($request->active)) {
+                $input['active'] = $request->active;
+            }else{
+                $input['active'] = 0;
+            }
+            $input['category_id'] = 111;
             $input['keywords'] = implode(",",$input['keywords']);
             $input['slug'] = Str::slug($input['title'].'/'.date('Y-m-d-h-i-s'));
             $post = Post::create($input);
+            print_r($post->toArray());exit;
             if ($post) {
                 return redirect()->route('posts.index')->with('success', 'Successfully Updated');
             } else {

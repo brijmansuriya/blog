@@ -5,7 +5,7 @@
 @section('content')
 
     <!--about-us-->
-    <section class="about-us">
+    <section class="about-us mt-5">
         <div class="container-fluid">
             <div class="about-us-area">
                 <div class="row ">

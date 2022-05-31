@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Contactus;
 use App\Models\Category;
-
+use Validator;
 class FrontController extends Controller
 {
     public function index(){
-        $post = Post::orderBy('created_at', 'DESC')->Paginate(5);
+        $post = Post::orderBy('created_at', 'DESC')->Paginate(1);
         return view('front.pages.home',compact('post'));
     }
     public function getpost($slug){
@@ -30,17 +31,29 @@ class FrontController extends Controller
        return view('front.pages.contactus');
     }
     public function contactusSubmit(Request $request){
-       print_r($request->post());
-       exit;
-       return view('front.pages.contactus');
+      $validator = Validator::make($request->all(), [
+         'email' => 'required',
+         'message' => 'required',
+     ]);
+
+      if ($validator->fails()) {
+            return redirect()->back()
+               ->withErrors($validator,'posts_error')
+               ->withInput();
+      } else {
+            $input = $request->all();
+            $contactus = Contactus::create($input);
+           
+            return redirect()->back()->with('success', 'Successfully');
+      }
     }
     public function about(Request $request){
     
        return view('front.pages.about');
     }
-    public function author(Request $request){
+    public function team(Request $request){
     
-       return view('front.pages.author');
+       return view('front.pages.team');
     }
     public function contact(Request $request){
     

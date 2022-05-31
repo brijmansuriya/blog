@@ -1,5 +1,24 @@
 @extends('front.layouts.master')
 
+@section('css')
+<style>
+.page-item.active .page-link {
+    background-color: #191b1d;
+    border-color: #191b1d;
+}
+.page-link {
+    color: #191b1d;
+}
+
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.page-link:hover {
+    color: #191b1d;
+}
+</style>
+@endsection
 @section('content')
    <!--section-scroll-->
     <div class="section-scroll wrapper-full no-margin">
@@ -38,18 +57,12 @@
                                 <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
-                        <div class="post-list-exerpt">
-                            <div class="post-exerpt">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    Sapiente nesciunt dicta minima iure ducimus id fugit tenetur qui quo eum pariatur
-                                    suscipit rerum minus deserunt,
-                                    obcaecati, quidem libero. Quis officiis maiores quia distinctio tempore natus,
-                                </p>
-                            </div>
-                        </div>
+                        
                     </div>
                     @endforeach
-
+                    <div class="pagination mb-5 mt-5">
+                      {{$post->links("pagination::bootstrap-4")}}
+                    </div>
                    
                     <!--pagination-->
                     {{-- <div class="pagination">

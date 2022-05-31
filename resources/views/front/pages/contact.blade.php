@@ -6,13 +6,13 @@
 @section('content')
 
     <!--contact-->
-    <section class="contact">
+    <section class="contact" style="margin-top: 150px;">
         <div class="container-fluid">
             <div class="contact-area">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contact-image">
-                            <img src="assets/img/other/contact.jpg" alt="">
+                            <img src="{{url('frontend/assets/img/1.jpg')}}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -46,9 +46,13 @@
                         </form>
                     </div>
                 </div> 
+
+               
+
             </div>
         </div>
-    </section>        
+    </section> 
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.15049961975!2d72.5797426!3d23.0202434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1652973887587!5m2!1sen!2sin" width="100%" height="450" style="border:0;    margin-bottom: -7px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>       
 
 
 @endsection

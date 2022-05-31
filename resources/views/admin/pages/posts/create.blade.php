@@ -33,7 +33,7 @@
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                             </div>
-                            <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
+                            
                         </div>
 
                         <div class="col-md-6 form-group">
@@ -51,13 +51,19 @@
                         <label>Keywords</label>
                         <select name="keywords[]" class="js-example-tokenizer w-100 select2" multiple="multiple">
                         </select>
-                        <div class="error">{{ $errors->posts_error->first('category_id') }}</div>
+                     
                     </div>
 
                     <div class="col-md-12 form-group">
                         <label for="exampleTextarea1">Meta Description</label>
                         <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
                         <div class="error">{{ $errors->category_error->first('body') }}</div>
+                    </div>
+                    <div class="col-md-12 form-group ml-4">
+                        <input class="form-check-input" name="active" type="checkbox" value="1" id="flexCheckChecked" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Active
+                        </label>
                     </div>
 
                     </div>
