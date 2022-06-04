@@ -68,13 +68,6 @@
                             <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
                             <div class="error">{{ $errors->category_error->first('body') }}</div>
                         </div>
-                         <div class="col-md-12 form-group ml-4">
-                            <input class="form-check-input" name="active" type="checkbox" value="1" id="flexCheckChecked" @if($posts->active ==1) checked @endif>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Active
-                            </label>
-                        </div>
-
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>

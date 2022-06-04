@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\ContactusController;
 use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
@@ -35,4 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('site-setting', [SiteSettingController::class,'index'])->name('site-setting');
     Route::post('site-setting', [SiteSettingController::class,'update'])->name('site-setting.update');
+
+    Route::resource('contact-us', ContactusController::class);
+   
 });

@@ -23,9 +23,5 @@ class Contactus extends Model
     ];
 
 
-    public function getImageAttribute($image)
-    {
-        return $image == null ? url('/default.png') : url('/uploads/category/' . $image);
-    }
-
+    
 }

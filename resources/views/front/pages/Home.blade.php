@@ -23,8 +23,8 @@
    <!--section-scroll-->
     <div class="section-scroll wrapper-full no-margin">
         <div class="container-fluid">
-            <div class="section-scroll-marquee">
-                <div class="marquee page-title">***********Latest Blog Post*********</div>
+            <div class="">
+                <div class="marquee page-title" style="text-align: center;">Latest Blog Post</div>
             </div>
         </div>
     </div>

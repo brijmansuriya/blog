@@ -24,5 +24,11 @@
                 <span class="menu-title"> Site Setting </span>
             </a>
         </li>
+        <li class="nav-item" id="site-tab">
+            <a class="nav-link" href="{{ route('contact-us.index') }}" id="site-tab-a">
+                <i class="fas fa-users menu-icon"></i>
+                <span class="menu-title">Contact Us</span>
+            </a>
+        </li>
     </ul>
 </nav>

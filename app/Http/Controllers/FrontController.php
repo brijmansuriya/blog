@@ -9,11 +9,11 @@ use Validator;
 class FrontController extends Controller
 {
     public function index(){
-        $post = Post::orderBy('created_at', 'DESC')->Paginate(1);
+        $post = Post::whereActive(1)->orderBy('created_at', 'DESC')->Paginate(10);
         return view('front.pages.home',compact('post'));
     }
     public function getpost($slug){
-        $postdata = Post::whereSlug($slug)->first();
+        $postdata = Post::whereSlug($slug)->whereActive(1)->first();
         $category = Category::get();
         $tegs = Post::get('keywords');
         $tagsaaray=[];

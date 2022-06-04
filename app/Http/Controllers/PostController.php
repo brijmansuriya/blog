@@ -26,10 +26,10 @@ class PostController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('action', function ($row) {
-                    $btn = '<a href="' . route('posts.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
+                    $btn = '<a title="Edit Post" href="' . route('posts.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     $delete_link = route('posts.destroy', $row['id']);
                     $delete_link = "'" . $delete_link . "'";
-                    $btn .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ');" data-popup="tooltip"><i class="fa fa-trash" style="color: #172774;"></i></a>';
+                    $btn .= '<a href="javascript:void(0);" title="Delete Post" onclick="deleteRecord(' . $delete_link . ');" data-popup="tooltip"><i class="fa fa-trash" style="color: #172774;"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -138,6 +138,13 @@ class PostController extends Controller
                 $input['image'] = $name;
             }
 
+          
+            if (isset($request->active)) {
+                $input['active'] = $request->active;
+            }else{
+                $input['active'] = 0;
+            }
+      
             $post = Post::find($id);
             $input['keywords'] = implode(",",$input['keywords']);
             $post->update($input);

@@ -20,6 +20,8 @@ class Post extends Model
         'created_at',
         'slug',
         'image',
+        'category_id',
+        'active',
     ];
 
      protected $hidden = [
