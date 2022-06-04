@@ -24,7 +24,7 @@
                                     <p>Sign up for free and be the first to get notified about new posts.</p>
                                 </div>
 
-                                <form action="#" class="newslettre-form">
+                                <form action="{{ route('subscribe') }}" method="POST" class="newslettre-form">
                                     <div class="form-flex">
                                         <div class="form-group">
                                             <input type="email" class="form-control" placeholder="Your Email Adress"

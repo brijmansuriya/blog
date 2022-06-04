@@ -18,6 +18,7 @@ Route::Post('/contactus', [FrontController::class, 'contactusSubmit'])->name('co
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/team', [FrontController::class, 'team'])->name('team');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::Post('/subscribe', [FrontController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/711', function () {
     $exitCode = Artisan::call('cache:clear');
@@ -38,5 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('site-setting', [SiteSettingController::class,'update'])->name('site-setting.update');
 
     Route::resource('contact-us', ContactusController::class);
+ 
    
 });

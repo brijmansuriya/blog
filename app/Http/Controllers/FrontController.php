@@ -43,7 +43,6 @@ class FrontController extends Controller
       } else {
             $input = $request->all();
             $contactus = Contactus::create($input);
-           
             return redirect()->back()->with('success', 'Successfully');
       }
     }
@@ -57,6 +56,24 @@ class FrontController extends Controller
     }
     public function contact(Request $request){
     
+       return view('front.pages.contact');
+    }
+    public function subscribe(Request $request){
+    
+      $validator = Validator::make($request->all(), [
+         'email' => 'required',
+     ]);
+
+      if ($validator->fails()) {
+            return redirect()->back()
+               ->withErrors($validator,'posts_error')
+               ->withInput();
+      } else {
+            $input = $request->all();
+            $contactus = Subscribe::create($input);
+            return redirect()->back()->with('success', 'Successfully');
+      }
+
        return view('front.pages.contact');
     }
 }

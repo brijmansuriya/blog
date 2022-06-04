@@ -58,5 +58,10 @@ class ContactusController extends Controller
         Session::flash('success', 'Deleted successfully');
         return $delete;
     }
+    public function show($id)
+    {
+        $this->data['show'] = Contactus::find($id)->get();
+        return view('admin.pages.contactus.show', $this->data);
+    }
    
 }

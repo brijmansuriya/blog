@@ -22,7 +22,7 @@
                                 porro, pariatur voluptatem iste quos maxime aspernatur.</p>
                         </div>
                         <!--form-->
-                        <form action="https://assiagroupe.site/html/Oredoo/assets/php/mail.php" class="form contact_form " method="POST" id="main_contact_form">
+                        <form action="" class="form contact_form " method="POST" id="main_contact_form">
                             <div class="alert alert-success contact_msg" style="display: none" role="alert">
                                 Your message was sent successfully.
                             </div>
