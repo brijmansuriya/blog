@@ -33,12 +33,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('category', CategoryController::class);
     Route::resource('posts', PostController::class);
+    Route::get('posts/description/{id}', [PostController::class,'adddescription'])->name('posts.description');
+    
     Route::Post('postimageuplode',[HomeController::class,'postImageUplode'])->name('ckeditor.postimageuplode');
 
     Route::get('site-setting', [SiteSettingController::class,'index'])->name('site-setting');
     Route::post('site-setting', [SiteSettingController::class,'update'])->name('site-setting.update');
 
     Route::resource('contact-us', ContactusController::class);
- 
-   
 });

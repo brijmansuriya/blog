@@ -9,8 +9,9 @@ use Validator;
 class FrontController extends Controller
 {
     public function index(){
+      
         $post = Post::whereActive(1)->orderBy('created_at', 'DESC')->Paginate(10);
-        return view('front.pages.home',compact('post'));
+        return view('front.pages.Home',compact('post'));
     }
     public function getpost($slug){
         $postdata = Post::whereSlug($slug)->whereActive(1)->first();

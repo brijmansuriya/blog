@@ -4,10 +4,10 @@
             <div class="header-area ">
                 <!--logo-->
                 <div class="logo">
-                    <a href="/">
-                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="" class="logo-dark">
+                    <a href="{{ url('/')}}">
+                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="" class="logo-dark br-10">
                         <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt=""
-                            class="logo-white">
+                            class="logo-white br-10">
                     </a>
                 </div>
                 <!--/-->
@@ -53,7 +53,7 @@
 
                     <!--button-subscribe-->
                     <div class="botton-sub">
-                        <a href="{{ route('contactus') }}" class="btn-subscribe">Contact Us</a>
+                        <a href="{{ route('contactus') }}" class="btn-subscribe br-10">Contact Us</a>
                     </div>
 
                     <!--navbar-toggler-->

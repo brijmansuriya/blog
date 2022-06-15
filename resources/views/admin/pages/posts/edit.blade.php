@@ -18,11 +18,55 @@
                         </div>
 
 
-                        <div class="col-md-12 form-group">
-                            <label for="exampleTextarea1">Description</label>
-                            <textarea class="form-control" name='body' id="editor" rows="5">{{$posts->body}}</textarea>
-                            <div class="error">{{ $errors->category_error->first('body') }}</div>
-                        </div>
+
+
+
+
+
+
+
+
+
+    <table class="table table-bordered table-striped text-center" style="width: 90%; margin: 0 auto;">
+                    <thead>
+                        <!-- <th>Product Details</th> -->
+                        <th>upload</th>
+                        <!-- <th>Amount</th> -->
+                    </thead>
+                    <tbody id="addtarget">
+                      @php
+                     $cloop = 0;
+                     $c=0;
+                     $deletePage="";
+                     @endphp
+                        @foreach ($posts->PostBody as $row) 
+                        @php
+                            
+                       $c++;
+                       $cloop = $cloop + 1;
+                       $subid = $row->id;
+                        @endphp
+                    
+                        <tr>
+                            <td>
+                                <input type="hidden" value="<?=$subid?>" name="subid_<?=$cloop?>">
+                                <div class="col-md-12 form-group">
+                                    <label for="exampleTextarea1">Description</label>
+                                    <textarea class="form-control editor" name='body_<?=$cloop?>' id="editor_<?=$cloop?>" rows="5">{{$row->body}}</textarea>
+                                </div>
+                            </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                </table>
+                <button type="button" class="addpro btn btn-inline btn-primary mt-3 mb-3 ml-4">Add Data</button>
+
+
+
+
+
+
+                       
 
                         <div class="col-md-12 form-group">
                             <label> Post Fetch Image</label>
@@ -65,7 +109,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label for="exampleTextarea1">Meta Description</label>
-                            <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
+                            <textarea class="form-control" name='metadescription' id="" rows="5">{{$posts->metadescription}}</textarea>
                             <div class="error">{{ $errors->category_error->first('body') }}</div>
                         </div>
                          <div class="col-md-12 form-group ml-4">
@@ -76,6 +120,8 @@
                         </div>
 
                     </div>
+                     <input type="hidden" name="cloop" id="cloop" value="<?php echo $cloop; ?>">
+
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 </form>
@@ -92,6 +138,24 @@
     $('#aboutus-tab').addClass('active');
     $('#aboutus-tab-a').addClass('active');
 
+ $(".addpro").click(function() {
+        var count = $('#cloop').val();
+        // alert(count);
+        count++;
+        $('#cloop').val(count);
+
+        var datahtml = '<tr>\
+                <td>\
+                    <div class="col-md-12 form-group">\
+                        <label for="exampleTextarea1">Description</label>\
+                        <textarea class="form-control" id="editor_'+count+'" name="body_'+count+'"  rows="5"></textarea>\
+                    </div>\
+                </td>\
+            </tr>';
+        $("#addtarget").append(datahtml); 
+        test(count);
+    });
+
     imgInp.onchange = evt => {
         const [file] = imgInp.files
         if (file) {
@@ -99,15 +163,34 @@
         }
     }
 
-    ClassicEditor.create(document.querySelector('#editor'), {
+    $(document).ready(function() {
+         ClassicEditor.create(document.querySelector('#editor'), {
         ckfinder: {
             uploadUrl: '{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
         }
-    });
+        });
 
-       CKEDITOR.replace( 'Resolution', {
-        height: 400
-    } );
+        var test1 = $('#cloop').val();
+        for (let i = 1; i <= test1; i++) {
+            test(i);
+        }
+
+    });
+     
+  
+
+    function test(count){
+        ClassicEditor.create(document.querySelector('#editor_'+count), {
+            ckfinder: {
+                uploadUrl:'{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
+            }
+        });
+    }
+
+
+
 
 </script>
+
+
 @endsection

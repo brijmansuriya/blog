@@ -15,15 +15,47 @@
                             <div class="error">{{ $errors->posts_error->first('title') }}</div>
                         </div>
                     
+                   
 
-                    <div class="col-md-12 form-group">
+                <table class="table table-bordered table-striped text-center" style="width: 95%; margin: 0 auto;">
+                    {{-- <thead>
+                        <!-- <th>Product Details</th> -->
+                        <th>upload</th>
+                        <!-- <th>Amount</th> -->
+                    </thead> --}}
+                    <tbody id="addtarget">
+                        <?php
+                     $cloop = 0;
+                     $c=0;
+                     $deletePage="";
+               
+                      $count = 1;
+                      $cloop = 0;
+                      while ($count > $cloop) {
+                        $cloop = $cloop + 1;
+                        
+                        ?>
+                            <tr>
+                                <td>
+                                     <div class="col-md-12 form-group">
+                                        <label for="exampleTextarea1">Description</label>
+                                        <textarea class="form-control" name='body_1' $cloop  rows="5" id="editor_1"></textarea>
+                                        <div class="error">{{ $errors->category_error->first('body') }}</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php
+                    }
+                  ?>
+                    </tbody>
+                </table>
+
+                  <button type="button" class="addpro btn btn-inline btn-primary mt-3 mb-3 ml-4">Add Data</button>
+                    {{-- <div class="col-md-12 form-group">
                         <label for="exampleTextarea1">Description</label>
-                        <textarea class="form-control" name='body' id="editor" rows="5"></textarea>
+                        <textarea class="form-control editor" name='body'  rows="5"></textarea>
                         <div class="error">{{ $errors->category_error->first('body') }}</div>
-                    </div>
-
-              
-
+                    </div> --}}
                           <div class="col-md-12 form-group">
                             <label> Post Fetch Image</label>
                             <input type="file" name="image" class="file-upload-default" id="imgInp">
@@ -56,7 +88,7 @@
 
                     <div class="col-md-12 form-group">
                         <label for="exampleTextarea1">Meta Description</label>
-                        <textarea class="form-control" name='metadescription' id="editor" rows="5"></textarea>
+                        <textarea class="form-control " name='metadescription'  rows="5"></textarea>
                         <div class="error">{{ $errors->category_error->first('body') }}</div>
                     </div>
                     <div class="col-md-12 form-group ml-4">
@@ -67,6 +99,7 @@
                     </div>
 
                     </div>
+                     <input type="hidden" name="cloop" id="cloop" value="<?php echo $cloop; ?>">
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 </form>
@@ -78,24 +111,50 @@
 @section('script-bottom')
 <script src="{{ URL::asset('backend/vendors/ckediter/ckeditor.js') }}"></script>
 <script src="{{ URL::asset('backend/js/file-upload.js')}}"></script>
+
+
 <script type="text/javascript">
+    $(".addpro").click(function() {
+        var count = $('#cloop').val();
+        // alert(count);
+        count++;
+        $('#cloop').val(count);
+
+        var datahtml = '<tr>\
+                <td>\
+                    <div class="col-md-12 form-group">\
+                        <label for="exampleTextarea1">Description</label>\
+                        <textarea class="form-control" id="editor_'+count+'" name="body_'+count+'"  rows="5"></textarea>\
+                    </div>\
+                </td>\
+            </tr>';
+        $("#addtarget").append(datahtml); 
+        test(count);
+    });
+
     $('#aboutus-tab').addClass('active');
     $('#aboutus-tab-a').addClass('active');
 
     imgInp.onchange = evt => {
-        const [file] = imgInp.files
-        if (file) {
-            blah.src = URL.createObjectURL(file)
+    const [file] = imgInp.files
+    if (file) {
+        blah.src = URL.createObjectURL(file)
         }
     }
 
-    ClassicEditor.create(document.querySelector('#editor'), {
+    ClassicEditor.create(document.querySelector('#editor_1'), {
         ckfinder: {
-            uploadUrl: '{{route('ckeditor.postimageuplode').' ? _token = '.csrf_token()}}'
+            uploadUrl:'{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
         }
     });
 
-    
+    function test(count){
+        ClassicEditor.create(document.querySelector('#editor_'+count), {
+            ckfinder: {
+                uploadUrl:'{{route('ckeditor.postimageuplode').'?_token='.csrf_token()}}'
+            }
+        });
+    }
 
 </script>
 @endsection

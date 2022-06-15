@@ -24,7 +24,7 @@
     <div class="section-scroll wrapper-full no-margin">
         <div class="container-fluid">
             <div class="">
-                <div class="marquee page-title" style="text-align: center;">Latest Blog Post</div>
+                <div class="marquee page-title" style="text-align: center;">Keep up with latest post</div>
             </div>
         </div>
     </div>
@@ -38,17 +38,22 @@
                     @foreach($post as $item)  
 
                     <div class="post-list post-list-style4">
-                        <div class="post-list-image">
+                     <div class="col-sm-3">
+                     {{-- post-list-image --}}
+                        <div class="">
                             <a href="{{ route('home.post',$item->slug) }}">
                                 <img class="img-br" src="{{$item->image}}" alt="">
                             </a>
                         </div>
+                      </div>  
+                    <div class="col-sm-9">
                         <div class="post-list-content">
                             <ul class="entry-meta">
                                 <li class="entry-cat">
                                     <a  class="category-style-1">Branding</a>
                                 </li>
-                                <li class="post-date"> <span class="line"></span> {{$item->created_at}}</li>
+                                <li class="post-date">
+                                <span class="line"></span> {{$item->created_at}}</li>
                             </ul>
                             <h4 class="entry-title">
                                 <a href="{{ route('home.post',$item->slug) }}">{{$item->title}}</a>
@@ -57,6 +62,7 @@
                                 <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
+                    </div>
                         
                     </div>
                     @endforeach

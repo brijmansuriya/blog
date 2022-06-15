@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostBody;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Traits\ImageUpload;
@@ -49,7 +50,6 @@ class PostController extends Controller
         }
         return Post::get();
     }
-
    
     public function create()
     {
@@ -58,10 +58,10 @@ class PostController extends Controller
         $this->data['cetegory'] = Category::get(['id','name']);
         return view('admin.pages.posts.create', $this->data);
     }
-
-    
+        
     public function store(Request $request)
     {
+       
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category_id' => 'required',
@@ -74,10 +74,8 @@ class PostController extends Controller
                 ->withInput();
         } else {
             $input = $request->all();
-
-          
             if ($request->image) {
-                $name = $this->imageUpload($request->image,'post');
+                $name = $this->imageUploadResize($request->image,'post');
                 $input['image'] = $name;
             }
 
@@ -86,11 +84,21 @@ class PostController extends Controller
             }else{
                 $input['active'] = 0;
             }
-            $input['category_id'] = 111;
+          
             $input['keywords'] = implode(",",$input['keywords']);
             $input['slug'] = Str::slug($input['title'].'/'.date('Y-m-d-h-i-s'));
             $post = Post::create($input);
-            print_r($post->toArray());exit;
+            $postId = $post->id;
+            $postbody = array();
+            // for ($i = 1; $i <= $request->cloop; $i++){
+            //     $test = 'body_'.$i;
+            //     $postbody = array(
+            //         'post_id' => $postId,
+            //         'body' => $request->$test,
+            //     );
+            //     $post = PostBody::create($postbody);
+            // }
+
             if ($post) {
                 return redirect()->route('posts.index')->with('success', 'Successfully Updated');
             } else {
@@ -110,7 +118,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $this->data['pageTittle'] = "Edit Post";
-        $this->data['posts'] = Post::find($id);
+        $this->data['posts'] = Post::with('PostBody')->find($id);
         $this->data['dateTableTitle'] = "Edit Post";
         $this->data['backUrl'] = route('posts.index');
         $this->data['cetegory'] = Category::get(['id','name']);
@@ -120,10 +128,10 @@ class PostController extends Controller
     
     public function update(Request $request, $id)
     {
-    
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category_id' => 'required',
+            'keywords' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -131,20 +139,30 @@ class PostController extends Controller
                 ->withErrors($validator, 'posts_error')
                 ->withInput();
         } else {
-
             $input = $request->all();
             if ($request->image) {
                 $name = $this->imageUpload($request->image, 'post');
                 $input['image'] = $name;
             }
 
-          
             if (isset($request->active)) {
                 $input['active'] = $request->active;
             }else{
                 $input['active'] = 0;
             }
-      
+            
+            // for ($i = 1; $i <= $request->cloop; $i++){
+            //     $test = 'body_'.$i;
+            //     $subid = 'subid_'.$i;
+            //     $postbody = array(
+            //         'post_id' => $id,
+            //         'body' => $request->$test,
+            //     );
+            //     // $post = PostBody::update($postbody);
+            //     $post = PostBody::find($request->$subid);
+            //     $post->update($postbody);
+            // }
+
             $post = Post::find($id);
             $input['keywords'] = implode(",",$input['keywords']);
             $post->update($input);
@@ -163,5 +181,9 @@ class PostController extends Controller
         Session::flash('success', 'Deleted successfully');
         return $delete;
     }
-   
+    public function adddescription($id)
+    {
+       $params = array('id' => $id);
+       return view('admin.pages.posts.cloop', $params);
+    }
 }

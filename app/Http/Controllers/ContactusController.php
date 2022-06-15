@@ -60,7 +60,7 @@ class ContactusController extends Controller
     }
     public function show($id)
     {
-        $this->data['show'] = Contactus::find($id)->get();
+        $this->data['show'] = Contactus::find($id);
         return view('admin.pages.contactus.show', $this->data);
     }
    
