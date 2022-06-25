@@ -76,6 +76,7 @@ class CategoryController extends Controller
             if ($request->image) {
                 $name = $this->imageUpload($request->image, 'category');
                 $input['image'] = $name;
+                $input['slug'] = Str::slug($input['name']);
             }
 
             $about = Category::create($input);
@@ -126,7 +127,9 @@ class CategoryController extends Controller
             if ($request->image) {
                 $name = $this->imageUpload($request->image, 'category');
                 $input['image'] = $name;
+
             }
+            $input['slug'] = Str::slug($input['name']);
             $about->update($input);
 
             if ($about) {

@@ -2402,7 +2402,7 @@ input:checked + .slider:before {
 }
 
 .post-list-style4 .post-list-content .entry-title {
-  margin: 20px 0px;
+  margin: 0px 0px;
 }
 
 .post-list-style4 .post-list-content .entry-cat .category-style-1 {

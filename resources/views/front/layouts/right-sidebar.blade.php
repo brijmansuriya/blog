@@ -13,9 +13,9 @@
                   <div class="widget-categories">
 
                   @foreach($category as $cat)
-                      <a class="category-item" href="#">
-                          <div class="image">
-                              <img style="width:100px;height: 100px;" src="{{ $cat->image }}" alt="">
+                      <a class="category-item" href="{{route('categorypost',$cat->slug)}}">
+                          <div class="">
+                              <img style="width:100px;height: 100px;border-radius: 10px;" src="{{ $cat->image }}" alt="">
                           </div>
                           <p>{{ $cat->name }} </p>
                       </a>
@@ -78,7 +78,7 @@
                       <ul class="list-inline">
                       @foreach($tagsaaray as $tags)
                         <li >
-                            <a href="/">{{$tags}}</a>
+                            <a href="{{route('tagpost',$tags)}}">{{$tags}}</a>
                         </li>
                       @endforeach
                       </ul>

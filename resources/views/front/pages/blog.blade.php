@@ -18,10 +18,10 @@
                              <div class="post-single-title">  
                                 <h3> {{$postdata->title}}</h3>        
                                 <ul class="entry-meta">
-                                    <li class="post-author-img"><img src="{{ asset('frontend/assets/img/author/1.jpg') }}" alt=""></li>
-                                    <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                    <li class="entry-cat"> <a href="blog-layout-1.html" class="category-style-1"> <span class="line"></span> Livestyle</a></li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
+                                    {{-- <li class="post-author-img"><img src="{{ asset('frontend/assets/img/author/1.jpg') }}" alt=""></li> --}}
+                                    {{-- <li class="post-author">{{$postdata->postUser->name}}</li> --}}
+                                    {{-- <li class="entry-cat"> <a href="blog-layout-1.html" class="category-style-1"> <span class="line"></span> Livestyle</a></li> --}}
+                                    <li class="post-date"><span class="line"></span>{{$postdata->created_at}}</li>
                                 </ul>
                                 
                             </div>

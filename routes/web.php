@@ -19,11 +19,16 @@ Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/team', [FrontController::class, 'team'])->name('team');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::Post('/subscribe', [FrontController::class, 'subscribe'])->name('subscribe');
+Route::get('/category-post/{slug?}', [FrontController::class, 'categoryPost'])->name('categorypost');
+Route::get('/tagpost/{slug?}', [FrontController::class, 'tagPost'])->name('tagpost');
+
+Route::get('/privacypolicy', [FrontController::class, 'privacyPolicy'])->name('privacypolicy');
 
 Route::get('/711', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:clear');
     $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
     $exitCode = Artisan::call('view:clear');
     dd('cache clear');
 });

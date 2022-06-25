@@ -17,11 +17,12 @@ class Post extends Model
         'description',
         'keywords',
         'metadescription',
-        'created_at',
         'slug',
         'image',
         'category_id',
         'active',
+        'created_at',
+        'created_by',
     ];
 
      protected $hidden = [
@@ -29,10 +30,13 @@ class Post extends Model
         'deleted_at',
     ];
 
+    protected $casts = [
+        'created_at' => 'date:Y-m-d',
+    ];
 
     public function getImageAttribute($image)
     {
-        return $image == null ? url('/default.png') : url('/uploads/post/250/' . $image);
+        return $image == null ? url('/default.png') : url('/uploads/post/' . $image);
     }
 
 
@@ -41,5 +45,8 @@ class Post extends Model
         return $this->hasMany(PostBody::class,'post_id','id');
     }
    
-
+    public function postUser()
+    {
+        return $this->belongsTo(User::class,'created_by','id');
+    }
 }
