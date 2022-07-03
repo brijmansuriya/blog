@@ -16,8 +16,9 @@ Route::get('/', [FrontController::class, 'index'])->name('fronthome');
 Route::get('/711', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:clear');
-    $exitCode = Artisan::call('view:clear');
     $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('view:clear');
     dd('cache clear');
 });
 

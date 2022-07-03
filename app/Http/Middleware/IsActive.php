@@ -17,11 +17,7 @@ class IsAdmin
     {
        
         if(auth()->user()->active == 1){
-            if(auth()->user()->type == 1){
                 return $next($request);
-            }
-            // Auth::logout();
-            return redirect("/")->with("error","You don't have admin access.");
         }
         Auth::logout();
         return redirect("/")->with("error","You don't have active access.");

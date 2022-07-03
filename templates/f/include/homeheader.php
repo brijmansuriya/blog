@@ -43,20 +43,16 @@
                             <a href="#" class="nav-link">Contact</a>
                         </li>
                     </ul>
-
-                    
                     <ul class="nav navbar-nav ml-auto mr-0">
-
-                    <li class="nav-item">
-                                <a href="#"
-                                   class="btn btn-outline-white">Asia Primary School</a>
-                            </li>
-                            
-                            <li class="nav-item">
-                                <a href="login.php"
-                                   class="btn btn-outline-white">Login</a>
-                            </li>
-                        </ul>
+                        <li class="nav-item">
+                            <a href="#"
+                            class="btn btn-outline-white">Asia Primary School</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.php"
+                            class="btn btn-outline-white">Login</a>
+                        </li>
+                    </ul>
 
 
                 </div>

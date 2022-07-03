@@ -10,6 +10,8 @@
         </button>
 
 
+        
+                    
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
              <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown" id="profileDropdown" aria-expanded="false">
@@ -28,6 +30,7 @@
                 @csrf
             </form>
         </ul>
+
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="icon-menu"></span>
         </button>

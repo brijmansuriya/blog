@@ -1,90 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('front.layouts.master')
+@section('content')
+ @include('front.layouts.topbar')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
-    <link rel="stylesheet" href="{{ asset('backend/vendors/feather/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
-</head>
+@include('front.include.flash-message')
 
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                <div class="row w-100 mx-0">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <div class="brand-logo">
-                                <img src="{{ asset('backend/images/logo.png') }}" alt="logo">
-                            </div>
-                            <h4>Login To Admin</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form method="POST" class="pt-3" action="{{ route('login') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <input id="email" type="email"
-                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email"
-                                        autofocus placeholder="Username">
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <input id="password" type="password"
-                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                        name="password" required autocomplete="current-password" placeholder="Password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-                                </div>
-                                <div class="mt-3">
-                                    <button type="submit"
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
-                                        {{ __('Login') }}
-                                    </button>
-                                </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <label class="form-check-label text-muted">
-                                            <input class="form-check-input" type="checkbox" name="remember"
-                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            {{ __('Remember Me') }}
-                                        </label>
-
-                                    </div>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="auth-link text-black" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+ <div class="mdk-header-layout__content page-content">
+    <div class="py-32pt navbar-submenu">
+        <div class="container page__container">
+            <div class="progression-bar progression-bar--active-accent">
+                <span class="progression-bar__item-content">
+                    <span class="progression-bar__item-text h5 mb-0 text-uppercase">Teacher LOGIN details</span>
+                </span>
             </div>
         </div>
     </div>
-    <script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
-    <script src="{{ asset('backend/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('backend/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('backend/js/template.js') }}"></script>
-    <script src="{{ asset('backend/js/settings.js') }}"></script>
-    <script src="{{ asset('backend/js/todolist.js') }}"></script>
-</body>
 
-</html>
+    <div class="pt-32pt pt-sm-64pt pb-32pt">
+        <div class="container page__container">
+            <form action="{{ route('login') }}" method="POST" class="col-md-5 p-0 mx-auto">   @csrf
+                <div class="form-group">
+                    <label class="form-label" for="email">Email:</label>
+                    <input  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus class="form-control  @error('email') is-invalid @enderror" placeholder="Your email address ..." />
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Password:</label>
+                    <input id="password" type="password" name="password" required autocomplete="current-password"  class="form-control  @error('password') is-invalid @enderror"
+                        placeholder="Your first and last name ..." />
+                          @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                         @enderror
+                  
+                  
+
+                    @if (Route::has('password.request'))
+                      <p class="text-right">
+                        <a class="small" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                      </p>
+                    @endif
+
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@endsection
+@section('script')
+@endsection
