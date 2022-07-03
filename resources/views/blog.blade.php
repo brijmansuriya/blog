@@ -705,11 +705,11 @@
                             </div>
                             
                             <!--Ads-->
-                            <div class="widget">
+                            {{-- <div class="widget">
                                 <div class="widget-ads">
                                     <img src="{{ asset('frontend/assets/img/ads/ads2.jpg') }}" alt="">
                                 </div>
-                            </div>
+                            </div> --}}
                          </div>
                    </div>
                 </div>

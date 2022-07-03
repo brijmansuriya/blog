@@ -4,10 +4,10 @@
 <link href="{{ URL::asset('assets/libs/summernote/summernote-lite.min.css')}}" rel="stylesheet" type="text/css" />
 
 <div class="content-wrapper">
-
+ @include('admin.include.flash-message')
     <div class="row">
         <div class="col-md-10 grid-margin stretch-card">
-            @include('admin.include.flash-message')
+           
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{$dateTableTitle}}</h4>
@@ -50,11 +50,7 @@
 @section('script')
 <script src="{{ URL::asset('assets/libs/summernote/summernote-lite.min.js')}}"></script>
 <script src="{{ URL::asset('assets/js/pages/form-summernote.init.js')}}"></script>
-<script type="text/javascript">
-    $('#site-tab').addClass('active');
-    $('#site-tab-a').addClass('active');
 
-</script>
 <script>
     $(document).ready(function() {
         $("#form").submit(function() {

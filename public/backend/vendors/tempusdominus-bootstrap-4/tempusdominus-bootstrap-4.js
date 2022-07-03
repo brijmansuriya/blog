@@ -2420,9 +2420,9 @@ var TempusDominusBootstrap4 = function ($) {
 
       months.removeClass('active');
 
-      if (lastPickedDate && lastPickedDate.isSame(this._viewDate, 'y') && !this.unset) {
-        months.eq(lastPickedDate.month()).addClass('active');
-      }
+      // if (lastPickedDate && lastPickedDate.isSame(this._viewDate, 'y') && !this.unset) {
+      //   months.eq(lastPickedDate.month()).addClass('active');
+      // }
 
       months.each(function (index) {
         if (!self._isValid(self._viewDate.clone().month(index), 'M')) {

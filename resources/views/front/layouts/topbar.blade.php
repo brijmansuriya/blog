@@ -1,70 +1,54 @@
 
-    <header class="header navbar-expand-lg fixed-top ">
-        <div class="container-fluid ">
-            <div class="header-area ">
-                <!--logo-->
-                <div class="logo">
-                    <a href="{{ url('/')}}">
-                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="" class="logo-dark br-10">
-                        <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt=""
-                            class="logo-white br-10">
-                    </a>
-                </div>
-                <!--/-->
-                <div class="header-navbar">
-                    <nav class="navbar">
-                        <!--navbar-collapse-->
-                        <div class="collapse navbar-collapse" id="main_nav">
-                            <ul class="navbar-nav ">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{url('/')}}"> Home </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('about') }}"> About </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('privacypolicy') }}"> Privacy Policy </a>
-                                </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('team') }}"> Team </a>
-                                </li> --}}
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contact') }}"> Contact </a>
-                                </li> --}}
-                                
-                            </ul>
-                        </div>
-                        <!--/-->
-                    </nav>
-                </div>
-                <!--header-right-->
-                <div class="header-right">
-                    <!--theme-switch-->
-                    <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <span class="slider round ">
-                                <i class="lar la-sun icon-light"></i>
-                                <i class="lar la-moon icon-dark"></i>
-                            </span>
-                        </label>
-                    </div>
-                    <!--search-icon-->
-                    <!--<div class="search-icon">-->
-                    <!--    <i class="las la-search"></i>-->
-                    <!--</div>-->
 
-                    <!--button-subscribe-->
-                    <div class="botton-sub">
-                        <a href="{{ route('contactus') }}" class="btn-subscribe br-10">Contact Us</a>
-                    </div>
 
-                    <!--navbar-toggler-->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
+<div id="header" class="mdk-header mdk-header--bg-dark bg-dark js-mdk-header mb-0"
+    data-effects="parallax-background waterfall" data-fixed data-condenses>
+    <div class="mdk-header__bg">
+        <div class="mdk-header__bg-front"></div>
+    </div>
+    <div class="mdk-header__content justify-content-center">
+        <div class="navbar navbar-expand navbar-dark-pickled-bluewood bg-transparent will-fade-background" id="default-navbar" data-primary>
+            <!-- Navbar toggler -->
+            <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" type="button" data-toggle="sidebar">
+                <span class="material-icons">short_text</span>
+            </button>
+            <!-- Navbar Brand -->
+            <a href="#" class="navbar-brand mr-16pt">
+                <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt" style="width: 169px;">
+                    <span class="rounded">
+                    <img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="logo" class="img-fluid" width="200" /></span>
+                </span>
+                <span class="d-none d-lg-block"></span>
+            </a>
+            <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
+          
+             
+
+                 @if (Route::has('login'))
+              
+                    @auth
+                        <li class="nav-item active">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
+                        </li>
+                    @else
+
+                        <li class="nav-item active">
+                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                        </li>
+                      
+                    @endauth
+              
+            @endif
+            
+            </ul>
+          
+
+
+          
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
-    </header>
+    </div>
+</div>

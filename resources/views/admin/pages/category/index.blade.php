@@ -1,3 +1,5 @@
+
+
 @extends('admin.layouts.master')
 @section('content')
     @include('admin.include.flash-message')
@@ -33,4 +35,8 @@
 @endsection
 @section('script')
     @include('admin.include.table_script')
+    <script type="text/javascript">
+        $('#category-tab').addClass('active');
+       
+    </script>
 @endsection

@@ -30,7 +30,7 @@ class SiteSettingController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', $validator->errors()->first())->withInput($data); 
+            return redirect()->back()->with('error', $validator->errors()->first()); 
         }
 		
 		if($request->site_logo){

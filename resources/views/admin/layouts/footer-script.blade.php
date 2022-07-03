@@ -1,18 +1,21 @@
 <script src="{{ URL::asset('backend/js/jquery.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
-
-@yield('script')
-
-<script src="{{ URL::asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/datatables.net/jquery.dataTables.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ URL::asset('backend/vendors/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('backend/js/template.js') }}"></script>
 <script src="{{ URL::asset('backend/js/settings.js') }}"></script>
+<script src="{{ URL::asset('backend/js/dataTables.select.min.js') }}"></script>
+<script src="{{ URL::asset('backend/js/off-canvas.js') }}"></script>
+<script src="{{ URL::asset('backend/js/hoverable-collapse.js') }}"></script>
+<script src="{{ URL::asset('backend/js/todolist.js') }}"></script>
 
-
+@yield('script')
 <script>
+
+
+
     $('.dataTables_filter').css("text-align", "right");
 
     // $('form').parsley();

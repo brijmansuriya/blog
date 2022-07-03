@@ -6,29 +6,47 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('category.index') }}">
-                <i class="icon-columns menu-icon"></i>
+     
+        <li class="nav-item" id="category-tab">
+            <a class="nav-link" href="{{ route('category.index') }}"  id="category-tab-a">
+                <i class="fa-solid fa-boxes-packing menu-icon"></i>
                 <span class="menu-title">Category</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('posts.index') }}">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Post</span>
+        <li class="nav-item" id="subcategory-tab">
+            <a class="nav-link" href="{{ route('subcategory.index') }}"  id="subcategory-tab-a">
+              <i class="fa-solid fa-box-archive menu-icon"></i>
+                <span class="menu-title">Sub Category</span>
             </a>
         </li>
-        <li class="nav-item" id="site-tab">
+
+        <li class="nav-item" id="storyandgame-tab">
+            <a class="nav-link" href="{{ route('storyandgame.index') }}"  id="storyandgame-tab-a">
+                <i class="fa-solid fa-puzzle-piece  menu-icon"></i>
+                <span class="menu-title">Story & Game</span>
+            </a>
+        </li>
+
+        <li class="nav-item" id="school-tab">
+            <a class="nav-link" href="{{ route('school.index') }}"  id="school-tab-a">
+                <i class="fa-solid fa-school  menu-icon"></i>
+                <span class="menu-title">School</span>
+            </a>
+        </li>
+        
+        <li class="nav-item" id="school-tab">
+            <a class="nav-link" href="{{ route('school.index') }}"  id="school-tab-a">
+                <i class="fa-solid fa-school  menu-icon"></i>
+                <span class="menu-title">School</span>
+            </a>
+        </li>
+       
+        {{-- <li class="nav-item" id="site-tab">
             <a class="nav-link" href="{{ route('site-setting') }}" id="site-tab-a">
                 <i class="fas fa-cogs menu-icon"></i>
                 <span class="menu-title"> Site Setting </span>
             </a>
-        </li>
-        <li class="nav-item" id="site-tab">
-            <a class="nav-link" href="{{ route('contact-us.index') }}" id="site-tab-a">
-                <i class="fas fa-users menu-icon"></i>
-                <span class="menu-title">Contact Us</span>
-            </a>
-        </li>
+        </li> --}}
+     
     </ul>
 </nav>

@@ -1,69 +1,14 @@
-
-
- <div class="footer">
-        <div class="footer-area">
-            <div class="footer-area-content">
-                <div class="container-fluid">
-                    <div class="row ">
-                        <div class="col-md-3">
-                            <div class="menu">
-                                <h6>Menu</h6>
-                                <ul>
-                                    <li><a href="{{url('/')}}">Home</a></li>
-                                    <li><a href="{{ route('about') }}">About us</a></li>
-                                    <li><a href="{{ route('team') }}">Team</a></li>
-                                    <li><a href="{{ route('contact') }}">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--newslatter-->
-                        <div class="col-md-6">
-                            <div class="newslettre">
-                                <div class="newslettre-info">
-                                    <h3>Subscribe To OurNewsletter</h3>
-                                    <p>Sign up for free and be the first to get notified about new posts.</p>
-                                </div>
-
-                                <form action="{{ route('subscribe') }}" method="POST" class="newslettre-form">
-                                    <div class="form-flex">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email Adress"
-                                                required="required">
-                                        </div>
-                                        <button class="submit-btn" type="submit">
-                                            <i class="fas fa-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--/-->
-                        <div class="col-md-3">
-                            <div class="menu">
-                                <h6>Follow us</h6>
-                                <ul>
-                                    <li><a href="#">facebook</a></li>
-                                    <li><a href="#">instagram</a></li>
-                                    <li><a href="#">youtube</a></li>
-                                    <li><a href="#">twitter</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--footer-copyright-->
-            <div class="footer-area-copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="copyright">
-                                <p>© {{date('Y')}}, {{$site_setting->site_title}}  All Rights Reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/-->
-        </div>
+<div class="bg-white border-top-2 mt-auto">
+    <div class="container page__container page-section d-flex flex-column">
+        <p class="text-70 brand mb-24pt">
+            <img class="brand-icon" src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" width="200" alt="Logo"> 
+        </p>
+        <p class="measure-lead-max text-50 small mr-8pt">{{$site_setting->site_title}} is an EduTech venture by NOstress Education Pvt Ltd with a vision to provide innovative education using stress free methods.
+        </p>
+        <p class="mb-8pt d-flex">
+            <a href="" class="text-70 text-underline mr-8pt small">Terms</a>
+            <a href="" class="text-70 text-underline small">Privacy policy</a>
+        </p>
+        <p class="text-50 small mt-n1 mb-0">Copyright <?=date('Y')?> &copy; All rights reserved.</p>
     </div>
+</div>
