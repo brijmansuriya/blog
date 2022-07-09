@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 @section('content')
-@include('front.include.homeheader')
+
 <div class="mdk-header-layout__content page-content ">
 @include('front.include.flash-message')
     <div class="page-section border-bottom-2">

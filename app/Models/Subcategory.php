@@ -22,6 +22,9 @@ class Subcategory extends Model
         'deleted_at',
     ];
 
-
+    public function game()
+    {
+        return $this->hasMany(StoryAndGame::class,'scid','id');
+    }
  
 }

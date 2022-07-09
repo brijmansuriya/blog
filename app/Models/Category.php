@@ -29,4 +29,11 @@ class Category extends Model
         return $image == null ? url('/default.png') : url('/uploads/category/' . $image);
     }
 
+  
+
+    public function subcategory()
+    {
+        return $this->hasMany(Subcategory::class,'cid','id')->with('game');
+    }
+    
 }

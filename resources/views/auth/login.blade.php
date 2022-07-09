@@ -1,11 +1,7 @@
 @extends('front.layouts.master')
 @section('content')
- @include('front.layouts.topbar')
-
 @include('front.include.flash-message')
-
-
- <div class="mdk-header-layout__content page-content">
+<div class="mdk-header-layout__content page-content">
     <div class="py-32pt navbar-submenu">
         <div class="container page__container">
             <div class="progression-bar progression-bar--active-accent">
@@ -56,13 +52,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 @endsection
 @section('script')
 @endsection

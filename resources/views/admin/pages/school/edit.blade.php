@@ -23,7 +23,20 @@
                             <input type="text" class="form-control" name='email' value="{{$school->email}}" placeholder="Email">
                              <div class="error">{{ $errors->school_error->first('email') }}</div>
                         </div>
+                     
                         <div class="form-group">
+                            <label class="form-label" for="custom-select">Select Courses</label>
+                            <select id="courses" name="courses" class="form-control custom-select">
+                                <option value="0" >Select Courses</option>
+                                @foreach($courses as $course)
+                                <option value="{{$course->id}}"
+                                 @if($school->courses == $course->id) selected @endif
+                                 >{{$course->name}}</option>
+                                @endforeach
+                            </select>
+                            <div class="error">{{ $errors->storyandgame_error->first('courses') }}</div>
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="exampleInputUsername1">Password</label>
                             <input type="text" class="form-control" name='password' value="" placeholder="Password">
                              <div class="error">{{ $errors->school_error->first('password') }}</div>
@@ -32,7 +45,7 @@
                             <label for="exampleInputUsername1">confirm password</label>
                             <input type="text" class="form-control" name='confirm_password' value="" placeholder="confirm password">
                              <div class="error">{{ $errors->school_error->first('confirm_password') }}</div>
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>

@@ -35,13 +35,8 @@
                 <div class="page-separator">
                         <div class="page-separator__text">Start Now</div>
                     </div>
-
                     <div class="row">
-
-
-
                         <div class="col-sm-6 col-md-6 col-xl-6">
-
                         <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
                             data-partial-height="44"
                             data-toggle="popover"
@@ -68,15 +63,11 @@
                                         <a href="instructor-edit-course.html"
                                         class="ml-4pt material-icons text-20 card-course__icon-favorite">edit</a>
                                     </div>
-                                
                                 </div>
                             </div>
                         </div>
-
-
                         </div>
                         <div class="col-sm-6 col-md-6 col-xl-6">
-
                             <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
                                  data-partial-height="44"
                                  data-toggle="popover"
@@ -107,18 +98,8 @@
                                     </div>
                                 </div>
                             </div>
-                           
-
                         </div>
-                        
-                        
-                       
-                      
-
                     </div>
-
-                  
-
                 </div>       
             </div>
         </div>

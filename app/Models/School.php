@@ -18,9 +18,10 @@ class School extends Model
         'password',
         'remember_token',
         'active',
+        'courses',
     ];
 
-     protected $hidden = [
+    protected $hidden = [
         'created_at',
         'updated_at',
         'deleted_at',

@@ -20,11 +20,13 @@
 
             <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                 <li class="nav-item active">
-                    <a href="index.php" class="nav-link">My Courses</a>
+                    <a href="{{ route('fronthome') }}" class="nav-link">My Courses</a>
                 </li>
-                <li class="nav-item active">
-                    <a href="edit_profile.php" class="nav-link">My Profile</a>
-                </li>
+                  @auth
+                    <li class="nav-item active">
+                        <a href="{{ route('editprofile',auth()->user()->id) }}" class="nav-link">My Profile</a>
+                    </li>
+                 @endauth
                 <li class="nav-item active">
                     <a href="index.php" class="nav-link">About Newrit</a>
                 </li> 
@@ -33,10 +35,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto mr-0">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#"
                     class="btn btn-outline-white">Asia Primary School</a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="login.php"
                     class="btn btn-outline-white">Login</a>
@@ -48,14 +50,18 @@
                     {{-- <li class="nav-item active">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
                     </li> --}}
+                    <li class="nav-item">
+                        <a href="#"
+                        class="btn btn-outline-white">{{auth()->user()->name}}</a>
+                    </li>
                     <li class="nav-item" style="margin-left: 1rem;">
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-white">Logout</a>
                     </li>
-                @else
+            @else
                         {{-- <li class="nav-item active">
                             <a href="{{ route('login') }}" class="nav-link">Log in</a>
                         </li> --}}
-
+                    
                     <li class="nav-item" style="margin-left: 1rem;">
                         <a href="{{ route('login') }}" class="btn btn-outline-white">Login</a>
                     </li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\School;
+use App\Models\Courses;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Traits\ImageUpload;
@@ -36,6 +37,7 @@ class SchoolController extends Controller
                     }else{
                         $btn .= '<a href="' . route('school.active',['id'=>$row['id'],'active'=>$row['active']]) . '" class="mr-2"><i class="fa-solid fa-toggle-off"  style="color: #172774;"></i></a>';
                     }
+                    $btn .= '<a href="' . route('school.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -60,6 +62,7 @@ class SchoolController extends Controller
    
     public function create()
     {
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['dateTableTitle'] = "Add School";
         $this->data['backUrl'] = route('school.index');
         return view('admin.pages.school.create', $this->data);
@@ -71,8 +74,9 @@ class SchoolController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:users',
             'name' => 'required|unique:users',
-            'password'  =>  'required|min:8',
-            'confirm_password'  =>  'required|same:password',
+            'courses' => 'required',
+            // 'password'  =>  'required|min:8',
+            // 'confirm_password'  =>  'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -102,6 +106,7 @@ class SchoolController extends Controller
     {
         $this->data['pageTittle'] = "Edit school";
         $this->data['school'] = School::find($id);
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['dateTableTitle'] = "Edit school";
         $this->data['backUrl'] = route('school.index');
         return view('admin.pages.school.edit', $this->data);
@@ -113,8 +118,9 @@ class SchoolController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:users,email,'.$id,
             'name' => 'required|unique:users,name,'.$id,
-            'password'  =>  'required|min:8',
-            'confirm_password'  =>  'required|same:password',
+            'courses' => 'required',
+            // 'password'  =>  'required|min:8',
+            // 'confirm_password'  =>  'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -124,6 +130,7 @@ class SchoolController extends Controller
         } else {
             $input = $request->all();
             $input['updated_at'] = date('Y-m-d H:i:s');
+            // $input['courses'] = date('Y-m-d H:i:s');
             $school = School::find($id);
             // if ($request->image) {
             //     $name = $this->imageUpload($request->image, 'school');

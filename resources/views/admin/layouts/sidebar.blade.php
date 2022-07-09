@@ -34,10 +34,10 @@
             </a>
         </li>
         
-        <li class="nav-item" id="school-tab">
-            <a class="nav-link" href="{{ route('school.index') }}"  id="school-tab-a">
-                <i class="fa-solid fa-school  menu-icon"></i>
-                <span class="menu-title">School</span>
+        <li class="nav-item" id="courses-tab">
+            <a class="nav-link" href="{{ route('courses.index') }}"  id="courses-tab-a">
+                <i class="fas fa-atlas  menu-icon"></i>
+                <span class="menu-title">Courses</span>
             </a>
         </li>
        
@@ -50,3 +50,5 @@
      
     </ul>
 </nav>
+
+

@@ -1,4 +1,3 @@
-
 <div id="header" class="mdk-header mdk-header--bg-dark bg-dark js-mdk-header mb-0"
     data-effects="parallax-background waterfall" data-fixed data-condenses>
     <div class="mdk-header__bg">
@@ -11,34 +10,36 @@
             <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" type="button" data-toggle="sidebar">
                 <span class="material-icons">short_text</span>
             </button>
-            <a href="index.php" class="navbar-brand mr-16pt">
+            <a href="{{ route('fronthome') }}" class="navbar-brand mr-16pt">
                 <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
                     <span class="rounded">
                         <img
-                            src="public/images/log-small.png" alt="logo"
+                            src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="logo"
                             class="img-fluid" /></span>
                 </span>
             </a>
            
              <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                 <li class="nav-item active">
-                    <a href="index.php" class="nav-link">My Courses</a>
+                    <a href="{{ route('fronthome') }}" class="nav-link">My Courses</a>
                 </li>
+                 @auth
+                    <li class="nav-item active">
+                        <a href="{{ route('editprofile',auth()->user()->id) }}" class="nav-link">My Profile</a>
+                    </li>
+                 @endauth
                 <li class="nav-item active">
-                    <a href="edit_profile.php" class="nav-link">My Profile</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="index.php" class="nav-link">About Newrit</a>
+                    <a href="{{ route('fronthome') }}" class="nav-link">About Newrit</a>
                 </li> 
                 <li class="nav-item active">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto mr-0">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#"
                     class="btn btn-outline-white">Asia Primary School</a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="login.php"
                     class="btn btn-outline-white">Login</a>
@@ -50,6 +51,10 @@
                     {{-- <li class="nav-item active">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
                     </li> --}}
+                     <li class="nav-item">
+                        <a href="#"
+                        class="btn btn-outline-white">{{auth()->user()->name}}</a>
+                    </li>
                     <li class="nav-item" style="margin-left: 1rem;">
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-white">Logout</a>
                     </li>
@@ -69,7 +74,9 @@
             </form>
 
         </div>
-        @include('front.include.banner')
+      
+        @if(isset($homepage))
+         @include('front.include.banner')
+        @endif
     </div>
 </div>
-
