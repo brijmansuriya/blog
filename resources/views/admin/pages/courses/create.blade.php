@@ -45,7 +45,7 @@
                                  
 
                                  
-                                    <select id="category" name="addmore[0][cid]" class="form-control custom-select">
+                                    <select id="category_0" name="addmore[0][cid]" class="form-control custom-select category">
                                         <option value="0" >Select category</option>
                                         @foreach($categorydata as $categoryname)
                                         <option value="{{$categoryname->id}}" >{{$categoryname->name}}</option>
@@ -113,7 +113,10 @@
     $('#courses-tab').addClass('active');
 
    
-  $('#category').change(function() {
+  $('.category').change(function() {
+    
+    var tabId = this.id.split("_").pop();
+
         var nid = $(this).val();
         if (nid) {
             $.ajax({
