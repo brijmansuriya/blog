@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\StoryAndGame;
 use App\Models\Subcategory;
+use App\Models\Courses;
 use App\Models\Category;
 use Validator;
 class StoryAndGameController extends Controller
@@ -57,8 +58,7 @@ class StoryAndGameController extends Controller
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Story And Game";
-        $this->data['subcategorydata'] = Subcategory::get(['id','name']);
-        $this->data['categorydata'] = Category::get(['id','name']);
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['backUrl'] = route('storyandgame.index');
         return view('admin.pages.storyandgame.create', $this->data);
     }
@@ -66,6 +66,7 @@ class StoryAndGameController extends Controller
     
     public function store(Request $request)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:storyandgame',
             'cid'=>'required|not_in:0',
@@ -99,13 +100,10 @@ class StoryAndGameController extends Controller
     public function edit($id)
     {
         $this->data['pageTittle'] = "Edit Story And Game";
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['storyandgame'] = StoryAndGame::find($id);
-        $this->data['subcategorydata'] = Subcategory::where('cid',$this->data['storyandgame']['cid'])->get(['id','name']);
-
-    //    \print_r($this->data['storyandgame']->toArray());
-    //    \print_r( $this->data['subcategorydata']->toArray());
-    //    exit;
-        $this->data['categorydata'] = Category::get(['id','name']);
+        $this->data['subcategorydata'] = Subcategory::where('cid',$this->data['storyandgame']->cid)->get(['id','name']);
+        $this->data['categorydata'] = Category::where('courses_id',$this->data['storyandgame']->courses_id)->get(['id','name']);
         $this->data['dateTableTitle'] = "Edit Story And Game";
         $this->data['backUrl'] = route('storyandgame.index');
         return view('admin.pages.storyandgame.edit', $this->data);
@@ -130,6 +128,7 @@ class StoryAndGameController extends Controller
                 ->withErrors($validator, 'storyandgame_error');
         } else {
             $input = $request->all();
+
             $storyandgame = StoryAndGame::find($id);
             $storyandgame->update($input);
             if ($storyandgame) {

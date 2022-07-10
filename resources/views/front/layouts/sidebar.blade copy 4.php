@@ -6,38 +6,33 @@
                     <span class="avatar-title rounded bg-white"><img src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" class="img-fluid" alt="logo" /></span>
                 </span>
             </a>
-
-
             @auth
             <div class="sidebar-heading">Teacher</div>
             <ul class="sidebar-menu">
-                @foreach($sidebardata as $episod)
                 <li class="sidebar-menu-item">
+                @foreach($category1 as $category)
                     <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#enterprise_menu">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">add_to_queue</span>{{ $episod->name}}
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">add_to_queue</span>{{$category->name}}
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu">
-                        @foreach($episod->subcategory as $part)
                         <li class="sidebar-menu-item">
+                        @foreach($subcategory1 as $subcategory)
                             <a class="sidebar-menu-button" href="part.php">
-                                <span class="sidebar-menu-text">{{ $part->name}}</span>
+                                <span class="sidebar-menu-text">{{$subcategory->name}}</span>
                             </a>
                             <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu">
-                                @foreach($part->game as $subpart)
                                 <li class="sidebar-menu-item">
-
-                                    <a class="sidebar-menu-button" href="part.php">{{ $subpart->name }}</a>
-
+                                    @foreach($storyandgame1 as $storyandgame)
+                                        <a class="sidebar-menu-button" href="{{route('subcategoryview',['category'=> $category->id,'subcategory'=>$subcategory->id])}}">{{$storyandgame->name}}</a>
+                                    @endforeach
                                 </li>
-                                @endforeach
                             </ul>
-                        </li>
                         @endforeach
+                        </li>
                     </ul>
-
-                </li>
                 @endforeach
+                </li>
             </ul>
             @endauth
             </ul>

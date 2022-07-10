@@ -15,8 +15,41 @@
                             <input type="text" class="form-control" name='name' id="exampleInputUsername1" placeholder="Name" value="{{$courses->name}}">
                             <div class="error">{{ $errors->courses_error->first('name') }}</div>
                         </div>
-                      
-                        
+                        <div class="form-group">
+                            <label class="form-label" for="custom-select">Select category</label>
+                            <select id="category" name="cid" class="form-control custom-select">
+                                <option value="0" >Select category</option>
+                                @foreach($categorydata as $categoryname)
+                                <option value="{{$categoryname->id}}" @if($courses->cid == $categoryname->id) selected @endif>{{$categoryname->name}}</option>
+                                @endforeach
+                            </select>
+                             <div class="error">{{ $errors->courses_error->first('cid') }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="custom-select">Select subcategory</label>
+                            <select id="subcategory" name="scid" class="form-control custom-select">
+                                <option value="0" >Select subcategory</option>
+                                @foreach($subcategorydata as $subcategory)
+                                <option value="{{$subcategory->id}}"  @if($courses->scid == $subcategory->id) selected @endif>{{$subcategory->name}}</option>
+                                @endforeach
+                            </select>
+                             <div class="error">{{ $errors->courses_error->first('cid') }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="custom-select">Select subcategory</label>
+                            <select id="gscategory" name="gsid" class="form-control custom-select">
+                                <option value="0" >Select subcategory</option>
+                                @foreach($storyandgamedata as $storyandgame)
+                                <option value="{{$storyandgame->id}}" @if($courses->gsid == $storyandgame->id) selected @endif>{{$storyandgame->name}}</option>
+                                @endforeach
+                            </select>
+                             <div class="error">{{ $errors->courses_error->first('cid') }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="custom-select">Url</label>
+                              <input type="text" class="form-control" name='url' id="url" placeholder="Enter ifrem" value='{{$courses->url}}'>
+                             <div class="error">{{ $errors->courses_error->first('url') }}</div>
+                        </div>
                         <div class="form-group">
                             <label>File upload</label>
                             <input type="file" name="image"  id="image" class="file-upload-default">
@@ -28,7 +61,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                           <img id="blah" src="{{ $courses->image ?? url('/uploads/site_setting/test.jpg')}}"  width="200" height="200" alt="your image" />
+                           <img id="blah" src="{{ url('/uploads/courses/'.$courses->image) ?? url('/uploads/site_setting/test.jpg')}}"  width="200" height="200" alt="your image" />
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>

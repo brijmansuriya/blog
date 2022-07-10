@@ -13,6 +13,7 @@ class Subcategory extends Model
 
     protected $fillable = [
         'cid',
+        'courses_id',
         'name',
     ];
 

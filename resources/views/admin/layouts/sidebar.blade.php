@@ -6,7 +6,12 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-     
+        <li class="nav-item" id="courses-tab">
+            <a class="nav-link" href="{{ route('courses.index') }}"  id="courses-tab-a">
+                <i class="fas fa-atlas  menu-icon"></i>
+                <span class="menu-title">Courses</span>
+            </a>
+        </li>
         <li class="nav-item" id="category-tab">
             <a class="nav-link" href="{{ route('category.index') }}"  id="category-tab-a">
                 <i class="fa-solid fa-boxes-packing menu-icon"></i>
@@ -34,12 +39,7 @@
             </a>
         </li>
         
-        <li class="nav-item" id="courses-tab">
-            <a class="nav-link" href="{{ route('courses.index') }}"  id="courses-tab-a">
-                <i class="fas fa-atlas  menu-icon"></i>
-                <span class="menu-title">Courses</span>
-            </a>
-        </li>
+       
        
         {{-- <li class="nav-item" id="site-tab">
             <a class="nav-link" href="{{ route('site-setting') }}" id="site-tab-a">

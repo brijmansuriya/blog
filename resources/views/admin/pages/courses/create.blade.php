@@ -23,74 +23,17 @@
                                 </span>
                             </div>
                         </div>
+                       
+                       
                         <div class="form-group">
                            <img id="blah" src="{{ url('/uploads/site_setting/test.jpg')}}"  width="200" height="200" alt="your image" />
                         </div>
-                        {{-- <div class="form-group">
-                            <label class="form-label" for="custom-select">Url </label>
-                              <input type="text" class="form-control" name='url' id="url" placeholder="Enter ifrem">
-                             <div class="error">{{ $errors->courses_error->first('url') }}</div>
-                        </div> --}}
                        
-                          <table class="table table-bordered mb-4" id="dynamicTable" >  
-                            <tr>
-                                <th>Category</th>
-                                <th>Sub Category</th>
-                                <th>Game Story</th>
-                                <th>Url</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>  
-                                <td> 
-                                 
-
-                                 
-                                    <select id="category_0" name="addmore[0][cid]" class="form-control custom-select category">
-                                        <option value="0" >Select category</option>
-                                        @foreach($categorydata as $categoryname)
-                                        <option value="{{$categoryname->id}}" >{{$categoryname->name}}</option>
-                                        @endforeach
-                                    </select>
-                          
-                                  
-                                </td>  
-                                <td>
-                                  
-                                       
-                                        <select id="subcategory" name="addmore[0][scid]" class="form-control custom-select">
-                                             <option value="0" >Select category</option>
-                                            @foreach($subcategorydata as $subcategory)
-                                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
-                                            @endforeach
-                                        </select>
-                                      
-                                
-                                </td>  
-                                <td>
-                                 
-                                        <select id="gscategory0" name="addmore[0][gsid]" class="form-control custom-select">
-                                            <option value="0">Select category</option>
-                                                @foreach($storyandgamedata as $storyandgame)
-                                                <option value="{{$storyandgame->id}}">{{$storyandgame->name}}</option>
-                                                @endforeach
-                                        </select>
-                                      
-                                
-                                </td>  
-                                <td>
-
-                                 
-                                        <input type="text" name="addmore[0][url]" placeholder="Enter your Url" value="" class="form-control" />
-                                
-                               
-                                
-                                </td>    
-                            </tr>  
-
-                        </table>
-                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button> 
+                       
+                       
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
+                     
                     </form>
                 </div>
             </div>
@@ -111,95 +54,8 @@
 </script>
 <script type="text/javascript">
     $('#courses-tab').addClass('active');
-
-   
-  $('.category').change(function() {
-    
-    var tabId = this.id.split("_").pop();
-
-        var nid = $(this).val();
-        if (nid) {
-            $.ajax({
-                type: "get",
-                 url: "{{url('storyandgame/subdropdown')}}/" + nid,
-                  success: function(res) {
-                    if (res) {
-                        $("#subcategory").empty();
-                        $("#subcategory").append('<option value="0">Select Sub category</option>');
-                        var dataa=[];
-                        $.each(res, function(key, value) {
-                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
-                        });
-                        $("#subcategory").append(dataa);
-                    }
-                }
-            });
-        }
-    });
-    $('#subcategory').change(function() {
-        var nid = $(this).val();
-      
-        if (nid) {
-            $.ajax({
-                type: "get",
-                 url: "{{url('storyandgame/gsdropdown')}}/" + nid,
-                  success: function(res) {
-                    if (res) {
-                        $("#gscategory").empty();
-                        $("#gscategory").append('<option value="0">Select Game Story</option>');
-                        var dataa=[];
-                        $.each(res, function(key, value) {
-                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
-                        });
-                        $("#gscategory").append(dataa);
-                    }
-                }
-            });
-        }
-    });
 </script>
-<script>
-   var i = 0;
-    $("#add").click(function(){
-        ++i;
-        $("#dynamicTable").append('<tr>\
-            <td>\
-                 <select id="category'+i+'" name="addmore['+i+'][cid]" class="form-control custom-select category" onchange="category(this)">\
-                    <option value="0">Select category</option>\
-                    @foreach($categorydata as $categoryname)\
-                    <option value="{{$categoryname->id}}">{{$categoryname->name}}</option>\
-                    @endforeach\
-                </select>\
-            </td>\
-            <td>\
-                 <select id="subcategory'+i+'" name="addmore['+i+'][scid]" class="form-control custom-select">\
-                        <option value="0" >Select category</option>\
-                    @foreach($subcategorydata as $subcategory)\
-                    <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>\
-                    @endforeach\
-                </select>\
-            </td>\
-            <td>\
-                <select id="gscategory'+i+'" name="addmore['+i+'][gsid]" class="form-control custom-select">\
-                    <option value="0">Select category</option>\
-                    @foreach($storyandgamedata as $storyandgame)\
-                    <option value="{{$storyandgame->id}}">{{$storyandgame->name}}</option>\
-                    @endforeach\
-                </select>\
-            </td>\
-            <td>\
-                <input type="text" name="addmore['+i+'][url]" placeholder="Enter your Url" class="form-control" />\
-            </td>\
-            <td>\
-                <button type="button" class="btn btn-danger remove-tr">Remove</button>\
-            </td>\
-        </tr>');
-    });
-   
-    $(document).on('click', '.remove-tr', function(){  
-         $(this).parents('tr').remove();
-    });  
-</script>
+
 @endsection
 
                       

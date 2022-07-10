@@ -13,6 +13,7 @@ class StoryAndGame extends Model
         'scid',
         'cid',
         'name',
+        'courses_id'
     ];
 
      protected $hidden = [

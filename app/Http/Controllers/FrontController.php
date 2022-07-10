@@ -11,28 +11,32 @@ use App\Models\Subcategory;
 use App\Models\CourseSub;
 use Validator;
 use Auth;
+use DB;
 class FrontController extends Controller
 {
     public function index(){
         // $user = Auth::user();
 
         $homepage = 'homepage';
-        $sidebardata =  Courses::whereId(2)->with('course_sub')->first();
+        $sidebardata =  Courses::whereId(1)->with('course_sub')->first();
 
-        echo '<pre>';
-        $category = $sidebardata->course_sub->pluck('category.id')->unique()->toArray();
-        $subcategory = $sidebardata->course_sub->pluck('subcategory.id')->unique()->toArray();
-        $storyandgame = $sidebardata->course_sub->pluck('storyandgame.id')->unique()->toArray();
+        // ->select('courses.*','course_sub.*','category.*')
+        $sidebardata =  Category::where('courses_id',5)->get();
 
-        $category1 = Category::whereIn('id',$category)->get();
-        $subcategory1 =  Subcategory::whereIn('id',$subcategory)->get();
-        $storyandgame1 = StoryAndGame::whereIn('id',$storyandgame)->get();
+        // echo '<pre>';
+    //    $category = $sidebardata->course_sub->pluck('category.id')->unique()->toArray();
+        // $subcategory = $sidebardata->course_sub->pluck('subcategory.id')->unique()->toArray();
+        // $storyandgame = $sidebardata->course_sub->pluck('storyandgame.id')->unique()->toArray();
 
-        print_r($category1->toArray());
-        print_r($subcategory1->toArray());
-        print_r($storyandgame1->toArray());
+        // $category1 = Category::whereIn('id',$category)->get();
+        // $subcategory1 =  Subcategory::whereIn('id',$subcategory)->get();
+        // $storyandgame1 = StoryAndGame::whereIn('id',$storyandgame)->get();
+
+        // print_r($category1->toArray());
+        // print_r($subcategory1->toArray());
+        // print_r($storyandgame1->toArray());
        
-        exit;
+        // exit;
 
        // $courses =  Courses::whereId(2)->first();
       //return  $coursessub =  CourseSub::whereCourseId($courses->id)->get();
@@ -40,7 +44,8 @@ class FrontController extends Controller
         // echo '<pre>';
         // print_r($sidebardata->course_sub->toArray());
         // exit;
-        return view('front.pages.dashboard',compact('homepage','category1','subcategory1','storyandgame1'));
+        // return view('front.pages.dashboard',compact('homepage','category1','subcategory1','storyandgame1'));
+        return view('front.pages.dashboard',compact('homepage','sidebardata'));
     }
     public function editProfile($id){
         $user = User::where('id',$id)->first();

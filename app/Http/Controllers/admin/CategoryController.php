@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Validator;
+use App\Models\Courses;
 use App\Traits\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -55,6 +56,7 @@ class CategoryController extends Controller
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Category";
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['backUrl'] = route('category.index');
         return view('admin.pages.category.create', $this->data);
     }
@@ -74,10 +76,10 @@ class CategoryController extends Controller
             $input = $request->all();
             $category = Category::create($input);
             if ($category) {
-                return redirect()->route('category.index')->with('success', 'About Us created successfully.');
+                return redirect()->route('category.index')->with('success', 'created successfully.');
             }
         }
-        return redirect()->route('category.index')->with('success', 'About Us created successfully.');
+        return redirect()->route('category.index')->with('success', 'created successfully.');
     }
     
     public function show($id)
@@ -88,9 +90,10 @@ class CategoryController extends Controller
     
     public function edit($id)
     {
-        $this->data['pageTittle'] = "Edit Aboutus";
+        $this->data['pageTittle'] = "Edit Category";
         $this->data['category'] = Category::find($id);
-        $this->data['dateTableTitle'] = "Edit Aboutus";
+        $this->data['courses'] = Courses::get(['id','name']);
+        $this->data['dateTableTitle'] = "Edit Category";
         $this->data['backUrl'] = route('category.index');
         return view('admin.pages.category.edit', $this->data);
     }
@@ -111,12 +114,6 @@ class CategoryController extends Controller
             $input = $request->all();
             $input['updated_at'] = date('Y-m-d H:i:s');
             $category = Category::find($id);
-            if ($request->image) {
-                $name = $this->imageUpload($request->image, 'category');
-                $input['image'] = $name;
-
-            }
-            $input['slug'] = Str::slug($input['name']);
             $category->update($input);
 
             if ($category) {

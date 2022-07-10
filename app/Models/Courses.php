@@ -24,7 +24,7 @@ class Courses extends Model
 
     public function course_sub()
     {
-        return $this->hasMany(CourseSub::class,'course_id','id')->with('category','subcategory:id,name','storyandgame:id,name');
+        return $this->hasMany(CourseSub::class,'course_id','id')->with('category','subcategory','storyandgame');
 
         //return $this->hasMany(CourseSub::class,'course_id','id');
     }
@@ -32,7 +32,7 @@ class Courses extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class,'cid','cid')->first();
+        return $this->hasMany(Category::class,'courses_id','id')->with('subcategory');
     }
     public function subcategory()
     {

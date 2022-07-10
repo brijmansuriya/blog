@@ -14,13 +14,22 @@
                         <div class="error">{{ $errors->category_error->first('name') }}</div>
                     </div>
                      <div class="form-group">
-                            <label class="form-label"
-                                    for="custom-select">Select sub category</label>
-                            <select id="custom-select"  name="cid" class="form-control custom-select">
+                            <label class="form-label" for="custom-select">Select courses</label>
+                            <select id="courses_id"  name="courses_id" class="form-control custom-select">
                                 <option value="0" selected>Open this select menu</option>
-                                @foreach($categorydata as $categoryname)
-                                <option value="{{$categoryname->id}}">{{$categoryname->name}}</option>
+                                @foreach($courses as $coursesdata)
+                                <option value="{{$coursesdata->id}}">{{$coursesdata->name}}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                     <div class="form-group">
+                            <label class="form-label"
+                                    for="custom-select">Select category</label>
+                            <select id="cid"  name="cid" class="form-control custom-select">
+                                <option value="0" selected>Select Category</option>
+                                {{-- @foreach($categorydata as $categoryname)
+                                <option value="{{$categoryname->id}}">{{$categoryname->name}}</option>
+                                @endforeach --}}
                                 
                             </select>
                         </div>
@@ -34,14 +43,28 @@
         </div>
 @endsection
 @section('script-bottom')
-  <script src="{{ URL::asset('backend/js/file-upload.js')}}"></script>
-<script type="text/javascript">
 
-imgInp.onchange = evt => {
-  const [file] = imgInp.files
-  if (file) {
-    blah.src = URL.createObjectURL(file)
-  }
-}
+<script type="text/javascript">
+    $('#subcategory-tab').addClass('active');
+    $('#courses_id').change(function() {
+        var nid = $(this).val();
+        if (nid) {
+            $.ajax({
+                type: "get",
+                 url: "{{url('category/dropdown')}}/" + nid,
+                  success: function(res) {
+                    if (res) {
+                        $("#cid").empty();
+                        $("#cid").append('<option value="0">Select category</option>');
+                        var dataa=[];
+                        $.each(res, function(key, value) {
+                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                        });
+                        $("#cid").append(dataa);
+                    }
+                }
+            });
+        }
+    });
 </script>
 @endsection

@@ -17,6 +17,19 @@
                             <input type="text" class="form-control" name='name' id="exampleInputUsername1" value="{{$category->name}}" placeholder="Name">
                             <div class="error">{{ $errors->category_error->first('name') }}</div>
                         </div>
+                    
+                        <div class="form-group">
+                            <label class="form-label" for="custom-select">Courses</label>
+                            <select id="courses" name="courses_id" class="form-control custom-select">
+                                <option value="0">Select courses</option>
+                                @foreach($courses as $coursesdata)
+                                <option value="{{$coursesdata->id}}" 
+                                @if($coursesdata->id == $category->courses_id) selected @endif
+                                >{{$coursesdata->name}}</option>
+                                @endforeach
+                            </select>
+                             <div class="error">{{ $errors->storyandgame_error->first('courses_id') }}</div>
+                        </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>
@@ -37,5 +50,8 @@
         }
     }
 
+</script>
+<script type="text/javascript">
+        $('#category-tab').addClass('active');
 </script>
 @endsection

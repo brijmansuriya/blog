@@ -61,7 +61,9 @@ class CoursesController extends Controller
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Story And Game";
-       
+        $this->data['categorydata'] = Category::get(['id','name']);
+        $this->data['subcategorydata'] = Subcategory::get(['id','name']);
+        $this->data['storyandgamedata'] = StoryAndGame::get(['id','name']);
         $this->data['backUrl'] = route('courses.index');
         return view('admin.pages.courses.create', $this->data);
     }
@@ -71,7 +73,17 @@ class CoursesController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:courses',
+            // 'name' => 'required|unique:courses',
+            // 'cid'=>'required|not_in:0',
+            // 'scid'=>'required|not_in:0',
+            // 'gsid'=>'required|not_in:0',
+        ],[
+            // 'cid.required' => 'Select category',
+            // 'cid.not_in' => 'Select category',
+            // 'scid.required' => 'Select sub category',
+            // 'scid.not_in' => 'Select sub category',
+            // 'gsid.required' => 'Select game and story',
+            // 'gsid.not_in' => 'Select game and story',
         ]);
 
         if ($validator->fails()) {
@@ -83,8 +95,19 @@ class CoursesController extends Controller
                 $name = $this->imageUpload($request->image,'courses');
                 $input['image'] = $name;
             }
-            $courses = Courses::create($input);
-
+          // return $request->all();
+           $courses =  Courses::create($input);
+           $coursesid =  $courses->id;
+          
+            foreach($input['addmore'] as $data){
+                    $data['course_id'] = $coursesid;
+                    CourseSub::create($data);
+                  
+            }
+                // echo '<pre>';
+                // print_r($formdata);
+                // exit;
+       
             if ($courses) {
                 return redirect()->route('courses.index')->with('success', 'created successfully.');
             }
@@ -101,7 +124,10 @@ class CoursesController extends Controller
     public function edit($id)
     {
     $this->data['pageTittle'] = "Edit Courses";
-    $this->data['courses'] = Courses::first();
+    $this->data['courses'] = Courses::find($id);
+    $this->data['categorydata'] = Category::get(['id','name']);
+    $this->data['subcategorydata'] = Subcategory::where('cid', $this->data['courses']['cid'])->get(['id','name']);
+    $this->data['storyandgamedata'] = StoryAndGame::where('scid',$this->data['courses']['scid'])->get(['id','name']);
     $this->data['dateTableTitle'] = "Edit Courses";
     $this->data['backUrl'] = route('courses.index');
     return view('admin.pages.courses.edit', $this->data);
@@ -111,9 +137,16 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:courses,name,'.$id,
-            // 'cid'=>'required|not_in:0',
-            // 'scid'=>'required|not_in:0',
+            'name' => 'required|unique:storyandgame,name,'.$id,
+            'cid'=>'required|not_in:0',
+            'scid'=>'required|not_in:0',
+        ],[
+            'cid.required' => 'Select category',
+            'cid.not_in' => 'Select category',
+            'scid.required' => 'Select sub category',
+            'scid.not_in' => 'Select sub category',
+            // 'gsid.required' => 'Select game and story',
+            // 'gsid.not_in' => 'Select game and story',
         ]);
       
         if ($validator->fails()) {

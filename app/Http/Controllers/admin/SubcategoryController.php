@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Courses;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Validator;
@@ -56,6 +57,7 @@ class SubcategoryController extends Controller
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Sub Category";
+        $this->data['courses'] = Courses::get(['id','name']);
         $this->data['categorydata'] = Category::get(['id','name']);
         $this->data['backUrl'] = route('subcategory.index');
         return view('admin.pages.subcategory.create', $this->data);
@@ -92,8 +94,9 @@ class SubcategoryController extends Controller
     public function edit($id)
     {
         $this->data['pageTittle'] = "Edit Aboutus";
-        $this->data['category'] = Subcategory::find($id);
-        $this->data['categorydata'] = Category::get(['id','name']);
+        $this->data['subcategory'] = Subcategory::find($id);
+        $this->data['courses'] = Courses::get(['id','name']);
+        $this->data['categorydata'] = Category::where('courses_id',$this->data['subcategory']->courses_id)->get(['id','name']);
         $this->data['dateTableTitle'] = "Edit Aboutus";
         $this->data['backUrl'] = route('subcategory.index');
         return view('admin.pages.subcategory.edit', $this->data);
@@ -103,7 +106,7 @@ class SubcategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:subcategory,name,'.$id,
+            // 'name' => 'required|unique:subcategory,name,'.$id,
             'cid'=>'required|not_in:0'
         ]);
 
@@ -130,5 +133,17 @@ class SubcategoryController extends Controller
         $delete = Subcategory::find($id)->delete();
         Session::flash('success', 'Deleted successfully');
         return $delete;
+    }
+
+    public function subdropdown($id)
+    {
+        $subdropdown = Subcategory::where('cid',$id)->get();
+        return $subdropdown;
+    }
+
+    public function dropdown($id)
+    {
+        $subdropdown = Category::where('courses_id',$id)->get();
+        return $subdropdown;
     }
 }

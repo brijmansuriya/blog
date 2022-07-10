@@ -18,12 +18,22 @@
                             <div class="error">{{ $errors->category_error->first('name') }}</div>
                            
                         </div>
+                         <div class="form-group">
+                            <label class="form-label" for="custom-select">Courses</label>
+                            <select id="courses" name="courses_id" class="form-control custom-select">
+                                <option value="0">Select courses</option>
+                                @foreach($courses as $coursesdata)
+                                <option value="{{$coursesdata->id}}" @if($coursesdata->id==$storyandgame->courses_id) selected @endif>{{$coursesdata->name}}</option>
+                                @endforeach
+                            </select>
+                             <div class="error">{{ $errors->storyandgame_error->first('courses_id') }}</div>
+                        </div>
                         <div class="form-group">
                             <label class="form-label" for="custom-select">Select category</label>
-                            <select id="category" name="cid" class="form-control custom-select">
+                            <select id="cid" name="cid" class="form-control custom-select">
                                 <option value="0" >Select category</option>
-                                @foreach($categorydata as $categoryname)
-                                <option value="{{$categoryname->id}}" @if($storyandgame->cid == $categoryname->id) selected @endif>{{$categoryname->name}}</option>
+                                @foreach($categorydata as $category)
+                                <option value="{{$category->id}}" @if($category->id==$storyandgame->cid) selected @endif>{{$category->name}}</option>
                                 @endforeach
                             </select>
                              <div class="error">{{ $errors->storyandgame_error->first('cid') }}</div>
@@ -32,9 +42,9 @@
                             <label class="form-label" for="custom-select">Select sub category</label>
                             <select id="subcategory" name="scid" class="form-control custom-select">
                               <option value="0" >Select sub category</option>
-                                 @foreach($subcategorydata as $subcategory)
-                                    <option value="{{$subcategory->id}}" @if($storyandgame->scid == $subcategory->id) selected @endif>{{$subcategory->name}}</option>
-                                @endforeach
+                              @foreach($subcategorydata as $subcategory)
+                                <option value="{{$subcategory->id}}" @if($subcategory->id==$storyandgame->scid) selected @endif>{{$subcategory->name}}</option>
+                                @endforeach  
                             </select>
                              <div class="error">{{ $errors->storyandgame_error->first('scid') }}</div>
                         </div>
@@ -55,7 +65,27 @@
         if (nid) {
             $.ajax({
                 type: "get",
-                 url: "{{url('storyandgame/subdropdown')}}/" + nid,
+                 url: "{{url('category/dropdown')}}/" + nid,
+                  success: function(res) {
+                    if (res) {
+                        $("#cid").empty();
+                        $("#cid").append('<option value="0">Select Sub category</option>');
+                        var dataa=[];
+                        $.each(res, function(key, value) {
+                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                        });
+                        $("#cid").append(dataa);
+                    }
+                }
+            });
+        }
+    });
+    $('#cid').change(function() {
+        var nid = $(this).val();
+        if (nid) {
+            $.ajax({
+                type: "get",
+                 url: "{{url('subcategory/subdropdown')}}/" + nid,
                   success: function(res) {
                     if (res) {
                         $("#subcategory").empty();
@@ -65,6 +95,26 @@
                           dataa +='<option value="' + value.id + '">' + value.name + '</option>';
                         });
                         $("#subcategory").append(dataa);
+                    }
+                }
+            });
+        }
+    });
+    $('#courses').change(function() {
+        var nid = $(this).val();
+        if (nid) {
+            $.ajax({
+                type: "get",
+                 url: "{{url('category/dropdown')}}/" + nid,
+                  success: function(res) {
+                    if (res) {
+                        $("#cid").empty();
+                        $("#cid").append('<option value="0">Select category</option>');
+                        var dataa=[];
+                        $.each(res, function(key, value) {
+                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                        });
+                        $("#cid").append(dataa);
                     }
                 }
             });
