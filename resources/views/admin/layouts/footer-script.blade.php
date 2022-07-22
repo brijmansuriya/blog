@@ -22,12 +22,12 @@
     // $("#myForm").parsley(); 
 
      $(document).ready(function() {
-     	//$('.select2').select2();
-        $('.select2').select2({
-            tags: true,
-            tokenSeparators: [',', ' '],
-            placeholder: "Select or type keywords"
-        });
+     	$('.select2').select2();
+       // $('.select2').select2({
+       //     tags: true,
+        //    tokenSeparators: [',', ' '],
+       //     placeholder: "Select or type keywords"
+       // });
     });
     $(document).ready(function() {
         $(".alert").fadeTo(1000, 500).slideUp(500, function() {

@@ -19,6 +19,7 @@ class School extends Model
         'remember_token',
         'active',
         'courses',
+        'image',
     ];
 
     protected $hidden = [

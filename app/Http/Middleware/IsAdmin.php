@@ -21,7 +21,8 @@ class IsAdmin
                 return $next($request);
             }
             // Auth::logout();
-            return redirect("/")->with("error","You don't have admin access.");
+           // return redirect("/")->with("error","You don't have admin access.");
+            return redirect("/");
         }
         Auth::logout();
         return redirect("/")->with("error","You don't have active access.");

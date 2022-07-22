@@ -15,15 +15,10 @@
             <div class="mdk-header-layout__content page-content">
                 <div class="py-32pt navbar-submenu">
                     <div class="container page__container">
-                        <div
-                            class="progression-bar progression-bar--active-accent"
-                        >
+                        <div class="progression-bar progression-bar--active-accent">
                             <span class="progression-bar__item-content">
-                                <i
-                                    class="material-icons progression-bar__item-icon"
-                                ></i>
-                                <span
-                                    class="progression-bar__item-text h5 mb-0 text-uppercase"
+                                <i class="material-icons progression-bar__item-icon"></i>
+                                <span class="progression-bar__item-text h5 mb-0 text-uppercase"
                                     >Teacher Registration details</span
                                 >
                             </span>
@@ -36,25 +31,19 @@
                         <div class="page-section container page__container">
                             <div class="col-md-7 p-0">
                                 <div class="form-group">
-                                    <label class="form-label"
-                                        >School photo</label
-                                    >
+                                    <label class="form-label">School photo</label>
                                     <div class="media align-items-center">
                                         <a href="" class="media-left mr-16pt">
-                                            <img
-                                                src="public/images/people/110/guy-3.jpg"
+                                            <img src="public/images/people/110/guy-3.jpg"
                                                 alt="people"
                                                 width="56"
-                                                class="rounded-circle"
-                                            />
+                                                class="rounded-circle"/>
                                         </a>
                                         <div class="media-body">
                                             <div class="custom-file">
-                                                <input
-                                                    type="file"
+                                                <input type="file"
                                                     class="custom-file-input"
-                                                    id="inputGroupFile01"
-                                                />
+                                                    id="inputGroupFile01" />
                                                 <label
                                                     class="custom-file-label"
                                                     for="inputGroupFile01"

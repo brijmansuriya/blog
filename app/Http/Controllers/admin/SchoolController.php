@@ -75,8 +75,8 @@ class SchoolController extends Controller
             'email' => 'required|unique:users',
             'name' => 'required|unique:users',
             'courses' => 'required',
-            // 'password'  =>  'required|min:8',
-            // 'confirm_password'  =>  'required|same:password',
+            'password'  =>  'required|min:8',
+            'confirm_password'  =>  'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -85,6 +85,13 @@ class SchoolController extends Controller
                 ->withInput();
         } else {
             $input = $request->all();
+        
+            $input['courses'] = implode(",",$request->courses);
+            if ($request->image) {
+                $name = $this->imageUpload($request->image, 'courses');
+                $input['image'] = $name;
+            }
+            
             $input['password'] = Hash::make($request->password);
             $school = School::create($input);
             if ($school) {
@@ -118,7 +125,7 @@ class SchoolController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:users,email,'.$id,
             'name' => 'required|unique:users,name,'.$id,
-            'courses' => 'required',
+            // 'courses' => 'required',
             // 'password'  =>  'required|min:8',
             // 'confirm_password'  =>  'required|same:password',
         ]);
@@ -129,14 +136,15 @@ class SchoolController extends Controller
                 ->withInput();
         } else {
             $input = $request->all();
+            // $input['courses_id'] = explode(",",$input->courses_id);
+            
             $input['updated_at'] = date('Y-m-d H:i:s');
-            // $input['courses'] = date('Y-m-d H:i:s');
+            $input['courses'] = implode(",",$request->courses);
+            if ($request->image) {
+                $name = $this->imageUpload($request->image, 'courses');
+                $input['image'] = $name;
+            }
             $school = School::find($id);
-            // if ($request->image) {
-            //     $name = $this->imageUpload($request->image, 'school');
-            //     $input['image'] = $name;
-            // }
-            // $input['slug'] = Str::slug($input['name']);
             $school->update($input);
             if ($school) {
                 return redirect()->route('school.index')->with('success', 'Successfully Updated');

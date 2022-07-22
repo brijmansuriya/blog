@@ -27,6 +27,12 @@ class SubcategoryController extends Controller
             $data = Subcategory::orderBy('created_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('courses', function ($row) {
+                    return $row->courses->name;
+                })
+                ->editColumn('category', function ($row) {
+                    return $row->category->name;
+                })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('subcategory.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     $delete_link = route('subcategory.destroy', $row['id']);
@@ -40,6 +46,8 @@ class SubcategoryController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
+                ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
+                ['data' => 'category', 'name' => 'category', 'title' => __("Category"), 'searchable' => true],
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
@@ -67,7 +75,7 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:subcategory',
+            // 'name' => 'required|unique:subcategory',
             'cid'=>'required|not_in:0'
         ]);
 

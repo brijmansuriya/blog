@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{$dateTableTitle}}</h4>
                   
-                    <form class="forms-sample"  method="POST" action="{{ route('school.update',$school->id) }}">
+                    <form class="forms-sample"  method="POST" action="{{ route('school.update',$school->id) }}" enctype="multipart/form-data">
                         @csrf
                            @method('PUT')
                         <div class="form-group">
@@ -26,16 +26,38 @@
                      
                         <div class="form-group">
                             <label class="form-label" for="custom-select">Select Courses</label>
-                            <select id="courses" name="courses" class="form-control custom-select">
+                            <select id="courses" name="courses[]" class="form-control custom-select select2" multiple='multiple'>
                                 <option value="0" >Select Courses</option>
+                                @php 
+                                $schoolcourses = explode(",",$school->courses); @endphp
+
                                 @foreach($courses as $course)
                                 <option value="{{$course->id}}"
-                                 @if($school->courses == $course->id) selected @endif
+                                 @if(in_array($course->id,$schoolcourses)) selected @endif
                                  >{{$course->name}}</option>
                                 @endforeach
                             </select>
-                            <div class="error">{{ $errors->storyandgame_error->first('courses') }}</div>
+                            <div class="error">
+                            {{ $errors->storyandgame_error->first('courses') }}
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="image" id="image" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image" name="image">
+                                <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="form-group">
+                           <img id="blah" src="{{ url('/uploads/courses/'.$school->image)  ?? url('/uploads/site_setting/test.jpg')  }}"  width="200" height="200" alt="your image" />
+                        </div>
+
                         {{-- <div class="form-group">
                             <label for="exampleInputUsername1">Password</label>
                             <input type="text" class="form-control" name='password' value="" placeholder="Password">
@@ -61,12 +83,13 @@
 
     $('#school-tab').addClass('active');
     $('#school-tab-a').addClass('active');
-    imgInp.onchange = evt => {
-        const [file] = imgInp.files
+    image.onchange = evt => {
+        const [file] = image.files
         if (file) {
             blah.src = URL.createObjectURL(file)
         }
     }
 
 </script>
+
 @endsection

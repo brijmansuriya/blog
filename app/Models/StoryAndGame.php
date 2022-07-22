@@ -22,6 +22,19 @@ class StoryAndGame extends Model
         'deleted_at',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'cid','id');
+    }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class,'scid','id');
+    }
+
+    public function courses()
+    {
+        return $this->belongsTo(Courses::class,'courses_id','id');
+    }
  
 }

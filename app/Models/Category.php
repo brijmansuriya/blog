@@ -28,7 +28,10 @@ class Category extends Model
         return $image == null ? url('/default.png') : url('/uploads/category/' . $image);
     }
 
-  
+    public function courses()
+    {
+        return $this->belongsTo(Courses::class,'courses_id','id');
+    }
 
     public function subcategory()
     {

@@ -71,7 +71,7 @@
     });
 </script>
 <script type="text/javascript">
-    $('#subcategory-tab').addClass('active');
+   
     $('#courses_id').change(function() {
         var nid = $(this).val();
         if (nid) {

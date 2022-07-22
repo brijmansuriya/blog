@@ -26,6 +26,9 @@ class CategoryController extends Controller
             $data = Category::orderBy('created_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('courses', function ($row) {
+                    return $row->courses->name;
+                })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('category.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     $delete_link = route('category.destroy', $row['id']);
@@ -39,6 +42,7 @@ class CategoryController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
+                ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 

@@ -1,7 +1,7 @@
 <div id="header" class="mdk-header mdk-header--bg-dark bg-dark js-mdk-header mb-0"
     data-effects="parallax-background waterfall" data-fixed data-condenses>
     <div class="mdk-header__bg">
-        <div class="mdk-header__bg-front" style="background-image: url(public/images/photodune-4161018-group-of-students-m.jpg);"></div>
+        <div class="mdk-header__bg-front" style="background-image: url(public_front/images/photodune-4161018-group-of-students-m.jpg);"></div>
     </div>
     <div class="mdk-header__content justify-content-center">
         <div class="navbar navbar-expand navbar-dark-pickled-bluewood bg-transparent will-fade-background"
@@ -13,15 +13,19 @@
             <a href="{{ route('fronthome') }}" class="navbar-brand mr-16pt">
                 <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
                     <span class="rounded">
-                        <img
-                            src="{{url('/uploads/site_setting')}}/{{$site_setting->site_logo}}" alt="logo"
-                            class="img-fluid" /></span>
+                @auth
+                    <img src="{{ url('/uploads/courses/'.auth()->user()->image)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
+                @else
+                    <img src="{{url('/uploads/site_setting/'.$site_setting->logow)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
+                @endauth
+                </span>
                 </span>
             </a>
            
              <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                 <li class="nav-item active">
-                    <a href="{{ route('fronthome') }}" class="nav-link">My Courses</a>
+                    <a href="{{ route('fronthome') }}" class="nav-link"> 
+                     My Courses</a>
                 </li>
                  @auth
                     <li class="nav-item active">

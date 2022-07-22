@@ -27,5 +27,13 @@ class Subcategory extends Model
     {
         return $this->hasMany(StoryAndGame::class,'scid','id');
     }
- 
+
+    public function courses()
+    {
+        return $this->belongsTo(Courses::class,'courses_id','id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'cid','id');
+    }
 }

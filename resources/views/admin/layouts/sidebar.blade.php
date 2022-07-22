@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
+        <li class="nav-item" id="dashbord-tab"> 
+            <a class="nav-link" id="dashbord-tab" href="{{ route('home') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -15,13 +15,13 @@
         <li class="nav-item" id="category-tab">
             <a class="nav-link" href="{{ route('category.index') }}"  id="category-tab-a">
                 <i class="fa-solid fa-boxes-packing menu-icon"></i>
-                <span class="menu-title">Category</span>
+                <span class="menu-title">Episode</span>
             </a>
         </li>
         <li class="nav-item" id="subcategory-tab">
             <a class="nav-link" href="{{ route('subcategory.index') }}"  id="subcategory-tab-a">
               <i class="fa-solid fa-box-archive menu-icon"></i>
-                <span class="menu-title">Sub Category</span>
+                <span class="menu-title">Part </span>
             </a>
         </li>
 
@@ -29,6 +29,12 @@
             <a class="nav-link" href="{{ route('storyandgame.index') }}"  id="storyandgame-tab-a">
                 <i class="fa-solid fa-puzzle-piece  menu-icon"></i>
                 <span class="menu-title">Story & Game</span>
+            </a>
+        </li>
+        <li class="nav-item" id="video-tab">
+            <a class="nav-link" href="{{ route('video.index') }}"  id="video-tab-a">
+                <i class="fa-solid fa-puzzle-piece  menu-icon"></i>
+                <span class="menu-title">Video</span>
             </a>
         </li>
 

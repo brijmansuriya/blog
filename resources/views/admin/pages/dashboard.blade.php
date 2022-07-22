@@ -18,5 +18,9 @@
   </div>
 @endsection
 @section('script')
+
+<script>
+ $('#dashbord-tab').addClass('active');
+</script>
 {{-- <script src="{{ URL::asset('assets/libs/morris-js/morris-js.min.js')}}"></script> --}}
 @endsection

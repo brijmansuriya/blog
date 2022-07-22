@@ -28,6 +28,15 @@ class StoryAndGameController extends Controller
             $data = StoryAndGame::orderBy('created_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('courses', function ($row) {
+                    return $row->courses->name;
+                })
+                ->editColumn('category', function ($row) {
+                    return $row->category->name;
+                })
+                ->editColumn('Subcategory', function ($row) {
+                    return $row->subcategory->name;
+                })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('storyandgame.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     $delete_link = route('storyandgame.destroy', $row['id']);
@@ -41,6 +50,10 @@ class StoryAndGameController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
+                ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
+                ['data' => 'category', 'name' => 'category', 'title' => __("Category"), 'searchable' => true],
+                ['data' => 'Subcategory', 'name' => 'Subcategory', 'title' => __("Subcategory"), 'searchable' => true],
+                
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
@@ -68,7 +81,7 @@ class StoryAndGameController extends Controller
     {
         dd($request->all());
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:storyandgame',
+            // 'name' => 'required|unique:storyandgame',
             'cid'=>'required|not_in:0',
             'scid'=>'required|not_in:0',
         ],[

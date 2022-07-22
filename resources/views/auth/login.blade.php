@@ -36,13 +36,13 @@
                   
                   
 
-                    @if (Route::has('password.request'))
+                    {{-- @if (Route::has('password.request'))
                       <p class="text-right">
                         <a class="small" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                       </p>
-                    @endif
+                    @endif --}}
 
                 </div>
                 <div class="text-center">
