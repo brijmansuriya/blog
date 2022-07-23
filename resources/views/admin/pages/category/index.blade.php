@@ -4,16 +4,35 @@
 @section('content')
     @include('admin.include.flash-message')
 
+        
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="page-title-box">
                     <h4 class="page-title">{{ $dateTableTitle }}</h4>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
+                <form id="filter-form" class="filter-form">
+                    <div class="form-group">
+                        <select id="courses" name="courses_id" class="form-control custom-select" style="width: 145px;">
+                            <option value="0">Select courses</option>
+                            @foreach($courses as $coursesdata)
+                            <option value="{{$coursesdata->id}}">{{$coursesdata->name}}</option>
+                            @endforeach
+                        </select>
+                  
+                        <button  class="btn btn-sm btn-primary waves-effect waves-light filter-form" value="Submit">
+                                <span class="btn-label">
+                                    <i class="fa fa-search "></i>
+                                </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4">
                 <div class="btn-group float-right  mb-2">
-                    <a href="{{ $addUrl }}" class="btn btn-sm btn-primary waves-effect waves-light">
+                    <a href="{{ $addUrl }}" class="btn btn-sm btn-primary waves-effect waves-light" id=>
                         <span class="btn-label">
                             <i class="fa fa-plus"></i>
                         </span>
@@ -33,10 +52,9 @@
         </div>
     </div>
 @endsection
-@section('script')
+@section('script-bottom')
     @include('admin.include.table_script')
     <script type="text/javascript">
         $('#category-tab').addClass('active');
-       
     </script>
 @endsection

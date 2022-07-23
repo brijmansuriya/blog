@@ -21,11 +21,24 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-
+        $this->data['courses'] = Courses::get(['id','name']);
+        
+        // where('courses_id',$this->data['subcategory']->courses_id)->
         if ($request->ajax()) {
             $data = Category::orderBy('created_at', 'DESC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
+            $datat =  DataTables::of($data);
+            if ($request->has('courses_id')) {
+                $datat->filter(function ($instance) use ($request) {
+                    $instance->collection = $instance->collection->filter(function ($row) use ($request) {
+                        if ($request->get('courses_id') == "0") {
+                            return true;
+                        }
+                        return $row['courses_id'] == $request->get('courses_id') ? true : false;
+                    });
+                    
+                });
+            }
+            return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
                     return $row->courses->name;
                 })
@@ -45,7 +58,6 @@ class CategoryController extends Controller
                 ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
-
             $this->data['dateTableFields'] = $columns;
             $this->data['dateTableUrl'] = route('category.index');
             $this->data['dateTableTitle'] = "Category Management";

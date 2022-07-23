@@ -23,11 +23,36 @@ class StoryAndGameController extends Controller
 
     public function index(Request $request)
     {
-
+        $this->data['courses'] = Courses::get(['id','name']);
         if ($request->ajax()) {
             $data = StoryAndGame::orderBy('created_at', 'DESC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
+
+            $datat =  DataTables::of($data);
+
+
+            if ($request->has('courses_id')) {
+                $datat->filter(function ($instance) use ($request) {
+                    $instance->collection = $instance->collection->filter(function ($row) use ($request) {
+                        if ($request->get('courses_id') == "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0") {
+
+                            return true;
+
+                        }else if($request->get('courses_id') != "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0"){
+
+                            return $row['courses_id'] == $request->get('courses_id') ? true : false;
+
+                        }else if($request->get('courses_id') != "0" AND $request->get('cid') != "0"  AND $request->get('scid') == "0"){
+
+                            return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') ? true : false;
+
+                        }
+
+                        return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') AND $row['scid'] == $request->get('scid') ? true : false;
+                    });
+                });
+            }
+
+            return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
                     return $row->courses->name;
                 })
@@ -79,7 +104,7 @@ class StoryAndGameController extends Controller
     
     public function store(Request $request)
     {
-        dd($request->all());
+        
         $validator = Validator::make($request->all(), [
             // 'name' => 'required|unique:storyandgame',
             'cid'=>'required|not_in:0',

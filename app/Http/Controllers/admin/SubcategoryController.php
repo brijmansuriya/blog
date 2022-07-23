@@ -22,11 +22,31 @@ class SubcategoryController extends Controller
 
     public function index(Request $request)
     {
-
+        $this->data['courses'] = Courses::get(['id','name']);
+        // $this->data['categorydata'] = Category::get(['id','name']);
         if ($request->ajax()) {
             $data = Subcategory::orderBy('created_at', 'DESC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
+            $datat =  DataTables::of($data);
+
+            if ($request->has('courses_id')) {
+                $datat->filter(function ($instance) use ($request) {
+                    $instance->collection = $instance->collection->filter(function ($row) use ($request) {
+                        if ($request->get('courses_id') == "0" AND $request->get('cid') == "0") {
+                            return true;
+                        }else if($request->get('courses_id') != "0" AND $request->get('cid') == "0"){
+                            return $row['courses_id'] == $request->get('courses_id') ? true : false;
+                        }else if($request->get('cid') != "0" AND $request->get('courses_id') == "0"){
+                            return $row['cid'] == $request->get('cid') ? true : false;
+                        }
+                        return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') ? true : false;
+
+                    });
+                    
+                });
+            }
+       
+
+                return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
                     return $row->courses->name;
                 })
@@ -46,14 +66,14 @@ class SubcategoryController extends Controller
         } else {
             $columns = [
                 ['data' => 'DT_RowIndex', 'name' => 'id', 'title' => "Id"],
-                ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
-                ['data' => 'category', 'name' => 'category', 'title' => __("Category"), 'searchable' => true],
+                ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses")],
+                ['data' => 'category', 'name' => 'category', 'title' => __("Category")],
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
-                ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
+                ['data' => 'action', 'name' => 'action', 'title' => "Action",  'orderable' => false]];
 
             $this->data['dateTableFields'] = $columns;
             $this->data['dateTableUrl'] = route('subcategory.index');
-            $this->data['dateTableTitle'] = "subcategory Management";
+            $this->data['dateTableTitle'] = "Part Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('subcategory.create');
             return view('admin.pages.subcategory.index', $this->data);

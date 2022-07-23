@@ -42542,3 +42542,10 @@ label {
     padding: 1rem;
     border-radius: .5rem
 }
+
+ul ul ul#enterprise_menu {
+    padding-left: 2.25rem;
+}
+
+[dir=ltr] .sidebar-menu>.sidebar-menu-item {
+    margin-bottom: 0.5rem;  }

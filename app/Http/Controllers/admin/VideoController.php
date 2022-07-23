@@ -26,20 +26,23 @@ class VideoController extends Controller
     {
 
         if ($request->ajax()) {
+
+            
             $data = Video::orderBy('created_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('courses', function ($row) {
-                    return $row->courses->name;
+
+                    return isset($row->courses->name) ? $row->courses->name : '';
                 })
                 ->editColumn('category', function ($row) {
-                    return $row->category->name;
+                    return isset($row->category->name) ? $row->category->name : '';
                 })
                 ->editColumn('Subcategory', function ($row) {
-                    return $row->subcategory->name;
+                    return isset($row->subcategory->name) ? $row->subcategory->name : '' ;
                 })
                 ->editColumn('storyandgame', function ($row) {
-                    return $row->storyandgame->name;
+                    return isset($row->storyandgame->name) ? $row->storyandgame->name : '';
                 })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('video.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';

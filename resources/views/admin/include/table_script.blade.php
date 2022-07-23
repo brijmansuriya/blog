@@ -11,8 +11,8 @@
             , serverSide: true
             , ajax: "{{$dateTableUrl}}"
             , columns: dataTableFields
-            , order: []
-        , });
+            , order: [],
+             });
 
         $('#filter-form').on('submit', function(e) {
             var obj = {};
@@ -26,5 +26,7 @@
             table.draw();
             e.preventDefault();
         });
+
+        
     });
 </script>

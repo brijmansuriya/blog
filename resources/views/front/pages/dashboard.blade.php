@@ -28,7 +28,7 @@
                             <div class="d-flex">
                                 <div class="flex">
                                     <a class="card-title" href="{{ route('coursesview',$value->id) }}">{{$value->name}}</a>
-                                    <small class="text-50 font-weight-bold mb-4pt">Level 2</small>
+                                    {{-- <small class="text-50 font-weight-bold mb-4pt">Level 2</small> --}}
                                 </div>
                                 {{-- <a href="#" data-toggle="tooltip" data-title="Add Favorite" data-placement="top" data-boundary="window" class="ml-4pt material-icons text-20 card-course__icon-favorite">favorite_border</a> --}}
                             </div>
@@ -42,7 +42,7 @@
                                 </div>
                             </div> --}}
                         </div>
-                        <div class="card-footer">
+                        {{-- <div class="card-footer">
                             <div class="row justify-content-between">
                                 <div class="col-auto d-flex align-items-center">
                                     <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
@@ -53,7 +53,7 @@
                                     <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach
