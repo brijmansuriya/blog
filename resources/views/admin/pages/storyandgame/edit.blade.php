@@ -49,7 +49,7 @@
                              <div class="error">{{ $errors->storyandgame_error->first('scid') }}</div>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+                         <a class="btn btn-light" href="{{ route('storyandgame.index')  }}">Cancel</a>
                     </form>
                 </div>
             </div>

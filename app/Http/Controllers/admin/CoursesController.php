@@ -71,7 +71,7 @@ class CoursesController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:courses',
+            'name' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -149,7 +149,7 @@ class CoursesController extends Controller
     }
     public function gsdropdown($id)
     {
-        $subdropdown = StoryAndGame::get();
+        $subdropdown = StoryAndGame::where('scid',$id)->get();
         return $subdropdown;
     }
 }

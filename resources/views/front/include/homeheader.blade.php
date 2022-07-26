@@ -8,13 +8,17 @@
             id="default-navbar" data-primary>
             <!-- Navbar toggler -->
             <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" type="button" data-toggle="sidebar">
-                <span class="material-icons">short_text</span>
+                <span class="material-icons"></span>
             </button>
             <a href="{{ route('fronthome') }}" class="navbar-brand mr-16pt">
                 <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
                     <span class="rounded">
                 @auth
-                    <img src="{{ url('/uploads/courses/'.auth()->user()->image)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
+                    @if(file_exists(public_path().'/uploads/courses/'.auth()->user()->image))
+                        <img src="{{ url('/uploads/courses/'.auth()->user()->image)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
+                    @else
+                        <img src="{{url('/uploads/site_setting/'.$site_setting->logow)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
+                    @endif
                 @else
                     <img src="{{url('/uploads/site_setting/'.$site_setting->logow)}}" alt="logo" class="img-fluid" style="height: 45px;"/>
                 @endauth
@@ -23,11 +27,11 @@
             </a>
            
              <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
-                <li class="nav-item active">
-                    <a href="{{ route('fronthome') }}" class="nav-link"> 
-                     My Courses</a>
-                </li>
                  @auth
+                    <li class="nav-item active">
+                        <a href="{{ route('fronthome') }}" class="nav-link"> 
+                        My Courses</a>
+                    </li>
                     <li class="nav-item active">
                         <a href="{{ route('editprofile',auth()->user()->id) }}" class="nav-link">My Profile</a>
                     </li>

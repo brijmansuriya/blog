@@ -20,7 +20,16 @@
               
                 <div class="col-md-7 p-0">
                     <div class="form-group">
-                        <label class="form-label">School photo</label>
+                        <div class="row">
+                            <div class="col-3">
+                            <label class="form-label">School photo </label>
+                            </div>
+                            <div class="col-9">
+                              <p>(ideal size for logo 160*45 pixel )</p>
+                            </div>
+                        </div>
+                        
+                      
                         <div class="media align-items-center">
                             <a href="{{ url('uploads/courses/'.auth()->user()->image)}}" target="_blank" class="media-left mr-16pt">
                                 <img src="{{ url('uploads/courses/'.auth()->user()->image)}}" alt="people" width="56" class="rounded-circle" />

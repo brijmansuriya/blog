@@ -31,13 +31,15 @@ class SchoolController extends Controller
                 ->editColumn('action', function ($row) {
                     $delete_link = route('school.destroy', $row['id']);
                     $delete_link = "'" . $delete_link . "'";
-                    $btn = '<a href="javascript:void(0);" class="mr-2" onclick="deleteRecord(' . $delete_link . ');" data-popup="tooltip"><i class="fa fa-trash" style="color: #172774;"></i></a>';
+                    $btn = '<a href="javascript:void(0);" class="mr-2" onclick="deleteRecord(' . $delete_link . ');" data-popup="tooltip"><i class="fa fa-trash" title="Delete" style="color: #172774;"></i></a>';
                     if($row->active==1){
-                        $btn .= '<a href="' . route('school.active',['id'=>$row['id'],'active'=>$row['active']]) . '" class="mr-2"><i class="fa-solid fa-toggle-on"  style="color: #172774;"></i></a>';
+                        $btn .= '<a href="' . route('school.active',['id'=>$row['id'],'active'=>$row['active']]) . '" class="mr-2"><i class="fa-solid fa-toggle-on" title="ON"  style="color: #172774;"></i></a>';
                     }else{
-                        $btn .= '<a href="' . route('school.active',['id'=>$row['id'],'active'=>$row['active']]) . '" class="mr-2"><i class="fa-solid fa-toggle-off"  style="color: #172774;"></i></a>';
+                        $btn .= '<a href="' . route('school.active',['id'=>$row['id'],'active'=>$row['active']]) . '" class="mr-2"><i class="fa-solid fa-toggle-off" title="OFF"  style="color: #172774;"></i></a>';
                     }
-                    $btn .= '<a href="' . route('school.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
+                    $btn .= '<a href="' . route('school.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;" title="Edit"></i></a>';
+
+                    $btn .= '<a href="' . route('school.password', $row['id']) . '" class="mr-2"><i class="fa fa-key" style="color: #172774;" title="Password Update"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -119,6 +121,15 @@ class SchoolController extends Controller
         return view('admin.pages.school.edit', $this->data);
     }
 
+    public function passwordEdit($id)
+    {
+        $this->data['school'] = School::find($id);
+        $this->data['pageTittle'] = "Edit school password";
+        $this->data['dateTableTitle'] = "Edit school password";
+        $this->data['backUrl'] = route('school.password');
+        return view('admin.pages.school.passwordedit', $this->data);
+    }
+
     
     public function update(Request $request, $id)
     {
@@ -144,6 +155,32 @@ class SchoolController extends Controller
                 $name = $this->imageUpload($request->image, 'courses');
                 $input['image'] = $name;
             }
+            $school = School::find($id);
+            $school->update($input);
+            if ($school) {
+                return redirect()->route('school.index')->with('success', 'Successfully Updated');
+            } else {
+                return redirect()->back()->with('error', 'Sorry, something went wrong. Please try again');
+            }
+        }
+    }
+
+    public function passwordUpdate(Request $request, $id)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'password'  =>  'required|min:8',
+            'confirm_password'  =>  'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator, 'school_error')
+                ->withInput();
+        } else {
+            $input = $request->all();
+            $input['updated_at'] = date('Y-m-d H:i:s');
+            $input['password'] = Hash::make($request->password);
             $school = School::find($id);
             $school->update($input);
             if ($school) {

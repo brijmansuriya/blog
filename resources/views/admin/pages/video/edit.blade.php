@@ -13,10 +13,14 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            <label for="exampleInputUsername1">Title</label>
+                            <input type="text" class="form-control" name='title' id="exampleInputUsername1" value="{{$videodata->title}}" placeholder="Enter title">
+                            <div class="error">{{ $errors->video_error->first('title') }}</div>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputUsername1">Url</label>
                             <input type="text" class="form-control" name='url' id="url" value="{{$videodata->url}}" placeholder="url">
                             <div class="error">{{ $errors->category_error->first('url') }}</div>
-                           
                         </div>
                          <div class="form-group">
                             <label class="form-label" for="custom-select">Courses</label>

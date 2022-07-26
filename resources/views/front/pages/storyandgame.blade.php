@@ -12,7 +12,7 @@
                        @endif
                        
                         <div class="d-flex flex-wrap align-items-end mb-16pt">
-                            <h1 class="text-white flex m-0"></h1>
+                            <h3 class="text-white flex m-0">{{$storyandgame[0]['title'] ?? ''}}</h3>
                             <p class="h1 text-white-50 font-weight-light m-0"></p>
                         </div>
 

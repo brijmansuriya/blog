@@ -15,6 +15,7 @@ class Video extends Model
         'scid',
         'courses_id',
         'gsid',
+        'title',
     ];
 
      protected $hidden = [
@@ -42,5 +43,8 @@ class Video extends Model
     {
         return $this->belongsTo(Courses::class,'courses_id','id');
     }
- 
+    public function getTitleAttribute($title)
+    {
+        return ucfirst($title);
+    }
 }

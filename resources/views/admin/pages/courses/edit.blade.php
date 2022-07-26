@@ -31,7 +31,7 @@
                            <img id="blah" src="{{ $courses->image ?? url('/uploads/site_setting/test.jpg')}}"  width="200" height="200" alt="your image" />
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+                        <a class="btn btn-light" href="{{ route('courses.index')  }}">Cancel</a>
                     </form>
                 </div>
             </div>

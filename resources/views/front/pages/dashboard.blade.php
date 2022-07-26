@@ -12,9 +12,9 @@
             </div>
             <div class="row card-group-row">
             @foreach($coursesdata as $value)
-               
+               {{-- overlay--primary-dodger-blue  --}}
                 <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
-                    <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay card-group-row__card" data-toggle="popover" data-trigger="click">
+                    <div class="card card-sm card--elevated p-relative o-hidden overlay js-overlay card-group-row__card" data-toggle="popover" data-trigger="click">
                         <a href="{{ route('coursesview',$value->id) }}" class="card-img-top js-image" data-position="" data-height="140" style="background-image: url('<?=$value->image?>');">
                             <img src="{{$value->image}}" alt="course">
                             <span class="overlay__content">

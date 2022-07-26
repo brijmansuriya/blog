@@ -43,6 +43,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="exampleInputUsername1">School add date</label>
+
+                             <input data-date-format="dd/mm/yyyy" class="form-control" name='add_date' value="{{$school->add_date}}" placeholder="confirm password" id="datepicker">
+
+                             <div class="error">{{ $errors->school_error->first('add_date') }}</div>
+                        </div>
+
+                        <div class="form-group">
                             <label>File upload</label>
                             <input type="file" name="image" id="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
@@ -58,6 +66,8 @@
                            <img id="blah" src="{{ url('/uploads/courses/'.$school->image)  ?? url('/uploads/site_setting/test.jpg')  }}"  width="200" height="200" alt="your image" />
                         </div>
 
+                     
+
                         {{-- <div class="form-group">
                             <label for="exampleInputUsername1">Password</label>
                             <input type="text" class="form-control" name='password' value="" placeholder="Password">
@@ -69,7 +79,7 @@
                              <div class="error">{{ $errors->school_error->first('confirm_password') }}</div>
                         </div> --}}
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+                        <a class="btn btn-light" href="{{url()->previous()}}">Cancel</a>
                     </form>
                 </div>
             </div>
@@ -92,4 +102,28 @@
 
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet"/>
+<style type="text/css">
+        .datepicker {
+            font-size: 0.875em;
+        }
+      
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        
+    </style>
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+        dateFormat: 'yy-mm-dd'
+    });
+    $('#datepicker').datepicker("{{$school->add_date}}", new Date());
+</script>
 @endsection

@@ -20,6 +20,7 @@ class School extends Model
         'active',
         'courses',
         'image',
+        'add_date',
     ];
 
     protected $hidden = [

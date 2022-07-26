@@ -9,6 +9,11 @@
                     <form class="forms-sample" action="{{route('video.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
+                            <label for="exampleInputUsername1">Title</label>
+                            <input type="text"  class="form-control" name='title' id="exampleInputUsername1" placeholder="Enter title">
+                            <div class="error">{{ $errors->video_error->first('title') }}</div>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputUsername1">Url</label>
                             <input type="text" class="form-control" name='url' id="exampleInputUsername1" placeholder="Url">
                             <div class="error">{{ $errors->video_error->first('url') }}</div>
@@ -57,28 +62,6 @@
 @section('script-bottom')
 <script type="text/javascript">
     $('#video-tab').addClass('active');
-    $('#cid').change(function() {
-        var nid = $(this).val();
-        if (nid) {
-            $.ajax({
-                type: "get",
-                 url: "{{url('subcategory/subdropdown/')}}/" + nid,
-                  success: function(res) {
-                    if (res) {
-                        $("#scid").empty();
-                        $("#scid").append('<option value="0">Select Sub category</option>');
-                        var dataa=[];
-                        $.each(res, function(key, value) {
-                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
-                        });
-                        $("#scid").append(dataa);
-                    }
-                }
-            });
-        }
-    });
-</script>
-<script type="text/javascript">
     $('#courses_id').change(function() {
         var nid = $(this).val();
         if (nid) {
@@ -89,11 +72,39 @@
                     if (res) {
                         $("#cid").empty();
                         $("#cid").append('<option value="0">Select Sub category</option>');
+                        $("#scid").empty();
+                        $("#scid").append('<option value="0">Select Sub category</option>');
+                        $("#gsid").empty();
+                        $("#gsid").append('<option value="0">Select category</option>');
                         var dataa=[];
                         $.each(res, function(key, value) {
                           dataa +='<option value="' + value.id + '">' + value.name + '</option>';
                         });
                         $("#cid").append(dataa);
+                    }
+                }
+            });
+        }
+    });
+    $('#cid').change(function() {
+        var nid = $(this).val();
+        if (nid) {
+            $.ajax({
+                type: "get",
+                 url: "{{url('subcategory/subdropdown/')}}/" + nid,
+                  success: function(res) {
+                    if (res) {
+                        $("#scid").empty();
+                        $("#scid").append('<option value="0">Select Sub category</option>');
+
+                        $("#gsid").empty();
+                        $("#gsid").append('<option value="0">Select category</option>');
+
+                        var dataa=[];
+                        $.each(res, function(key, value) {
+                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                        });
+                        $("#scid").append(dataa);
                     }
                 }
             });
@@ -109,6 +120,26 @@
                     if (res) {
                         $("#gsid").empty();
                         $("#gsid").append('<option value="0">Select Sub category</option>');
+                        var dataa=[];
+                        $.each(res, function(key, value) {
+                          dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                        });
+                        $("#gsid").append(dataa);
+                    }
+                }
+            });
+        }
+    });
+    $('#subcategory').change(function() {
+        var nid = $(this).val();
+        if (nid) {
+            $.ajax({
+                type: "get",
+                 url: "{{url('storyandgame/gsdropdown')}}/" + nid,
+                  success: function(res) {
+                    if (res) {
+                        $("#gsid").empty();
+                        $("#gsid").append('<option value="0">Select category</option>');
                         var dataa=[];
                         $.each(res, function(key, value) {
                           dataa +='<option value="' + value.id + '">' + value.name + '</option>';
