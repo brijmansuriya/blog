@@ -16,6 +16,7 @@ use Validator;
 use App\Traits\ImageUpload;
 use Auth;
 use DB;
+
 class FrontController extends Controller
 {
     use ImageUpload;
@@ -56,15 +57,17 @@ class FrontController extends Controller
     }
 
     public function coursesview($courses=''){
+        $user = Auth::user();
         $deropdwuan = '';
         if($courses!=''){
             $deropdwuan ='data-opened';
+            \Session::put('course_id', $courses);
         }
-        $user = Auth::user();
+
         $homepage = 'homepage';
         $coursesid = explode(",",$user->courses);
         // $coursesdata = Courses::whereIn('id',$coursesid)->get();
-        $coursesdata = SidebarHelper::sidebar($coursesid);
+        $coursesdata = SidebarHelper::sidebar($courses);
         $sidebardata =  Category::where('courses_id',$courses)->get();
         return view('front.pages.dashboard',compact('homepage','coursesdata','sidebardata','deropdwuan'));
     }

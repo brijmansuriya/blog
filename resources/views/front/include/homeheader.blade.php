@@ -8,7 +8,7 @@
             id="default-navbar" data-primary>
             <!-- Navbar toggler -->
             <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" type="button" data-toggle="sidebar">
-                <span class="material-icons"></span>
+                <span class="material-icons">short_text</span>
             </button>
             <a href="{{ route('fronthome') }}" class="navbar-brand mr-16pt">
                 <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
