@@ -44,9 +44,13 @@
                 <span class="menu-title">School</span>
             </a>
         </li>
-        
-       
-       
+        <li class="nav-item" id="count-tab">
+            <a class="nav-link" href="{{ route('count') }}" id="count-tab-a">
+                <i class="fa-solid fa-school menu-icon"></i>
+                <span class="menu-title">Count</span>
+            </a>
+        </li>
+
         {{-- <li class="nav-item" id="site-tab">
             <a class="nav-link" href="{{ route('site-setting') }}" id="site-tab-a">
                 <i class="fas fa-cogs menu-icon"></i>

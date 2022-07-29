@@ -11,6 +11,7 @@ use App\Models\Subcategory;
 use App\Models\CourseSub;
 use App\Models\Video;
 use App\Models\School;
+use App\Models\VideoCount;
 use App\Helpers\SidebarHelper;
 use Validator;
 use App\Traits\ImageUpload;
@@ -61,29 +62,33 @@ class FrontController extends Controller
         $deropdwuan = '';
         if($courses!=''){
             $deropdwuan ='data-opened';
-            \Session::put('course_id', $courses);
+            if(\Session::get('course_id') != $courses AND $courses !=''){
+                \Session::put('course_id', $courses);
+            }
         }
-
+       
         $homepage = 'homepage';
         $coursesid = explode(",",$user->courses);
         // $coursesdata = Courses::whereIn('id',$coursesid)->get();
-        $coursesdata = SidebarHelper::sidebar($courses);
-        $sidebardata =  Category::where('courses_id',$courses)->get();
+        $coursesdata = SidebarHelper::sidebar($coursesid);
+        $sidebardata =  Category::where('courses_id', \Session::get('course_id'))->get();
         return view('front.pages.dashboard',compact('homepage','coursesdata','sidebardata','deropdwuan'));
     }
 
     public function partview($partid=''){
         $user = Auth::user();
         $storyandgame = StoryAndGame::where('scid',$partid)->get();
-
-        $sidebardata =  Category::where('courses_id',$user->courses)->get();
+     
+        $sidebardata =  Category::where('courses_id',\Session::get('course_id'))->get();
         return view('front.pages.part',compact('storyandgame','sidebardata'));
     }
 
     public function gameandstory($gameandstoryid=''){
         $user = Auth::user();
-        $sidebardata =  Category::where('courses_id',$user->courses)->get();
-        $storyandgame = Video::where('gsid',$gameandstoryid)->simplePaginate(1);
+     
+        $sidebardata =  Category::where('courses_id', \Session::get('course_id'))->get();
+         $storyandgame = Video::where('gsid',$gameandstoryid)->simplePaginate(1);
+
         return view('front.pages.storyandgame',compact('storyandgame','sidebardata'));
     }
 
@@ -96,6 +101,24 @@ class FrontController extends Controller
         }
         $school->update($input);
         return back();
+    }
+
+    public function videoCount(Request $request){
+        if($request->school_id AND $request->course_id AND $request->video_id){
+            VideoCount::create($request->all());
+        }
+        return 1;
+    }
+
+    public function videoCountGet(Request $request){
+        
+       $videocount = VideoCount::with('school:id,name','course:id,name','video:id,title')
+        ->whereVideoId($request->video_id)
+        ->whereSchoolId($request->school_id)
+        ->groupBy('school_id', 'course_id','video_id')
+        ->first();
+
+        return $videocount = $videocount->count;
     }
   
 }

@@ -34,19 +34,12 @@ class StoryAndGameController extends Controller
                 $datat->filter(function ($instance) use ($request) {
                     $instance->collection = $instance->collection->filter(function ($row) use ($request) {
                         if ($request->get('courses_id') == "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0") {
-
                             return true;
-
                         }else if($request->get('courses_id') != "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0"){
-
                             return $row['courses_id'] == $request->get('courses_id') ? true : false;
-
                         }else if($request->get('courses_id') != "0" AND $request->get('cid') != "0"  AND $request->get('scid') == "0"){
-
                             return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') ? true : false;
-
                         }
-
                         return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') AND $row['scid'] == $request->get('scid') ? true : false;
                     });
                 });

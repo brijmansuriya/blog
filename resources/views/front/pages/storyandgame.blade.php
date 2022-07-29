@@ -13,7 +13,9 @@
                        
                         <div class="d-flex flex-wrap align-items-end mb-16pt">
                             <h3 class="text-white flex m-0">{{$storyandgame[0]['title'] ?? ''}}</h3>
-                            <p class="h1 text-white-50 font-weight-light m-0"></p>
+                            <p class="h3 text-white-50 font-weight-light m-0" id='addvideocount'> 
+                            {{-- $videocount  --}}
+                            </p>
                         </div>
 
                       
@@ -35,6 +37,35 @@
 <script>
     $("iframe").css({'width':'100%','height':'500px'});
     $('.inline-flex').addClass('btn btn-white');
+
+    var saveData = $.ajax({
+        type: 'POST',
+        url: "{{url('video/count')}}",
+        data:  {
+            school_id : {{auth()->user()->id}},
+            course_id : {{\Session::get('course_id')}},
+            video_id : {{ $storyandgame[0]['id']}}
+        },
+        success: function(resultData) {
+           // alert("Save Complete")
+        }
+    });
+
+    /* var saveData2 = $.ajax({
+        type: 'POST',
+        url: "{{url('video-count-get')}}",
+        data:  {
+            school_id : {{auth()->user()->id}},
+            course_id : {{\Session::get('course_id')}},
+            video_id : {{ $storyandgame[0]['id']}}
+        },
+        success: function(resultData) {
+            $("#addvideocount").html(resultData);
+        }
+    }); */
+
+  
+
 </script>
 @endsection
 

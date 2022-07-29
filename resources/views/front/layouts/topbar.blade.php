@@ -1,4 +1,4 @@
-9724855507{{-- <div id="header" class="mdk-header mdk-header--bg-dark bg-dark js-mdk-header mb-0"
+{{-- <div id="header" class="mdk-header mdk-header--bg-dark bg-dark js-mdk-header mb-0"
     data-effects="parallax-background waterfall" data-fixed data-condenses>
     <div class="mdk-header__bg">
         <div class="mdk-header__bg-front"></div>
