@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Courses;
+use App\Models\School;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Validator;
@@ -76,6 +77,7 @@ class SubcategoryController extends Controller
             $this->data['dateTableTitle'] = "Part Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('subcategory.create');
+            $this->data['title'] = 'Sub Category';
             return view('admin.pages.subcategory.index', $this->data);
         }
         return Subcategory::get();
@@ -88,6 +90,7 @@ class SubcategoryController extends Controller
         $this->data['courses'] = Courses::get(['id','name']);
         $this->data['categorydata'] = Category::get(['id','name']);
         $this->data['backUrl'] = route('subcategory.index');
+        $this->data['title'] = 'Sub Category';
         return view('admin.pages.subcategory.create', $this->data);
     }
 
@@ -127,6 +130,7 @@ class SubcategoryController extends Controller
         $this->data['categorydata'] = Category::where('courses_id',$this->data['subcategory']->courses_id)->get(['id','name']);
         $this->data['dateTableTitle'] = "Edit Aboutus";
         $this->data['backUrl'] = route('subcategory.index');
+        $this->data['title'] = 'Sub Category';
         return view('admin.pages.subcategory.edit', $this->data);
     }
 
@@ -173,5 +177,11 @@ class SubcategoryController extends Controller
     {
         $subdropdown = Category::where('courses_id',$id)->get();
         return $subdropdown;
+    }
+    public function coursesdropdown($id)
+    {
+        $school = School::where('id',$id)->first();
+        $coursesdropdown = Courses::whereIn('id',explode(",",$school->courses))->get(['id','name']);
+        return $coursesdropdown;
     }
 }

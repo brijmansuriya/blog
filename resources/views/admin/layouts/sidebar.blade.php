@@ -46,7 +46,7 @@
         </li>
         <li class="nav-item" id="count-tab">
             <a class="nav-link" href="{{ route('count') }}" id="count-tab-a">
-                <i class="fa-solid fa-school menu-icon"></i>
+                <i class="fa fa-bar-chart  menu-icon    " aria-hidden="true"></i>
                 <span class="menu-title">Count</span>
             </a>
         </li>

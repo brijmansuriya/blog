@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::Post('school/password/{id?}', [SchoolController::class,'passwordUpdate'])->name('school.passwordupdate');
 
     Route::get('subcategory/subdropdown/{id?}', [SubcategoryController::class,'subdropdown'])->name('subcategory.subdropdown');
+
+    Route::get('school/coursesdropdown/{id?}', [SubcategoryController::class,'coursesdropdown'])->name('school.coursesdropdown');
+    
     Route::get('category/dropdown/{id?}', [SubcategoryController::class,'dropdown'])->name('category.dropdown');
     Route::get('storyandgame/subdropdown/{id?}', [StoryAndGameController::class,'subdropdown'])->name('storyandgame.subdropdown');
     Route::get('storyandgame/gsdropdown/{id?}', [CoursesController::class,'gsdropdown'])->name('storyandgame.gsdropdown');

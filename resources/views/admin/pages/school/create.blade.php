@@ -38,7 +38,7 @@
                              <div class="error">{{ $errors->school_error->first('password') }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">confirm password </label>
+                            <label for="exampleInputUsername1">Confirm password </label>
                             <input type="text" class="form-control" name='confirm_password' value="" placeholder="confirm password">
                              <div class="error">{{ $errors->school_error->first('confirm_password') }}</div>
                         </div>
@@ -46,14 +46,14 @@
                         <div class="form-group">
                             <label for="exampleInputUsername1">School add date</label>
 
-                             <input  class="form-control" name='add_date' value="" placeholder="confirm password" id="datepicker">
+                             <input  class="form-control" name='add_date' value="" placeholder="school date" id="datepicker">
 
                              <div class="error">{{ $errors->school_error->first('add_date') }}</div>
                         </div>
 
 
                         <div class="form-group">
-                            <label>File upload</label>
+                            <label>School Logo</label>
                             <input type="file" name="image" id="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image" name="image">

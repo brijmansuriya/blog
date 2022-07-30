@@ -45,13 +45,13 @@
                         <div class="form-group">
                             <label for="exampleInputUsername1">School add date</label>
 
-                             <input data-date-format="dd/mm/yyyy" class="form-control" name='add_date' value="{{$school->add_date}}" placeholder="confirm password" id="datepicker">
+                             <input data-date-format="dd/mm/yyyy" class="form-control" name='add_date' value="{{$school->add_date}}" placeholder="school date" id="datepicker">
 
                              <div class="error">{{ $errors->school_error->first('add_date') }}</div>
                         </div>
 
                         <div class="form-group">
-                            <label>File upload</label>
+                            <label>School Logo</label>
                             <input type="file" name="image" id="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image" name="image">

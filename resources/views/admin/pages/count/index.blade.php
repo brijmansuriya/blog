@@ -21,6 +21,11 @@
                             @endforeach
                         </select>
 
+                        <select id="courses_id" name="courses_id" class="form-control custom-select"  style="width: 140px;">
+                            <option value="0">Select courses</option>
+                           
+                        </select> 
+
                         <button  class="btn btn-sm btn-primary waves-effect waves-light filter-form" value="Submit">
                                 <span class="btn-label">
                                     <i class="fa fa-search "></i>
@@ -46,5 +51,29 @@
     @include('admin.include.table_script')
     <script type="text/javascript">
         $('#count-tab').addClass('active');
+
+
+        $('#school_id').change(function() {
+        var nid = $(this).val();
+        
+            if (nid) {
+                $.ajax({
+                    type: "get",
+                    url: "{{url('school/coursesdropdown')}}/" + nid,
+                    success: function(res) {
+                        if (res) {
+                            $("#courses_id").empty();
+                            $("#courses_id").append('<option value="0">Select Courses</option>');
+                            var dataa=[];
+                            $.each(res, function(key, value) {
+                            dataa +='<option value="' + value.id + '">' + value.name + '</option>';
+                            });
+                            $("#courses_id").append(dataa);
+                        }
+                    }
+                });
+            }
+        });
+
     </script>
 @endsection

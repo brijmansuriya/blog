@@ -35,8 +35,9 @@
 
 @section('script')
 <script>
-    $("iframe").css({'width':'100%','height':'500px'});
+    $("iframe").css({'width':'1200px','height':'615px'});
     $('.inline-flex').addClass('btn btn-white');
+
 
     var saveData = $.ajax({
         type: 'POST',
@@ -44,26 +45,26 @@
         data:  {
             school_id : {{auth()->user()->id}},
             course_id : {{\Session::get('course_id')}},
-            video_id : {{ $storyandgame[0]['id']}}
+            video_id : {{ isset($storyandgame[0]['id']) ? $storyandgame[0]['id'] : ''}}
         },
         success: function(resultData) {
            // alert("Save Complete")
         }
     });
 
-    /* var saveData2 = $.ajax({
+   var saveData2 = $.ajax({
         type: 'POST',
         url: "{{url('video-count-get')}}",
         data:  {
             school_id : {{auth()->user()->id}},
             course_id : {{\Session::get('course_id')}},
-            video_id : {{ $storyandgame[0]['id']}}
+            video_id : {{ isset($storyandgame[0]['id']) ? $storyandgame[0]['id'] : ''}}
         },
         success: function(resultData) {
             $("#addvideocount").html(resultData);
         }
-    }); */
-
+    });
+  
   
 
 </script>

@@ -37,10 +37,10 @@
                     </li>
                  @endauth
                 <li class="nav-item active">
-                    <a href="{{ route('fronthome') }}" class="nav-link">About Newrit</a>
+                    <a href="https://newrit.com/about/"  target="_blank" class="nav-link">About Newrit</a>
                 </li> 
                 <li class="nav-item active">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="https://newrit.com/contact/" target="_blank" class="nav-link">Contact</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto mr-0">

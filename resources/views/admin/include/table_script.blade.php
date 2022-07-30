@@ -6,12 +6,16 @@
             "lengthMenu": [
                 [10, 25, 50, -1]
                 , [10, 25, 50, "All"]
-            ]
+            ],
+              "buttons": [
+                  { extend: 'excel', text:'<i class="fa-solid fa-file-excel"></i>' , className: 'mt-1 btn btn-sm btn-primary waves-effect waves-light filter-form' }
+              ]
             , processing: true
             , serverSide: true
             , ajax: "{{$dateTableUrl}}"
             , columns: dataTableFields
             , order: [],
+            dom: '<"row"<"col-sm-2"l><"col-sm-4 "B><"col-sm-6"f>>rtip',
              });
 
         $('#filter-form').on('submit', function(e) {

@@ -62,6 +62,7 @@ class CategoryController extends Controller
             $this->data['dateTableUrl'] = route('category.index');
             $this->data['dateTableTitle'] = "Category Management";
             $this->data['dataTableId'] = time();
+            $this->data['title'] = 'Category';
             $this->data['addUrl'] = route('category.create');
             return view('admin.pages.category.index', $this->data);
         }
@@ -74,6 +75,7 @@ class CategoryController extends Controller
         $this->data['dateTableTitle'] = "Add Category";
         $this->data['courses'] = Courses::get(['id','name']);
         $this->data['backUrl'] = route('category.index');
+        $this->data['title'] = 'Category';
         return view('admin.pages.category.create', $this->data);
     }
 
@@ -111,6 +113,7 @@ class CategoryController extends Controller
         $this->data['courses'] = Courses::get(['id','name']);
         $this->data['dateTableTitle'] = "Edit Category";
         $this->data['backUrl'] = route('category.index');
+        $this->data['title'] = 'Category';
         return view('admin.pages.category.edit', $this->data);
     }
 

@@ -80,6 +80,7 @@ class StoryAndGameController extends Controller
             $this->data['dateTableTitle'] = "Story And Game Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('storyandgame.create');
+            $this->data['title'] = 'Story And Game';
             return view('admin.pages.storyandgame.index', $this->data);
         }
         return Subcategory::get();
@@ -91,6 +92,7 @@ class StoryAndGameController extends Controller
         $this->data['dateTableTitle'] = "Add Story And Game";
         $this->data['courses'] = Courses::get(['id','name']);
         $this->data['backUrl'] = route('storyandgame.index');
+        $this->data['title'] = 'Story And Game';
         return view('admin.pages.storyandgame.create', $this->data);
     }
 
@@ -137,6 +139,7 @@ class StoryAndGameController extends Controller
         $this->data['categorydata'] = Category::where('courses_id',$this->data['storyandgame']->courses_id)->get(['id','name']);
         $this->data['dateTableTitle'] = "Edit Story And Game";
         $this->data['backUrl'] = route('storyandgame.index');
+        $this->data['title'] = 'Story And Game';
         return view('admin.pages.storyandgame.edit', $this->data);
     }
 

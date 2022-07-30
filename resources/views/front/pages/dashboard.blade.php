@@ -11,7 +11,7 @@
                 <div class="page-separator__text"> Courses</div>
             </div>
             <div class="row card-group-row">
-            @foreach($coursesdata as $value)
+            @forelse($coursesdata as $value)
                 <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
                     <div class="card card-sm card--elevated p-relative o-hidden overlay js-overlay card-group-row__card" data-toggle="popover" data-trigger="click">
                         <a href="{{ route('coursesview',$value->id) }}" class="card-img-top js-image" data-position="" data-height="140" style="background-image: url('<?=$value->image?>');">
@@ -32,7 +32,12 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p>Please Login</p>
+            @endforelse
+            @else
+                <h2>Please Login</h2>
+
             @endif
             </div>
         </div>

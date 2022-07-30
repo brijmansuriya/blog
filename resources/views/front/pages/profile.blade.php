@@ -22,10 +22,10 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-3">
-                            <label class="form-label">School photo </label>
+                            <label class="form-label">School Logo </label>
                             </div>
                             <div class="col-9">
-                              <p>(ideal size for logo 160*45 pixel )</p>
+                              <p>(ideal size for logo 160*45 pixels )</p>
                             </div>
                         </div>
                         

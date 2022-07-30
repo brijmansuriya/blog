@@ -52,6 +52,7 @@ class CoursesController extends Controller
             $this->data['dateTableTitle'] = "Story And Game Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('courses.create');
+            $this->data['title'] = 'Courses';
             return view('admin.pages.courses.index', $this->data);
         }
         return Subcategory::get();
@@ -61,7 +62,7 @@ class CoursesController extends Controller
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Story And Game";
-       
+        $this->data['title'] = 'Courses';
         $this->data['backUrl'] = route('courses.index');
         return view('admin.pages.courses.create', $this->data);
     }
@@ -104,6 +105,7 @@ class CoursesController extends Controller
     $this->data['courses'] = Courses::first();
     $this->data['dateTableTitle'] = "Edit Courses";
     $this->data['backUrl'] = route('courses.index');
+    $this->data['title'] = 'Courses';
     return view('admin.pages.courses.edit', $this->data);
     }
 

@@ -25,12 +25,30 @@ class VideoController extends Controller
     public function index(Request $request)
     {
 
+        $this->data['courses'] = Courses::get(['id','name']);
+
         if ($request->ajax()) {
 
             
             $data = Video::orderBy('created_at', 'DESC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
+            $datat =  DataTables::of($data);
+
+            if ($request->has('courses_id')) {
+                $datat->filter(function ($instance) use ($request) {
+                    $instance->collection = $instance->collection->filter(function ($row) use ($request) {
+                        if ($request->get('courses_id') == "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0") {
+                            return true;
+                        }else if($request->get('courses_id') != "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0"){
+                            return $row['courses_id'] == $request->get('courses_id') ? true : false;
+                        }else if($request->get('courses_id') != "0" AND $request->get('cid') != "0"  AND $request->get('scid') == "0"){
+                            return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') ? true : false;
+                        }
+                        return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') AND $row['scid'] == $request->get('scid') ? true : false;
+                    });
+                });
+            }
+
+            return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
 
                     return isset($row->courses->name) ? $row->courses->name : '';
@@ -69,6 +87,7 @@ class VideoController extends Controller
             $this->data['dateTableTitle'] = "video Management";
             $this->data['dataTableId'] = time();
             $this->data['addUrl'] = route('video.create');
+            $this->data['title'] = 'Video';
             return view('admin.pages.video.index', $this->data);
         }
         return Subcategory::get();
@@ -80,6 +99,7 @@ class VideoController extends Controller
         $this->data['dateTableTitle'] = "Add video";
         $this->data['courses'] = Courses::get(['id','name']);
         $this->data['backUrl'] = route('video.index');
+        $this->data['title'] = 'Video';
         return view('admin.pages.video.create', $this->data);
     }
 
@@ -129,7 +149,7 @@ class VideoController extends Controller
         $this->data['categorydata'] = Category::where('courses_id',$this->data['videodata']->courses_id)->get(['id','name']);
 
         $this->data['gamestorydata'] = StoryAndGame::where('scid',$this->data['videodata']->scid)->get(['id','name']);
-
+        $this->data['title'] = 'Video';
         $this->data['dateTableTitle'] = "Edit Story And Game";
         $this->data['backUrl'] = route('video.index');
         return view('admin.pages.video.edit', $this->data);
