@@ -1,5 +1,5 @@
 
-                    <table id="{{ $dataTableId }}" class="table table-bordered table-striped ">
+                    <table id="{{ $dataTableId }}" class="table table-bordered table-striped responsive">
                         <thead>
                             <tr>
                                 @foreach ($dateTableFields as $field)

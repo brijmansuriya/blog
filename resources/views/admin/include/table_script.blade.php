@@ -14,6 +14,7 @@
             , serverSide: true
             , ajax: "{{$dateTableUrl}}"
             , columns: dataTableFields
+            ,responsive: true
             , order: [],
             dom: '<"row"<"col-sm-2"l><"col-sm-4 "B><"col-sm-6"f>>rtip',
              });

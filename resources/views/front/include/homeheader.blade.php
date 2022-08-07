@@ -43,22 +43,11 @@
                     <a href="https://newrit.com/contact/" target="_blank" class="nav-link">Contact</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav ml-auto mr-0">
-                {{-- <li class="nav-item">
-                    <a href="#"
-                    class="btn btn-outline-white">Asia Primary School</a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a href="login.php"
-                    class="btn btn-outline-white">Login</a>
-                </li> --}}
-            </ul>
+          
             <ul class="nav navbar-nav ml-auto mr-0">
             @if (Route::has('login'))
                 @auth
-                    {{-- <li class="nav-item active">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
-                    </li> --}}
+                 
                      <li class="nav-item">
                         <a href="#"
                         class="btn btn-outline-white">{{auth()->user()->name}}</a>
@@ -67,9 +56,7 @@
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-white">Logout</a>
                     </li>
                 @else
-                        {{-- <li class="nav-item active">
-                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                        </li> --}}
+                    
 
                     <li class="nav-item" style="margin-left: 1rem;">
                         <a href="{{ route('login') }}" class="btn btn-outline-white">Login</a>

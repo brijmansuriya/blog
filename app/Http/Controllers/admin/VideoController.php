@@ -62,6 +62,9 @@ class VideoController extends Controller
                 ->editColumn('storyandgame', function ($row) {
                     return isset($row->storyandgame->name) ? $row->storyandgame->name : '';
                 })
+                ->editColumn('name', function ($row) {
+                    return isset($row->title) ? $row->title : '';
+                })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('video.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
                     $delete_link = route('video.destroy', $row['id']);
@@ -79,7 +82,7 @@ class VideoController extends Controller
                 ['data' => 'category', 'name' => 'category', 'title' => __("Category"), 'searchable' => true],
                 ['data' => 'Subcategory', 'name' => 'Subcategory', 'title' => __("Subcategory"), 'searchable' => true],
                 ['data' => 'storyandgame', 'name' => 'storyandgame', 'title' => __("StoryAndGame"), 'searchable' => true],
-                // ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
+                ['data' => 'name', 'name' => 'name', 'title' => __("Title"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
             $this->data['dateTableFields'] = $columns;
