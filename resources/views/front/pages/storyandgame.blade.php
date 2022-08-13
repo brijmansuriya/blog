@@ -66,6 +66,8 @@
     });
 
 
+$(".text-gray-500").html('<i class="fas fa-angle-left" style="font-size: 18px;"></i><i class="fas fa-angle-left" style="font-size: 18px;"></i> &nbsp; Previous');
+$(".duration-150").html('Next  &nbsp; <i class="fas fa-angle-right" style="font-size: 18px;"></i><i class="fas fa-angle-right" style="font-size: 18px;"></i>');
 
 </script>
 @endsection

@@ -11,14 +11,16 @@
             <p class="text-50 mr-8pt" style="font-size:0.86rem;">Newrit is an EduTech venture by NOstress Education Pvt Ltd with a vision to provide innovative education using stress free methods.</p>
            <div class="row">
           <div class="col-4">
-          <span class="text-50 medium mt-8pt" style="font-size:0.9rem;">Copyright <?=date('Y')?> &copy; All rights reserved.</span>
+          <span class="text-50 medium mt-8pt" style="font-size:0.9rem;">Copyright <?=date('Y')?> &copy; <span style="color:var(--blue)"> All rights reserved.
+          </span>
+          </span>
              </div>
           <div class="col-4 text-center">
           <span class="text-50 medium mt-8pt" style="font-size:0.9rem;">Contact Us: +91 9898010303</span>
              </div>
           <div class="col-4 text-right">
-                <a href="https://newrit.com/terms/" target="_blank" class="text-70 text-underline mr-8pt" style="font-size:0.9rem;">Terms</a>
-                <a href="https://newrit.com/policy/" target="_blank" class="text-70 text-underline" style="font-size:0.9rem;">Privacy Policy</a>
+                <a href="https://newrit.com/terms/" target="_blank" class="text-70 text-underline mr-8pt" style="font-size:0.9rem; color:var(--blue) !important">Terms</a>
+                <a href="https://newrit.com/policy/" target="_blank" class="text-70 text-underline" style="font-size:0.9rem; color:var(--blue) !important">Privacy Policy</a>
              </div>
           </div>
         </div>

@@ -6,10 +6,12 @@
                     <span class="rounded"><img src="{{url('/uploads/site_setting')}}/{{$site_setting->logob}}" class="img-fluid" alt="logo" /></span>
                 </span>
             </a>
-
-
             @auth
-            <div class="sidebar-heading">Teacher</div>
+            <div class="sidebar-heading"> <?php 
+           if(\Session::has('course_id')){
+            $course_id =  App\Helpers\SidebarHelper::getCourses(\Session::get('course_id'));
+           }
+             ?>{{ $course_id}}</div>
             <ul class="sidebar-menu">
              @if(isset($sidebardata))
                 @foreach($sidebardata as $episod)
@@ -41,12 +43,10 @@
             </ul>
             @endauth
             </ul>
-
-
-
         </div>
     </div>
 </div>
+
 
 
 

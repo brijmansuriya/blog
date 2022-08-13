@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+    --c1: #378bc5;
     --blue: #007bff;
     --indigo: #6610f2;
     --purple: #6f42c1;
@@ -42552,3 +42553,7 @@ ul ul ul#enterprise_menu {
 
 [dir=ltr] .sidebar-menu>.sidebar-menu-item {
     margin-bottom: 0.5rem;  }
+
+a {
+ text-decoration: none !important;
+}

@@ -7,7 +7,7 @@
             <div class="progression-bar progression-bar--active-accent">
                 <span class="progression-bar__item-content">
                     <i class="material-icons progression-bar__item-icon"></i>
-                    <span class="progression-bar__item-text h5 mb-0 text-uppercase">Teacher Registration details</span>
+                    <span class="progression-bar__item-text h5 mb-0 text-uppercase">ENTER YOUR LOGIN DETAILS</span>
                 </span>
             </div>
         </div>
