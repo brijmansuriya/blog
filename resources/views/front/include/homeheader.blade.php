@@ -25,11 +25,11 @@
                 </span>
                 </span>
             </a>
-           
+
              <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
                  @auth
                     <li class="nav-item active">
-                        <a href="{{ route('fronthome') }}" class="nav-link"> 
+                        <a href="{{ route('fronthome') }}" class="nav-link">
                         My Courses</a>
                     </li>
                     <li class="nav-item active">
@@ -38,16 +38,16 @@
                  @endauth
                 <li class="nav-item active">
                     <a href="https://newrit.com/about/"  target="_blank" class="nav-link">About Newrit</a>
-                </li> 
+                </li>
                 <li class="nav-item active">
                     <a href="https://newrit.com/contact/" target="_blank" class="nav-link">Contact</a>
                 </li>
             </ul>
-          
+
             <ul class="nav navbar-nav ml-auto mr-0">
             @if (Route::has('login'))
                 @auth
-                 
+
                      <li class="nav-item">
                         <a href="#"
                         class="btn btn-outline-white">{{auth()->user()->name}}</a>
@@ -56,7 +56,7 @@
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-white">Logout</a>
                     </li>
                 @else
-                    
+
 
                     <li class="nav-item" style="margin-left: 1rem;">
                         <a href="{{ route('login') }}" class="btn btn-outline-white">Login</a>
@@ -69,7 +69,7 @@
             </form>
 
         </div>
-      
+
         @if(isset($homepage))
          @include('front.include.banner')
         @endif

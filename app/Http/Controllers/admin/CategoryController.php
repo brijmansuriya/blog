@@ -40,7 +40,7 @@ class CategoryController extends Controller
             }
             return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
-                    return $row->courses->name;
+                    return (isset($row->courses->name)) ? $row->courses->name : '';
                 })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('category.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
@@ -83,7 +83,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:category',
+            'name' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -121,7 +121,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:category,name,'.$id,
+            'name' => 'required',
         ]);
 
         if ($validator->fails()) {

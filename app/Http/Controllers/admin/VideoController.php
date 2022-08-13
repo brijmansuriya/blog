@@ -50,20 +50,19 @@ class VideoController extends Controller
 
             return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
-
-                    return isset($row->courses->name) ? $row->courses->name : '';
+                    return isset($row->courses->name) ? $row->courses->name : '-';
                 })
                 ->editColumn('category', function ($row) {
-                    return isset($row->category->name) ? $row->category->name : '';
+                    return isset($row->category->name) ? $row->category->name : '-';
                 })
                 ->editColumn('Subcategory', function ($row) {
-                    return isset($row->subcategory->name) ? $row->subcategory->name : '' ;
+                    return isset($row->subcategory->name) ? $row->subcategory->name : '-' ;
                 })
                 ->editColumn('storyandgame', function ($row) {
-                    return isset($row->storyandgame->name) ? $row->storyandgame->name : '';
+                    return isset($row->storyandgame->name) ? $row->storyandgame->name : '-';
                 })
                 ->editColumn('name', function ($row) {
-                    return isset($row->title) ? $row->title : '';
+                    return isset($row->title) ? $row->title : '-';
                 })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('video.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
@@ -109,9 +108,8 @@ class VideoController extends Controller
     
     public function store(Request $request)
     {
-       
         $validator = Validator::make($request->all(), [
-            // 'name' => 'required|unique:storyandgame',
+            'title' => 'required',
             'cid'=>'required|not_in:0',
             'scid'=>'required|not_in:0',
         ],[
@@ -162,7 +160,7 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            // 'name' => 'required|unique:storyandgame,name,'.$id,
+            'title' => 'required',
             'cid'=>'required|not_in:0',
             'scid'=>'required|not_in:0',
         ],[

@@ -1,9 +1,9 @@
 <div class="mdk-drawer js-mdk-drawer" id="default-drawer" @if(isset($deropdwuan)) {{$deropdwuan}} @endif>
-    <div class="mdk-drawer__content">
+    <div class="mdk-drawer__content" style="margin-top:65px">
         <div class="sidebar sidebar-dark-pickled-bluewood sidebar-left" data-perfect-scrollbar>
             <a href="#" class="sidebar-brand ">
                 <span class="avatar avatar-xl sidebar-brand-icon h-auto">
-                    <span class="avatar-title rounded bg-white"><img src="{{url('/uploads/site_setting')}}/{{$site_setting->logob}}" class="img-fluid" alt="logo" /></span>
+                    <span class="rounded"><img src="{{url('/uploads/site_setting')}}/{{$site_setting->logob}}" class="img-fluid" alt="logo" /></span>
                 </span>
             </a>
 
@@ -37,12 +37,12 @@
 
                 </li>
                 @endforeach
-              @endif  
+              @endif
             </ul>
             @endauth
             </ul>
 
-    
+
 
         </div>
     </div>
@@ -73,4 +73,4 @@
 
 
 
-                    
+

@@ -6,7 +6,7 @@
         <div class="container page__container">
             <div class="progression-bar progression-bar--active-accent">
                 <span class="progression-bar__item-content">
-                    <span class="progression-bar__item-text h5 mb-0 text-uppercase">Teacher LOGIN details</span>
+                    <span class="progression-bar__item-text h5 mb-0 text-uppercase">Enter your LOGIN details</span>
                 </span>
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="form-label" for="password">Password:</label>
                     <input id="password" type="password" name="password" required autocomplete="current-password"  class="form-control  @error('password') is-invalid @enderror"
-                        placeholder="Your first and last name ..." />
+                        placeholder="Your Password ..." />
                           @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

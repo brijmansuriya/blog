@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Yajra\DataTables\Facades\DataTables;
+use App\Models\Category;
+use App\Models\Courses;
 use App\Models\StoryAndGame;
 use App\Models\Subcategory;
-use App\Models\Courses;
-use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Validator;
+use Yajra\DataTables\Facades\DataTables;
+
 class StoryAndGameController extends Controller
 {
 
@@ -19,41 +19,40 @@ class StoryAndGameController extends Controller
     {
         $this->middleware('is_admin');
         $this->data['menu_title'] = "Story And Game";
-    } 
+    }
 
     public function index(Request $request)
     {
-        $this->data['courses'] = Courses::get(['id','name']);
+        $this->data['courses'] = Courses::get(['id', 'name']);
         if ($request->ajax()) {
             $data = StoryAndGame::orderBy('created_at', 'DESC')->get();
 
-            $datat =  DataTables::of($data);
-
+            $datat = DataTables::of($data);
 
             if ($request->has('courses_id')) {
                 $datat->filter(function ($instance) use ($request) {
                     $instance->collection = $instance->collection->filter(function ($row) use ($request) {
-                        if ($request->get('courses_id') == "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0") {
+                        if ($request->get('courses_id') == "0" and $request->get('cid') == "0" and $request->get('scid') == "0") {
                             return true;
-                        }else if($request->get('courses_id') != "0" AND $request->get('cid') == "0" AND $request->get('scid') == "0"){
+                        } else if ($request->get('courses_id') != "0" and $request->get('cid') == "0" and $request->get('scid') == "0") {
                             return $row['courses_id'] == $request->get('courses_id') ? true : false;
-                        }else if($request->get('courses_id') != "0" AND $request->get('cid') != "0"  AND $request->get('scid') == "0"){
-                            return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') ? true : false;
+                        } else if ($request->get('courses_id') != "0" and $request->get('cid') != "0" and $request->get('scid') == "0") {
+                            return $row['courses_id'] == $request->get('courses_id') and $row['cid'] == $request->get('cid') ? true : false;
                         }
-                        return $row['courses_id'] == $request->get('courses_id') AND $row['cid'] == $request->get('cid') AND $row['scid'] == $request->get('scid') ? true : false;
+                        return $row['courses_id'] == $request->get('courses_id') and $row['cid'] == $request->get('cid') and $row['scid'] == $request->get('scid') ? true : false;
                     });
                 });
             }
 
             return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
-                    return $row->courses->name;
+                    return (isset($row->courses->name)) ? $row->courses->name : '-';
                 })
                 ->editColumn('category', function ($row) {
-                    return $row->category->name;
+                    return (isset($row->category->name)) ? $row->category->name : '-';
                 })
                 ->editColumn('Subcategory', function ($row) {
-                    return $row->subcategory->name;
+                    return (isset($row->subcategory->name)) ? $row->subcategory->name : '-';
                 })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('storyandgame.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';
@@ -71,7 +70,7 @@ class StoryAndGameController extends Controller
                 ['data' => 'courses', 'name' => 'courses', 'title' => __("Courses"), 'searchable' => true],
                 ['data' => 'category', 'name' => 'category', 'title' => __("Category"), 'searchable' => true],
                 ['data' => 'Subcategory', 'name' => 'Subcategory', 'title' => __("Subcategory"), 'searchable' => true],
-                
+
                 ['data' => 'name', 'name' => 'name', 'title' => __("Name"), 'searchable' => true],
                 ['data' => 'action', 'name' => 'action', 'title' => "Action", 'searchable' => true, 'orderable' => false]];
 
@@ -86,25 +85,23 @@ class StoryAndGameController extends Controller
         return Subcategory::get();
     }
 
-   
     public function create()
     {
         $this->data['dateTableTitle'] = "Add Story And Game";
-        $this->data['courses'] = Courses::get(['id','name']);
+        $this->data['courses'] = Courses::get(['id', 'name']);
         $this->data['backUrl'] = route('storyandgame.index');
         $this->data['title'] = 'Story And Game';
         return view('admin.pages.storyandgame.create', $this->data);
     }
 
-    
     public function store(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(), [
             // 'name' => 'required|unique:storyandgame',
-            'cid'=>'required|not_in:0',
-            'scid'=>'required|not_in:0',
-        ],[
+            'cid' => 'required|not_in:0',
+            'scid' => 'required|not_in:0',
+        ], [
             'cid.required' => 'Select category',
             'cid.not_in' => 'Select category',
             'scid.required' => 'Select sub category',
@@ -116,47 +113,45 @@ class StoryAndGameController extends Controller
                 ->withErrors($validator, 'storyandgame_error');
         } else {
             $input = $request->all();
-            $category =  StoryAndGame::create($input);
+            $category = StoryAndGame::create($input);
             if ($category) {
                 return redirect()->route('storyandgame.index')->with('success', 'created successfully.');
             }
         }
         return redirect()->route('storyandgame.index')->with('success', 'created successfully.');
     }
-    
+
     public function show($id)
     {
         //
     }
 
-    
     public function edit($id)
     {
         $this->data['pageTittle'] = "Edit Story And Game";
-        $this->data['courses'] = Courses::get(['id','name']);
+        $this->data['courses'] = Courses::get(['id', 'name']);
         $this->data['storyandgame'] = StoryAndGame::find($id);
-        $this->data['subcategorydata'] = Subcategory::where('cid',$this->data['storyandgame']->cid)->get(['id','name']);
-        $this->data['categorydata'] = Category::where('courses_id',$this->data['storyandgame']->courses_id)->get(['id','name']);
+        $this->data['subcategorydata'] = Subcategory::where('cid', $this->data['storyandgame']->cid)->get(['id', 'name']);
+        $this->data['categorydata'] = Category::where('courses_id', $this->data['storyandgame']->courses_id)->get(['id', 'name']);
         $this->data['dateTableTitle'] = "Edit Story And Game";
         $this->data['backUrl'] = route('storyandgame.index');
         $this->data['title'] = 'Story And Game';
         return view('admin.pages.storyandgame.edit', $this->data);
     }
 
-    
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'cid'=>'required|not_in:0',
-            'scid'=>'required|not_in:0',
-        ],[
+            'cid' => 'required|not_in:0',
+            'scid' => 'required|not_in:0',
+        ], [
             'cid.required' => 'Select category',
             'cid.not_in' => 'Select category',
             'scid.required' => 'Select sub category',
             'scid.not_in' => 'Select sub category',
         ]);
-      
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator, 'storyandgame_error');
@@ -173,7 +168,6 @@ class StoryAndGameController extends Controller
         }
     }
 
-    
     public function destroy($id)
     {
         $delete = StoryAndGame::find($id)->delete();
@@ -182,7 +176,7 @@ class StoryAndGameController extends Controller
     }
     public function subdropdown($id)
     {
-        $subdropdown = Subcategory::where('cid',$id)->get();
+        $subdropdown = Subcategory::where('cid', $id)->get();
         return $subdropdown;
     }
 }

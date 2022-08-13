@@ -49,10 +49,10 @@ class SubcategoryController extends Controller
 
                 return $datat->addIndexColumn()
                 ->editColumn('courses', function ($row) {
-                    return $row->courses->name;
+                    return (isset($row->courses->name)) ? $row->courses->name : '-';
                 })
                 ->editColumn('category', function ($row) {
-                    return $row->category->name;
+                    return (isset($row->category->name)) ? $row->category->name : '-';
                 })
                 ->editColumn('action', function ($row) {
                     $btn = '<a href="' . route('subcategory.edit', $row['id']) . '" class="mr-2"><i class="fa fa-edit" style="color: #172774;"></i></a>';

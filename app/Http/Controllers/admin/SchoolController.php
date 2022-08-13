@@ -259,13 +259,13 @@ class SchoolController extends Controller
 
                 return $datat->addIndexColumn()
                 ->editColumn('school', function ($row) {
-                    return $row->school->name;
+                    return (isset($row->school->name)) ? $row->school->name : '';
                 })
                 ->editColumn('course', function ($row) {
-                    return $row->course->name;
+                    return (isset($row->course->name)) ? $row->course->name : '';
                 })
                 ->editColumn('video', function ($row) {
-                    return $row->video->title;
+                    return (isset($row->video->title)) ? $row->video->title : '';
                 })
                 ->rawColumns(['school','course','video'])
                 ->make(true);

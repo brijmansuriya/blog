@@ -33,10 +33,10 @@
                     </div>
                 </div>
             @empty
-                <p>Please Login</p>
+                <!-- <p>Please Login</p> --> 
             @endforelse
             @else
-                <h2>Please Login</h2>
+              <!--   <h2>Please Login</h2> --> 
 
             @endif
             </div>

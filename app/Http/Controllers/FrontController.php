@@ -66,7 +66,7 @@ class FrontController extends Controller
                 \Session::put('course_id', $courses);
             }
         }
-       
+
         $homepage = 'homepage';
         $coursesid = explode(",",$user->courses);
         // $coursesdata = Courses::whereIn('id',$coursesid)->get();
@@ -78,14 +78,14 @@ class FrontController extends Controller
     public function partview($partid=''){
         $user = Auth::user();
         $storyandgame = StoryAndGame::where('scid',$partid)->get();
-     
+
         $sidebardata =  Category::where('courses_id',\Session::get('course_id'))->get();
         return view('front.pages.part',compact('storyandgame','sidebardata'));
     }
 
     public function gameandstory($gameandstoryid=''){
         $user = Auth::user();
-     
+
         $sidebardata =  Category::where('courses_id', \Session::get('course_id'))->get();
          $storyandgame = Video::where('gsid',$gameandstoryid)->simplePaginate(1);
 
@@ -111,7 +111,7 @@ class FrontController extends Controller
     }
 
     public function videoCountGet(Request $request){
-        
+
        $videocount = VideoCount::with('school:id,name','course:id,name','video:id,title')
         ->whereVideoId($request->video_id)
         ->whereSchoolId($request->school_id)
@@ -120,5 +120,5 @@ class FrontController extends Controller
 
         return $videocount = $videocount->count;
     }
-  
+
 }
