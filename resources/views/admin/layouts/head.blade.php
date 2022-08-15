@@ -13,3 +13,4 @@
 <link rel="stylesheet" href="{{ URL::asset('backend/vendors/sweetalert2/sweetalert2.min.css') }}">
 
 <link rel="shortcut icon" href="{{ URL::asset('backend/images/favicon.png') }}" />
+<link rel="shortcut icon" href="{{url('/uploads/site_setting')}}/{{$site_setting->fav_icon}}">

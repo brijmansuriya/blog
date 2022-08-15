@@ -37,28 +37,27 @@
 
                     @foreach($post as $item)  
 
-                    <div class="post-list post-list-style4">
-                     <div class="col-sm-3">
-                     {{-- post-list-image --}}
-                        <div class="">
-                            <a href="{{ route('home.post',$item->slug) }}">
-                                <img class="img-br" src="{{$item->image}}" alt="">
-                            </a>
-                        </div>
-                      </div>  
-                    <div class="col-sm-9">
-                        <div class="post-list-content">
-                            
-                            <h2 class="entry-title">
-                                <a href="{{ route('home.post',$item->slug) }}">{{$item->title}}</a>
-                            </h2>
-                            <div class="post-btn">
-                                <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
+                        <div class="post-list post-list-style4">
+                        <div class="col-sm-3">
+                        {{-- post-list-image --}}
+                            <div class="">
+                                <a href="{{ route('home.post',$item->slug) }}">
+                                    <img class="img-br" src="{{$item->image}}" alt="">
+                                </a>
+                            </div>
+                        </div>  
+                        <div class="col-sm-9">
+                            <div class="post-list-content">
+                                
+                                <h2 class="entry-title">
+                                    <a href="{{ route('home.post',$item->slug) }}">{{$item->title}}</a>
+                                </h2>
+                                <div class="post-btn">
+                                    <a href="{{ route('home.post',$item->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                        
-                    </div>
+                        </div>
                     @endforeach
                     <div class="pagination mb-5 mt-5">
                       {{$post->links("pagination::bootstrap-4")}}

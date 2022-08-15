@@ -69,8 +69,7 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator, 'category_error')
-                ->withInput();
+                ->withErrors($validator, 'category_error');
         } else {
             $input = $request->all();
             if ($request->image) {
@@ -117,8 +116,7 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator, 'category_error')
-                ->withInput();
+                ->withErrors($validator, 'category_error');
         } else {
 
             $input = $request->all();

@@ -4,10 +4,10 @@
 <link href="{{ URL::asset('assets/libs/summernote/summernote-lite.min.css')}}" rel="stylesheet" type="text/css" />
 
 <div class="content-wrapper">
-
+ @include('admin.include.flash-message')
     <div class="row">
         <div class="col-md-10 grid-margin stretch-card">
-            @include('admin.include.flash-message')
+           
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{$dateTableTitle}}</h4>

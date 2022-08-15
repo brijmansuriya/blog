@@ -39,8 +39,7 @@ class FrontController extends Controller
 
       if ($validator->fails()) {
             return redirect()->back()
-               ->withErrors($validator,'posts_error')
-               ->withInput();
+               ->withErrors($validator,'posts_error');
       } else {
             $input = $request->all();
             $contactus = Contactus::create($input);
@@ -60,36 +59,41 @@ class FrontController extends Controller
     
        return view('front.pages.contact');
     }
-    public function subscribe(Request $request){
-    
-      $validator = Validator::make($request->all(), [
-         'email' => 'required',
-     ]);
 
-      if ($validator->fails()) {
-            return redirect()->back()
-               ->withErrors($validator,'posts_error')
-               ->withInput();
-      } else {
-            $input = $request->all();
-            $contactus = Subscribe::create($input);
-            return redirect()->back()->with('success', 'Successfully');
-      }
+   public function subscribe(Request $request){
+   
+   $validator = Validator::make($request->all(), [
+      'email' => 'required',
+   ]);
 
-       return view('front.pages.contact');
-    }
+   if ($validator->fails()) {
+         return redirect()->back()
+            ->withErrors($validator,'posts_error');
+   } else {
+         $input = $request->all();
+         $contactus = Subscribe::create($input);
+         return redirect()->back()->with('success', 'Successfully');
+   }
 
-    public function categoryPost($slug){
+      return view('front.pages.contact');
+   }
+
+   public function categoryPost($slug=''){
       $category = Category::where('slug',$slug)->first('id');
-      $post = Post::where('category_id',$category->id)->whereActive(1)->orderBy('created_by', 'DESC')->Paginate(10);
+      if(isset($category->id)){
+         $post = Post::where('category_id',$category->id)->whereActive(1)->orderBy('created_by', 'DESC')->Paginate(10);
+      }else{
+         $post = Post::whereActive(1)->orderBy('created_by', 'DESC')->Paginate(10);
+      }
       return view('front.pages.categorypostlist',compact('post'));
-  }
-    public function tagPost($slug){
+   }
+
+   public function tagPost($slug=''){
       $post = Post::whereRaw("find_in_set('".$slug."',post.keywords)")->whereActive(1)->orderBy('created_by', 'DESC')->Paginate(10);
       return view('front.pages.tagpostlist',compact('post'));
-  }
+   }
     
-      public function privacyPolicy(){
-         return view('front.pages.privacypolicy');
-      }
+   public function privacyPolicy(){
+      return view('front.pages.privacypolicy');
+   }
 }

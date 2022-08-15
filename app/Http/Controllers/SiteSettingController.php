@@ -26,13 +26,13 @@ class SiteSettingController extends Controller
     public function update(Request $request){
         $input = $request->all();
         $validator = Validator::make($request->all(), [
-            'site_logo'=> 'image|mimes:jpeg,png,jpg,PNG,svg|max:2048',
-            'fav_icon'=> 'image|mimes:jpeg,png,jpg,PNG,svg|max:2048',
+            'site_logo'=> 'image|mimes:jpeg,png,jpg,PNG,svg,ioc|max:2048',
+            'fav_icon'=> 'image|mimes:jpeg,png,jpg,PNG,svg,ioc|max:2048',
             'site_title' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', $validator->errors()->first())->withInput($data); 
+            return redirect()->back()->with('error', $validator->errors()->first()); 
         }
 		
 		if($request->site_logo){

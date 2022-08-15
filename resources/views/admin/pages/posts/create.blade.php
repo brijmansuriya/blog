@@ -99,7 +99,7 @@
 
     ClassicEditor.create(document.querySelector('#editor'), {
         ckfinder: {
-            uploadUrl: '{{route('ckeditor.postimageuplode').' ? _token = '.csrf_token()}}'
+            uploadUrl: '{{route('ckeditor.postimageuplode').'?_token = '.csrf_token()}}'
         }
     });
 

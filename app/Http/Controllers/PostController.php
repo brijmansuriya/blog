@@ -11,7 +11,7 @@ use Validator;
 use App\Traits\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
-
+use Auth;
 class PostController extends Controller
 {
     use ImageUpload;
@@ -70,8 +70,7 @@ class PostController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator,'posts_error')
-                ->withInput();
+                ->withErrors($validator,'posts_error');
         } else {
             $user = Auth::user();
             $input = $request->all();
@@ -137,8 +136,7 @@ class PostController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator, 'posts_error')
-                ->withInput();
+                ->withErrors($validator, 'posts_error');
         } else {
             $input = $request->all();
             if ($request->image) {
