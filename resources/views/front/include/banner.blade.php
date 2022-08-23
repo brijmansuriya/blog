@@ -1,5 +1,5 @@
-<div class="hero container page__container text-center text-md-left py-112pt">
-    <h1 class="text-white text-shadow">Easy , Effective and Enjoy Learning</h1>
-    <p class="lead measure-hero-lead mx-auto mx-md-0 text-white text-shadow mb-48pt">Education beyond exams</p>
-    </p>
+<div @auth class="hero container page__container text-center py-112pt"  style="padding-bottom: 13rem !important;" @endauth>
+    @auth 
+    <h1 class="text text-shadow" style="font-size: 100px;color: #378bc5;">Let's Learn With Fun</h1>
+    @endauth
 </div>

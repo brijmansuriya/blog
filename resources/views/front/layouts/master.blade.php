@@ -7,8 +7,12 @@
 </head>
 <body class="layout-sticky-subnav layout-default ">
     <div class="mdk-header-layout js-mdk-header-layout">
-        @include('front.include.homeheader')
-        {{-- @include('front.layouts.topbar') --}}
+        {{-- @include('front.include.homeheader') --}}
+        @auth 
+            @include('front.include.header')
+        @else
+            @include('front.include.homeheader')
+        @endauth
         <div class="mdk-header-layout__content page-content ">
             @yield('content')
         </div>

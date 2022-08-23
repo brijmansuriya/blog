@@ -3,7 +3,11 @@
     <div class="mdk-header__bg" > 
         {{-- style="padding-bottom: 133px;" --}}
         <div class="mdk-header__bg-front"
-       
+        @auth 
+            style="background:#edf2f8"
+        @else
+         style="background-image: url(uploads/Banner/Webapp-Banner.png);"
+        @endauth
          ></div>
     </div>
     <div class="mdk-header__content justify-content-center">
@@ -76,10 +80,6 @@
         </div>
 
         @if(isset($homepage))
-        <div class="benner" style="clear:both;">
-        <img src="{{ asset('uploads/Banner/Webapp-Banner.png');}}" style="background-size: cover;width: 100%;" />
-        </div>
-        
          @include('front.include.banner')
         @endif
     </div>

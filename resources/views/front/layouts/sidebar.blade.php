@@ -11,22 +11,22 @@
            if(\Session::has('course_id')){
             $course_id =  App\Helpers\SidebarHelper::getCourses(\Session::get('course_id'));
            }
-             ?>{{ $course_id}}</div>
+             ?>{{ $course_id ?? ''}}</div>
             <ul class="sidebar-menu">
              @if(isset($sidebardata))
                 @foreach($sidebardata as $episod)
                 <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#enterprise_menu">
+                    <a class="sidebar-menu-button js-sidebar-collapse" data-toggle="collapse" href="#enterprise_menu_<?=$episod->id?>">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">add_to_queue</span>{{ $episod->name}}
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu">
+                    <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu_<?=$episod->id?>">
                         @foreach($episod->subcategory as $part)
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('partview',$part->id) }}">
                                 <span class="sidebar-menu-text">{{ $part->name}}</span>
                             </a>
-                            <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu">
+                            <ul class="sidebar-submenu collapse sm-indent" id="enterprise_menu_<?=$episod->id?>">
                                 @foreach($part->game as $subpart)
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" href="{{ route('gameandstory',$subpart->id) }}">{{ $subpart->name }}</a>
@@ -46,6 +46,12 @@
         </div>
     </div>
 </div>
+
+<script>
+$('li.sidebar-submenu a').on('click', function (event) {
+    $(this).parent().toggleClass('close');
+});
+</script>
 
 
 

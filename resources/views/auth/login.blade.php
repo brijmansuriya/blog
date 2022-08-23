@@ -16,7 +16,7 @@
         <div class="container page__container">
             <form action="{{ route('login') }}" method="POST" class="col-md-5 p-0 mx-auto">   @csrf
                 <div class="form-group">
-                    <label class="form-label" for="email">Email:</label>
+                    <label class="form-label" for="email">REGISTERED EMAIL:</label>
                     <input  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus class="form-control  @error('email') is-invalid @enderror" placeholder="Your email address ..." />
                     @error('email')
                         <span class="invalid-feedback" role="alert">

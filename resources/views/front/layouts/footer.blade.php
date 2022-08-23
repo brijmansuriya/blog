@@ -11,8 +11,7 @@
             <p class="text-50 mr-8pt" style="font-size:0.86rem;">Newrit is an EduTech venture by NOstress Education Pvt Ltd with a vision to provide innovative education using stress free methods.</p>
            <div class="row">
           <div class="col-4">
-          <span class="text-50 medium mt-8pt" style="font-size:0.9rem;">Copyright <?=date('Y')?> &copy; <span style="color:var(--blue)"> All rights reserved.
-          </span>
+          <span class="text-50 medium mt-8pt" style="font-size:0.9rem;">Copyright <?=date('Y')?> &copy;  NOstress Education Pvt Ltd
           </span>
              </div>
           <div class="col-4 text-center">
