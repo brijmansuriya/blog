@@ -12,6 +12,7 @@ use App\Traits\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Auth;
+
 class PostController extends Controller
 {
     use ImageUpload;
@@ -161,7 +162,7 @@ class PostController extends Controller
             //     $post = PostBody::find($request->$subid);
             //     $post->update($postbody);
             // }
-            $input['updated_at'] =  $user->id;
+            //$input['updated_at'] =  $user->id;
             $post = Post::find($id);
             $input['keywords'] = implode(",",$input['keywords']);
             $post->update($input);
